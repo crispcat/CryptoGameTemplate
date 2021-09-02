@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace Game
 {
-    public partial class GameModel
+    public partial class GameModel 
     {
+        public static GameModel Default()
+        {
+            return new GameModel();
+        }
     }
 }
