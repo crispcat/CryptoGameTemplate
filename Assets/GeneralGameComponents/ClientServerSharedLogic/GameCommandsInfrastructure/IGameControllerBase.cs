@@ -9,5 +9,6 @@ namespace Game
         Task Exit();
         void OnApplicationPause();
         long metaTime { get; }
+        void UnityUpdate();
     }
 }
