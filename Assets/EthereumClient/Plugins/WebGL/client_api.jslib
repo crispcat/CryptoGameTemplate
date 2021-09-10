@@ -6,12 +6,13 @@ const client_api =
   },
 
   GetWalletAddress : function() 
+  {    
+    return utils.StringToBuffer(multiwallet.GetConnectedAccount());
+  },
+
+  TransferEth : function(to, amount)
   {
-    var address = web3.currentProvider.selectedAddress;
-    if (!address)
-      return '';
-    
-    return utils.StringToBuffer(address);
+    web3_wrapper.TestTransferEth();
   }
 };
 
