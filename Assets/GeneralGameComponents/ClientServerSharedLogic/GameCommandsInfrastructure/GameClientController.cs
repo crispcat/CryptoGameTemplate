@@ -1,7 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using GameTools;
 using UnityEngine;
 using ZergRush;
+using ZergRush.ReactiveCore;
 
 namespace Game
 {
@@ -33,6 +35,15 @@ namespace Game
     
     public abstract class ServerBasedGameController : IGameControllerBase
     {
+        readonly Cell<GameModel> _gameCell = new Cell<GameModel>();
+        public override ICell<GameModel> gameCell => _gameCell;
+        public ClientMetaNetworkLayer network;
+        public RemoteClientMetaNetworkLayer networkRemote => network as RemoteClientMetaNetworkLayer;
+        public RiftersServerAPI serverAPI;
+        public PingMetaServerController pingServer { get; private set; }
+        public Cell<GameSession> sessionCell { get; private set; } = new Cell<GameSession>();
+        public override GameSession session => sessionCell.value;        
+        
         public void SinkLocalCommand(LocalMetaCommand command)
         {
             sinkedLocalCommands.items.Add(command);
@@ -54,14 +65,9 @@ namespace Game
                 sinkedLocalCommands = loadedBatch;
         }
 
-        public virtual void SavePlayer()
-        {
-        }
-
-        public abstract long metaTime { get; }
         void UpdateMetaTime()
         {
-            player.time.currTime = metaTime;
+            game.time.currTime = metaTime;
         }
 
         public virtual void UnityFrameUpdate()
@@ -83,25 +89,24 @@ namespace Game
         {
             await Exit();
         }
-        
-        readonly Cell<GameModel> _gameCell = new Cell<GameModel>();
-        public override ICell<GameModel> gameCell => _gameCell;
-        public ClientMetaNetworkLayer network;
-        public RemoteClientMetaNetworkLayer networkRemote => network as RemoteClientMetaNetworkLayer;
-        public RiftersServerAPI serverAPI;
-        public PingMetaServerController pingServer { get; private set; }
-        public TournamentClientController tournamentController { get; private set; }
-        public Cell<GameSession> sessionCell { get; private set; } = new Cell<GameSession>();
-        public override GameSession session => sessionCell.value;        
 
-        public override long metaTime
+        public void OnApplicationPause()
+        {
+            throw new NotImplementedException();
+        }
+
+        public long metaTime
         {
             get
             {
-                if (!authed)
-                    throw new RiftersException("cant get time");
+                if (!authed) throw new RiftersException("cant get time");
                 return ServerEngine.Time.ticksNow - metaTimeClientShift;
             }
+        }
+
+        public void OnUnityUpdate()
+        {
+            throw new NotImplementedException();
         }
 
         long metaTimeClientShift;
@@ -255,6 +260,8 @@ namespace Game
             await serverAPI.FinishSession();
         }
 
+        public GameModel game { get; set; }
+
         public override async Task Exit()
         {
             status.value = GameControllerStatus.Closing;
@@ -268,45 +275,14 @@ namespace Game
             FileWrapper.RemoveIfExists(remotePlayerModelCache);
         }
 
-        public override void SavePlayer()
+        public void SavePlayer()
         {
-            if (status.value == GameControllerStatus.Operational)
-            {
-                LocalGameSettings.instance.lastRemotePlayerModelHash = game.player.CalculateHash();
-                base.SavePlayer();
-                game.player.SaveToFile(remotePlayerModelCache, true);
-            }            
-        }
-        
-
-        public override async Task<bool> HardPurchase(ShopPurchasable item, Product product, bool sandbox)
-        {
-            var payload = (string)(JObject.Parse(product.receipt).GetValue("Payload") as JValue).Value;
-            
-            var result = await serverAPI.VerifyIOSInAppPurchaseAndAddMoney(item, payload, sandbox);
-            
-            if (result.ok == false)
-            {
-                Debug.LogError($"purchase {item.storeId} verification failed with message: {result.message}");
-            }
-            else
-            {
-                Debug.Log($"Purchase {item.storeId} successfully verified");
-                analyticsEvents.Send(new RealMoneySpent
-                {
-                    cents = (int)(product.metadata.localizedPrice * 100),
-                    currency = product.metadata.isoCurrencyCode,
-                    itemId = item.storeId,
-                    itemDesc = $"gems {((GemsPurchasable) item).count}",
-                });
-                item.Apply(player);
-                player.lastAcknowledgedIAPPurchase = result.newPurchaseDate;
-            }
-
-            return result.canConfirm;
+            LocalSettings.Instance.lastRemotePlayerModelHash = game.player.CalculateHash();
+            base.SavePlayer();
+            game.player.SaveToFile(remotePlayerModelCache, true);
         }
 
-        public override void OnAppPause()
+        public override void App()
         {
             if (player == null) return;
             if (player.inTutor == false)
