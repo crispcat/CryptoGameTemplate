@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace Game
 {
+    [AttributeUsage(AttributeTargets.Method)]
+    public class GenServerCommand : Attribute {}
+
+    // Former ServerSession
+
     public class ServerMetaNetworkLayer : MetaNetworkLayer
     {
         public static bool logMetaCommandsOnServer
@@ -17,7 +22,7 @@ namespace Game
                 return GameServerSettings.logs_enabled;
             }
         }
-        public override bool log => logMetaCommandsOnServer;
+        public bool log => logMetaCommandsOnServer;
         protected void LogReceivedRequest(RemoteMetaRequest command)
         {
             if (!log) return;
@@ -31,11 +36,11 @@ namespace Game
 
         public ServerPlayerSessionController playerSession { get; private set; } = new ServerPlayerSessionController();
 
-        public DelaysLogger detailedDelays
-        {
-            get => playerSession.detailedDelays;
-            set => playerSession.detailedDelays = value;
-        }
+        // public DelaysLogger detailedDelays
+        // {
+        //     get => playerSession.detailedDelays;
+        //     set => playerSession.detailedDelays = value;
+        // }
 
         public override async Task<RemoteMetaResponse> CallServerApi(RemoteMetaRequest request)
         {

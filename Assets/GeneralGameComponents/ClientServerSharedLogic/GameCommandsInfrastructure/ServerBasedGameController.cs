@@ -8,12 +8,6 @@ using ZergRush.ReactiveCore;
 
 namespace Game
 {
-    public enum ServerType
-    {
-        Prod,
-        Merged
-    }
-
     public class ServerBasedGameController : IGameControllerBase, IGameCommandSink
     {
         protected ServerBasedGameController() {}

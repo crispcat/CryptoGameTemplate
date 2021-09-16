@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using ZergRush.ReactiveCore;
 
 namespace Game
 {
@@ -9,6 +10,7 @@ namespace Game
         GameModel _game;
         public GameModel game { get => _game; set => _game = value; }
 
+        EventStream<string> fail = new EventStream<string>();
         const string fileName = "local_player_model";
         
         public DevGameController()
@@ -30,6 +32,18 @@ namespace Game
         }
 
         public long metaTime => DateTime.Now.Ticks;
+        public void OnUnityUpdate()
+        {
+            if (Input.GetKeyDown(KeyCode.F10))
+            {
+                fail.Send("Test fail");
+            }
+        }
+
+        public IEventStream<string> RestartNeeded()
+        {
+            return fail;
+        }
 
         public async Task Exit()
         {

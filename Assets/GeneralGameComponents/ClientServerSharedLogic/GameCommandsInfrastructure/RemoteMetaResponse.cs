@@ -12,7 +12,6 @@ namespace Game
         public bool success => type == RemoteMetaResponseType.Complete;
         public bool logged => true;
         [CanBeNull] public string error;
-        [CanBeNull] public Timings timings;
         [CanBeNull] public byte[] responseData;
 
         public static RemoteMetaResponse NotAuthed = new RemoteMetaResponse { type = RemoteMetaResponseType.NotAuthed };
@@ -45,6 +44,10 @@ namespace Game
         public void Deserialize(BinaryReader reader)
         {
             throw new NotImplementedException();
+        }
+
+        public string Log(RemoteMetaRequestType requestType)
+        {
         }
     }
 }

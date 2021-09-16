@@ -10,6 +10,8 @@ namespace Game
              GenTaskFlags.UpdateFrom | GenTaskFlags.CompareChech | GenTaskFlags.Hash), GenModelRootSetup]
     public partial class GameModel : CommandSupportModel, ISerializable
     {
+        public string displayName;
+        
         public LocalMetaCommandResult ExecuteCommand(LocalMetaCommand command)
         {
             throw new System.NotImplementedException();

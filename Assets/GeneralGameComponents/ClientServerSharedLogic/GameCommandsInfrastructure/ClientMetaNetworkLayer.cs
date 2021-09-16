@@ -8,34 +8,33 @@ namespace Game
     public abstract class ClientMetaNetworkLayer : MetaNetworkLayer
     {
         static LocalSettings settings => LocalSettings.Instance;
-        protected static Task PlayfabAuth()
+        GameSession session;
+        
+        protected static async Task PlayfabAuth(AuthData overrideAuthData = null)
         {
             AuthData authData = settings.authData;
             if (overrideAuthData != null)
                 authData = overrideAuthData;
             if (authData == null || authData.authId == null)
                 authData = AuthData.Default();
-            var cachedHash = FileWrapper.Exists(remotePlayerModelCache)
-                ? settings.lastRemotePlayerModelHash
-                : 0;
 
             // auth on playfab.            
-            var session = await PlayfabAuth.AuthenticateAsClient(authData);
+            //var session = await PlayfabAuth.AuthenticateAsClient(authData);
             
         }
         
         public RemoteMetaRequest PrepareRequest(RemoteMetaRequestType type)
         {
-            long time = controller.metaTime;
+            //long time = controller.metaTime;
             var request = new RemoteMetaRequest
             {
                 type = type,
-                sessionId = controller.session?.ticket,
-                time = time
+                sessionId = session?.ticket,
+                //time = time
             };
             if (type != RemoteMetaRequestType.Authenticate)
             {
-                request.localCommandsBatch = controller.DrainLocalCommands();
+                //request.localCommandsBatch = controller.DrainLocalCommands();
                 //Debug.Log($"drained commands for preparing request for {type}");
                 //Debug.Log($"{request.localCommandsBatch.items.Count} local commands fly to server");
             }            
@@ -53,7 +52,7 @@ namespace Game
                 // ignored
             }
         }
-        protected void LogReceivedResponse(RemoteMetaRequestType requestType, RemoteMetaResponse command, int lag)
+        protected void LogReceivedResponse(RemoteMetaRequestType requestType, RemoteMetaResponse command, long lag)
         {
             try
             {
@@ -64,7 +63,8 @@ namespace Game
                 // ignored
             }
         }
-        public abstract long lag { get; }
+
+        public long lag => 0;
         public virtual void Update() { }
         protected void OnBeforeCommandSent(RemoteMetaRequest command)
         {

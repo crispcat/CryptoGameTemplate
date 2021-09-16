@@ -5,7 +5,9 @@ namespace Game
 {
     public enum RemoteMetaRequestType
     {
-        Authenticate
+        Authenticate,
+        DebugTimeoutSession,
+        DebugAuthenticateMergedPlayer
     }
 
     public enum RemoteMetaResponseType : byte
