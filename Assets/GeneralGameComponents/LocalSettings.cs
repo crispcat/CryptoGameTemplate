@@ -6,8 +6,6 @@ using ZergRush.ReactiveCore;
 
 namespace GameTools
 {
-    
-
     [GenTask(GenTaskFlags.DefaultConstructor | GenTaskFlags.JsonSerialization)]
     public partial class LocalSettings : IJsonSerializable
     {
@@ -23,7 +21,6 @@ namespace GameTools
         }
 
         static Cell<LocalSettings> _instanceCell = new Cell<LocalSettings>();
-        public int lastRemotePlayerModelHash;
 
         public static ICell<LocalSettings> instanceCell
         {

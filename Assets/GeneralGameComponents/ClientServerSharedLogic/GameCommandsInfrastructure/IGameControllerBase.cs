@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using ZergRush;
+using ZergRush.ReactiveCore;
 
 namespace Game
 {
@@ -10,5 +11,6 @@ namespace Game
         void OnApplicationPause();
         long metaTime { get; }
         void OnUnityUpdate();
+        IEventStream<string> RestartNeeded();
     }
 }
