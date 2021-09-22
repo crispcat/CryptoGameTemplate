@@ -10,7 +10,7 @@ namespace PlayFab
     /// <summary>
     /// APIs for managing title configurations, uploaded Game Server code executables, and user data
     /// </summary>
-    public static class PlayFabAdminAPI
+    public static partial class PlayFabAdminAPI
     {
         static PlayFabAdminAPI() {}
 

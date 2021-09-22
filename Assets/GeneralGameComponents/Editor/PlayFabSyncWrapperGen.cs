@@ -36,15 +36,16 @@ public static partial class PlayFabSyncWrapperGen
     {
         var generatePlayfabless = playfablessAPIClassType != null;            
 
-        var context = new GeneratorContext(new GenInfo { sharpGenPath = "Assets/PortalHunter/GameController/" }, false);
+        var context = new GeneratorContext(new GenInfo { sharpGenPath = "Assets/GeneralGameComponents/PlayfabAsyncWrapper" }, false);
         var module = context.createSharpCustomModule($"{playfabAPIClassType.Name}AsyncWrapper");
         module.content($"#if {directive}");
         usings.ForEach(s => module.content($"using {s};"));
         module.content($"#endif");
 
-        var sink = module.Class(playfabAPIClassType.Name, "PlayFab", false, false, true, true);
+        var moduleName = playfabAPIClassType.Name + "Async";
+        
+        var sink = module.Class(moduleName, "PlayFab", false, false, true, true);
         sink.usingSink("System.Threading.Tasks");
-        sink.usingSink("PortalHunter.GameRoot");
         sink.content($"#if {directive}");
         sink.content($"public static Timing lastCallTiming {{ get; private set; }}");
         var getMethodsFlags = BindingFlags.Public | BindingFlags.Static;
@@ -54,7 +55,7 @@ public static partial class PlayFabSyncWrapperGen
         {
             if (func.GetParameters().Length != 5) continue;
             if (func.IsGenericMethod) continue;
-            var asyncFuncName = $"{func.Name}Async";
+            var asyncFuncName = $"{func.Name}";
             var playfablessFunc = playfablessFuncs?.Find(currFunc => currFunc.Name == asyncFuncName);
             // get respone type from action callback
             var responseType = func.GetParameters()[1].ParameterType.FirstGenericArg();
@@ -67,7 +68,7 @@ public static partial class PlayFabSyncWrapperGen
             void SinkCallRealPlayfab()
             {
                 sink.content($"waiter = new PlayFabResult<{responseTypeName}>();");
-                sink.content($"{func.Name}(request, waiter.processSuccess, waiter.processFail);");
+                sink.content($"{playfabAPIClassType.Name}.{func.Name}(request, waiter.processSuccess, waiter.processFail);");
                 if (executesInEditMode)
                     sink.content($"while (waiter.keepWaiting) await Task.Delay(10);");
                 else

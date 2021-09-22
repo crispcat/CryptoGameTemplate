@@ -10,7 +10,7 @@ namespace PlayFab
     /// <summary>
     /// Enables the use of an external match-making service in conjunction with PlayFab hosted Game Server instances
     /// </summary>
-    public static class PlayFabMatchmakerAPI
+    public static partial class PlayFabMatchmakerAPI
     {
         static PlayFabMatchmakerAPI() {}
 
