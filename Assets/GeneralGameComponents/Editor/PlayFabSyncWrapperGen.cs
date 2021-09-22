@@ -44,7 +44,7 @@ public static partial class PlayFabSyncWrapperGen
 
         var moduleName = playfabAPIClassType.Name + "Async";
         
-        var sink = module.Class(moduleName, "PlayFab", false, false, true, true);
+        var sink = module.Class(moduleName, "PlayFab", false, false, false, true);
         sink.usingSink("System.Threading.Tasks");
         sink.content($"#if {directive}");
         sink.content($"public static Timing lastCallTiming {{ get; private set; }}");

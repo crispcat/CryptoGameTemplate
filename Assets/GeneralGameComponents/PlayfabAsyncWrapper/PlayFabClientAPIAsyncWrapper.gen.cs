@@ -8,1626 +8,1626 @@ using PlayFab.ClientModels;
 #if !INCLUDE_ONLY_CODE_GENERATION
 namespace PlayFab {
 
-    public static partial class PlayFabClientAPI
+    public static partial class PlayFabClientAPIAsync
     {
         #if !DISABLE_PLAYFABCLIENT_API
         public static Timing lastCallTiming { get; private set; }
-        public static async Task<PlayFabResult<AcceptTradeResponse>> AcceptTradeAsync(AcceptTradeRequest request)
+        public static async Task<PlayFabResult<AcceptTradeResponse>> AcceptTrade(AcceptTradeRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<AcceptTradeResponse> waiter;
             waiter = new PlayFabResult<AcceptTradeResponse>();
-            AcceptTrade(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.AcceptTrade(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<AddFriendResult>> AddFriendAsync(AddFriendRequest request)
+        public static async Task<PlayFabResult<AddFriendResult>> AddFriend(AddFriendRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<AddFriendResult> waiter;
             waiter = new PlayFabResult<AddFriendResult>();
-            AddFriend(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.AddFriend(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<AddGenericIDResult>> AddGenericIDAsync(AddGenericIDRequest request)
+        public static async Task<PlayFabResult<AddGenericIDResult>> AddGenericID(AddGenericIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<AddGenericIDResult> waiter;
             waiter = new PlayFabResult<AddGenericIDResult>();
-            AddGenericID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.AddGenericID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<AddOrUpdateContactEmailResult>> AddOrUpdateContactEmailAsync(AddOrUpdateContactEmailRequest request)
+        public static async Task<PlayFabResult<AddOrUpdateContactEmailResult>> AddOrUpdateContactEmail(AddOrUpdateContactEmailRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<AddOrUpdateContactEmailResult> waiter;
             waiter = new PlayFabResult<AddOrUpdateContactEmailResult>();
-            AddOrUpdateContactEmail(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.AddOrUpdateContactEmail(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<AddSharedGroupMembersResult>> AddSharedGroupMembersAsync(AddSharedGroupMembersRequest request)
+        public static async Task<PlayFabResult<AddSharedGroupMembersResult>> AddSharedGroupMembers(AddSharedGroupMembersRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<AddSharedGroupMembersResult> waiter;
             waiter = new PlayFabResult<AddSharedGroupMembersResult>();
-            AddSharedGroupMembers(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.AddSharedGroupMembers(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<AddUsernamePasswordResult>> AddUsernamePasswordAsync(AddUsernamePasswordRequest request)
+        public static async Task<PlayFabResult<AddUsernamePasswordResult>> AddUsernamePassword(AddUsernamePasswordRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<AddUsernamePasswordResult> waiter;
             waiter = new PlayFabResult<AddUsernamePasswordResult>();
-            AddUsernamePassword(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.AddUsernamePassword(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ModifyUserVirtualCurrencyResult>> AddUserVirtualCurrencyAsync(AddUserVirtualCurrencyRequest request)
+        public static async Task<PlayFabResult<ModifyUserVirtualCurrencyResult>> AddUserVirtualCurrency(AddUserVirtualCurrencyRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ModifyUserVirtualCurrencyResult> waiter;
             waiter = new PlayFabResult<ModifyUserVirtualCurrencyResult>();
-            AddUserVirtualCurrency(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.AddUserVirtualCurrency(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<AndroidDevicePushNotificationRegistrationResult>> AndroidDevicePushNotificationRegistrationAsync(AndroidDevicePushNotificationRegistrationRequest request)
+        public static async Task<PlayFabResult<AndroidDevicePushNotificationRegistrationResult>> AndroidDevicePushNotificationRegistration(AndroidDevicePushNotificationRegistrationRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<AndroidDevicePushNotificationRegistrationResult> waiter;
             waiter = new PlayFabResult<AndroidDevicePushNotificationRegistrationResult>();
-            AndroidDevicePushNotificationRegistration(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.AndroidDevicePushNotificationRegistration(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<AttributeInstallResult>> AttributeInstallAsync(AttributeInstallRequest request)
+        public static async Task<PlayFabResult<AttributeInstallResult>> AttributeInstall(AttributeInstallRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<AttributeInstallResult> waiter;
             waiter = new PlayFabResult<AttributeInstallResult>();
-            AttributeInstall(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.AttributeInstall(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<CancelTradeResponse>> CancelTradeAsync(CancelTradeRequest request)
+        public static async Task<PlayFabResult<CancelTradeResponse>> CancelTrade(CancelTradeRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<CancelTradeResponse> waiter;
             waiter = new PlayFabResult<CancelTradeResponse>();
-            CancelTrade(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.CancelTrade(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ConfirmPurchaseResult>> ConfirmPurchaseAsync(ConfirmPurchaseRequest request)
+        public static async Task<PlayFabResult<ConfirmPurchaseResult>> ConfirmPurchase(ConfirmPurchaseRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ConfirmPurchaseResult> waiter;
             waiter = new PlayFabResult<ConfirmPurchaseResult>();
-            ConfirmPurchase(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ConfirmPurchase(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ConsumeItemResult>> ConsumeItemAsync(ConsumeItemRequest request)
+        public static async Task<PlayFabResult<ConsumeItemResult>> ConsumeItem(ConsumeItemRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ConsumeItemResult> waiter;
             waiter = new PlayFabResult<ConsumeItemResult>();
-            ConsumeItem(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ConsumeItem(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse>> ConsumeMicrosoftStoreEntitlementsAsync(ConsumeMicrosoftStoreEntitlementsRequest request)
+        public static async Task<PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse>> ConsumeMicrosoftStoreEntitlements(ConsumeMicrosoftStoreEntitlementsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse> waiter;
             waiter = new PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse>();
-            ConsumeMicrosoftStoreEntitlements(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ConsumeMicrosoftStoreEntitlements(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ConsumePS5EntitlementsResult>> ConsumePS5EntitlementsAsync(ConsumePS5EntitlementsRequest request)
+        public static async Task<PlayFabResult<ConsumePS5EntitlementsResult>> ConsumePS5Entitlements(ConsumePS5EntitlementsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ConsumePS5EntitlementsResult> waiter;
             waiter = new PlayFabResult<ConsumePS5EntitlementsResult>();
-            ConsumePS5Entitlements(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ConsumePS5Entitlements(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ConsumePSNEntitlementsResult>> ConsumePSNEntitlementsAsync(ConsumePSNEntitlementsRequest request)
+        public static async Task<PlayFabResult<ConsumePSNEntitlementsResult>> ConsumePSNEntitlements(ConsumePSNEntitlementsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ConsumePSNEntitlementsResult> waiter;
             waiter = new PlayFabResult<ConsumePSNEntitlementsResult>();
-            ConsumePSNEntitlements(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ConsumePSNEntitlements(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ConsumeXboxEntitlementsResult>> ConsumeXboxEntitlementsAsync(ConsumeXboxEntitlementsRequest request)
+        public static async Task<PlayFabResult<ConsumeXboxEntitlementsResult>> ConsumeXboxEntitlements(ConsumeXboxEntitlementsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ConsumeXboxEntitlementsResult> waiter;
             waiter = new PlayFabResult<ConsumeXboxEntitlementsResult>();
-            ConsumeXboxEntitlements(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ConsumeXboxEntitlements(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<CreateSharedGroupResult>> CreateSharedGroupAsync(CreateSharedGroupRequest request)
+        public static async Task<PlayFabResult<CreateSharedGroupResult>> CreateSharedGroup(CreateSharedGroupRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<CreateSharedGroupResult> waiter;
             waiter = new PlayFabResult<CreateSharedGroupResult>();
-            CreateSharedGroup(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.CreateSharedGroup(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ExecuteCloudScriptResult>> ExecuteCloudScriptAsync(ExecuteCloudScriptRequest request)
+        public static async Task<PlayFabResult<ExecuteCloudScriptResult>> ExecuteCloudScript(ExecuteCloudScriptRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ExecuteCloudScriptResult> waiter;
             waiter = new PlayFabResult<ExecuteCloudScriptResult>();
-            ExecuteCloudScript(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ExecuteCloudScript(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetAccountInfoResult>> GetAccountInfoAsync(GetAccountInfoRequest request)
+        public static async Task<PlayFabResult<GetAccountInfoResult>> GetAccountInfo(GetAccountInfoRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetAccountInfoResult> waiter;
             waiter = new PlayFabResult<GetAccountInfoResult>();
-            GetAccountInfo(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetAccountInfo(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetAdPlacementsResult>> GetAdPlacementsAsync(GetAdPlacementsRequest request)
+        public static async Task<PlayFabResult<GetAdPlacementsResult>> GetAdPlacements(GetAdPlacementsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetAdPlacementsResult> waiter;
             waiter = new PlayFabResult<GetAdPlacementsResult>();
-            GetAdPlacements(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetAdPlacements(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ListUsersCharactersResult>> GetAllUsersCharactersAsync(ListUsersCharactersRequest request)
+        public static async Task<PlayFabResult<ListUsersCharactersResult>> GetAllUsersCharacters(ListUsersCharactersRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ListUsersCharactersResult> waiter;
             waiter = new PlayFabResult<ListUsersCharactersResult>();
-            GetAllUsersCharacters(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetAllUsersCharacters(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetCatalogItemsResult>> GetCatalogItemsAsync(GetCatalogItemsRequest request)
+        public static async Task<PlayFabResult<GetCatalogItemsResult>> GetCatalogItems(GetCatalogItemsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetCatalogItemsResult> waiter;
             waiter = new PlayFabResult<GetCatalogItemsResult>();
-            GetCatalogItems(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetCatalogItems(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetCharacterDataResult>> GetCharacterDataAsync(GetCharacterDataRequest request)
+        public static async Task<PlayFabResult<GetCharacterDataResult>> GetCharacterData(GetCharacterDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetCharacterDataResult> waiter;
             waiter = new PlayFabResult<GetCharacterDataResult>();
-            GetCharacterData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetCharacterData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetCharacterInventoryResult>> GetCharacterInventoryAsync(GetCharacterInventoryRequest request)
+        public static async Task<PlayFabResult<GetCharacterInventoryResult>> GetCharacterInventory(GetCharacterInventoryRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetCharacterInventoryResult> waiter;
             waiter = new PlayFabResult<GetCharacterInventoryResult>();
-            GetCharacterInventory(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetCharacterInventory(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetCharacterLeaderboardResult>> GetCharacterLeaderboardAsync(GetCharacterLeaderboardRequest request)
+        public static async Task<PlayFabResult<GetCharacterLeaderboardResult>> GetCharacterLeaderboard(GetCharacterLeaderboardRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetCharacterLeaderboardResult> waiter;
             waiter = new PlayFabResult<GetCharacterLeaderboardResult>();
-            GetCharacterLeaderboard(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetCharacterLeaderboard(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetCharacterDataResult>> GetCharacterReadOnlyDataAsync(GetCharacterDataRequest request)
+        public static async Task<PlayFabResult<GetCharacterDataResult>> GetCharacterReadOnlyData(GetCharacterDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetCharacterDataResult> waiter;
             waiter = new PlayFabResult<GetCharacterDataResult>();
-            GetCharacterReadOnlyData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetCharacterReadOnlyData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetCharacterStatisticsResult>> GetCharacterStatisticsAsync(GetCharacterStatisticsRequest request)
+        public static async Task<PlayFabResult<GetCharacterStatisticsResult>> GetCharacterStatistics(GetCharacterStatisticsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetCharacterStatisticsResult> waiter;
             waiter = new PlayFabResult<GetCharacterStatisticsResult>();
-            GetCharacterStatistics(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetCharacterStatistics(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetContentDownloadUrlResult>> GetContentDownloadUrlAsync(GetContentDownloadUrlRequest request)
+        public static async Task<PlayFabResult<GetContentDownloadUrlResult>> GetContentDownloadUrl(GetContentDownloadUrlRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetContentDownloadUrlResult> waiter;
             waiter = new PlayFabResult<GetContentDownloadUrlResult>();
-            GetContentDownloadUrl(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetContentDownloadUrl(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<CurrentGamesResult>> GetCurrentGamesAsync(CurrentGamesRequest request)
+        public static async Task<PlayFabResult<CurrentGamesResult>> GetCurrentGames(CurrentGamesRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<CurrentGamesResult> waiter;
             waiter = new PlayFabResult<CurrentGamesResult>();
-            GetCurrentGames(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetCurrentGames(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetLeaderboardResult>> GetFriendLeaderboardAsync(GetFriendLeaderboardRequest request)
+        public static async Task<PlayFabResult<GetLeaderboardResult>> GetFriendLeaderboard(GetFriendLeaderboardRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetLeaderboardResult> waiter;
             waiter = new PlayFabResult<GetLeaderboardResult>();
-            GetFriendLeaderboard(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetFriendLeaderboard(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetFriendLeaderboardAroundPlayerResult>> GetFriendLeaderboardAroundPlayerAsync(GetFriendLeaderboardAroundPlayerRequest request)
+        public static async Task<PlayFabResult<GetFriendLeaderboardAroundPlayerResult>> GetFriendLeaderboardAroundPlayer(GetFriendLeaderboardAroundPlayerRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetFriendLeaderboardAroundPlayerResult> waiter;
             waiter = new PlayFabResult<GetFriendLeaderboardAroundPlayerResult>();
-            GetFriendLeaderboardAroundPlayer(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetFriendLeaderboardAroundPlayer(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetFriendsListResult>> GetFriendsListAsync(GetFriendsListRequest request)
+        public static async Task<PlayFabResult<GetFriendsListResult>> GetFriendsList(GetFriendsListRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetFriendsListResult> waiter;
             waiter = new PlayFabResult<GetFriendsListResult>();
-            GetFriendsList(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetFriendsList(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GameServerRegionsResult>> GetGameServerRegionsAsync(GameServerRegionsRequest request)
+        public static async Task<PlayFabResult<GameServerRegionsResult>> GetGameServerRegions(GameServerRegionsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GameServerRegionsResult> waiter;
             waiter = new PlayFabResult<GameServerRegionsResult>();
-            GetGameServerRegions(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetGameServerRegions(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetLeaderboardResult>> GetLeaderboardAsync(GetLeaderboardRequest request)
+        public static async Task<PlayFabResult<GetLeaderboardResult>> GetLeaderboard(GetLeaderboardRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetLeaderboardResult> waiter;
             waiter = new PlayFabResult<GetLeaderboardResult>();
-            GetLeaderboard(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetLeaderboard(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetLeaderboardAroundCharacterResult>> GetLeaderboardAroundCharacterAsync(GetLeaderboardAroundCharacterRequest request)
+        public static async Task<PlayFabResult<GetLeaderboardAroundCharacterResult>> GetLeaderboardAroundCharacter(GetLeaderboardAroundCharacterRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetLeaderboardAroundCharacterResult> waiter;
             waiter = new PlayFabResult<GetLeaderboardAroundCharacterResult>();
-            GetLeaderboardAroundCharacter(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetLeaderboardAroundCharacter(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetLeaderboardAroundPlayerResult>> GetLeaderboardAroundPlayerAsync(GetLeaderboardAroundPlayerRequest request)
+        public static async Task<PlayFabResult<GetLeaderboardAroundPlayerResult>> GetLeaderboardAroundPlayer(GetLeaderboardAroundPlayerRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetLeaderboardAroundPlayerResult> waiter;
             waiter = new PlayFabResult<GetLeaderboardAroundPlayerResult>();
-            GetLeaderboardAroundPlayer(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetLeaderboardAroundPlayer(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetLeaderboardForUsersCharactersResult>> GetLeaderboardForUserCharactersAsync(GetLeaderboardForUsersCharactersRequest request)
+        public static async Task<PlayFabResult<GetLeaderboardForUsersCharactersResult>> GetLeaderboardForUserCharacters(GetLeaderboardForUsersCharactersRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetLeaderboardForUsersCharactersResult> waiter;
             waiter = new PlayFabResult<GetLeaderboardForUsersCharactersResult>();
-            GetLeaderboardForUserCharacters(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetLeaderboardForUserCharacters(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPaymentTokenResult>> GetPaymentTokenAsync(GetPaymentTokenRequest request)
+        public static async Task<PlayFabResult<GetPaymentTokenResult>> GetPaymentToken(GetPaymentTokenRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPaymentTokenResult> waiter;
             waiter = new PlayFabResult<GetPaymentTokenResult>();
-            GetPaymentToken(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPaymentToken(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPhotonAuthenticationTokenResult>> GetPhotonAuthenticationTokenAsync(GetPhotonAuthenticationTokenRequest request)
+        public static async Task<PlayFabResult<GetPhotonAuthenticationTokenResult>> GetPhotonAuthenticationToken(GetPhotonAuthenticationTokenRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPhotonAuthenticationTokenResult> waiter;
             waiter = new PlayFabResult<GetPhotonAuthenticationTokenResult>();
-            GetPhotonAuthenticationToken(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPhotonAuthenticationToken(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayerCombinedInfoResult>> GetPlayerCombinedInfoAsync(GetPlayerCombinedInfoRequest request)
+        public static async Task<PlayFabResult<GetPlayerCombinedInfoResult>> GetPlayerCombinedInfo(GetPlayerCombinedInfoRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayerCombinedInfoResult> waiter;
             waiter = new PlayFabResult<GetPlayerCombinedInfoResult>();
-            GetPlayerCombinedInfo(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayerCombinedInfo(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayerProfileResult>> GetPlayerProfileAsync(GetPlayerProfileRequest request)
+        public static async Task<PlayFabResult<GetPlayerProfileResult>> GetPlayerProfile(GetPlayerProfileRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayerProfileResult> waiter;
             waiter = new PlayFabResult<GetPlayerProfileResult>();
-            GetPlayerProfile(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayerProfile(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayerSegmentsResult>> GetPlayerSegmentsAsync(GetPlayerSegmentsRequest request)
+        public static async Task<PlayFabResult<GetPlayerSegmentsResult>> GetPlayerSegments(GetPlayerSegmentsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayerSegmentsResult> waiter;
             waiter = new PlayFabResult<GetPlayerSegmentsResult>();
-            GetPlayerSegments(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayerSegments(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayerStatisticsResult>> GetPlayerStatisticsAsync(GetPlayerStatisticsRequest request)
+        public static async Task<PlayFabResult<GetPlayerStatisticsResult>> GetPlayerStatistics(GetPlayerStatisticsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayerStatisticsResult> waiter;
             waiter = new PlayFabResult<GetPlayerStatisticsResult>();
-            GetPlayerStatistics(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayerStatistics(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayerStatisticVersionsResult>> GetPlayerStatisticVersionsAsync(GetPlayerStatisticVersionsRequest request)
+        public static async Task<PlayFabResult<GetPlayerStatisticVersionsResult>> GetPlayerStatisticVersions(GetPlayerStatisticVersionsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayerStatisticVersionsResult> waiter;
             waiter = new PlayFabResult<GetPlayerStatisticVersionsResult>();
-            GetPlayerStatisticVersions(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayerStatisticVersions(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayerTagsResult>> GetPlayerTagsAsync(GetPlayerTagsRequest request)
+        public static async Task<PlayFabResult<GetPlayerTagsResult>> GetPlayerTags(GetPlayerTagsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayerTagsResult> waiter;
             waiter = new PlayFabResult<GetPlayerTagsResult>();
-            GetPlayerTags(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayerTags(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayerTradesResponse>> GetPlayerTradesAsync(GetPlayerTradesRequest request)
+        public static async Task<PlayFabResult<GetPlayerTradesResponse>> GetPlayerTrades(GetPlayerTradesRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayerTradesResponse> waiter;
             waiter = new PlayFabResult<GetPlayerTradesResponse>();
-            GetPlayerTrades(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayerTrades(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromFacebookIDsResult>> GetPlayFabIDsFromFacebookIDsAsync(GetPlayFabIDsFromFacebookIDsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromFacebookIDsResult>> GetPlayFabIDsFromFacebookIDs(GetPlayFabIDsFromFacebookIDsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromFacebookIDsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromFacebookIDsResult>();
-            GetPlayFabIDsFromFacebookIDs(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromFacebookIDs(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult>> GetPlayFabIDsFromFacebookInstantGamesIdsAsync(GetPlayFabIDsFromFacebookInstantGamesIdsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult>> GetPlayFabIDsFromFacebookInstantGamesIds(GetPlayFabIDsFromFacebookInstantGamesIdsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult>();
-            GetPlayFabIDsFromFacebookInstantGamesIds(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromFacebookInstantGamesIds(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromGameCenterIDsResult>> GetPlayFabIDsFromGameCenterIDsAsync(GetPlayFabIDsFromGameCenterIDsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromGameCenterIDsResult>> GetPlayFabIDsFromGameCenterIDs(GetPlayFabIDsFromGameCenterIDsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromGameCenterIDsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromGameCenterIDsResult>();
-            GetPlayFabIDsFromGameCenterIDs(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromGameCenterIDs(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromGenericIDsResult>> GetPlayFabIDsFromGenericIDsAsync(GetPlayFabIDsFromGenericIDsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromGenericIDsResult>> GetPlayFabIDsFromGenericIDs(GetPlayFabIDsFromGenericIDsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromGenericIDsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromGenericIDsResult>();
-            GetPlayFabIDsFromGenericIDs(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromGenericIDs(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromGoogleIDsResult>> GetPlayFabIDsFromGoogleIDsAsync(GetPlayFabIDsFromGoogleIDsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromGoogleIDsResult>> GetPlayFabIDsFromGoogleIDs(GetPlayFabIDsFromGoogleIDsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromGoogleIDsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromGoogleIDsResult>();
-            GetPlayFabIDsFromGoogleIDs(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromGoogleIDs(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromKongregateIDsResult>> GetPlayFabIDsFromKongregateIDsAsync(GetPlayFabIDsFromKongregateIDsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromKongregateIDsResult>> GetPlayFabIDsFromKongregateIDs(GetPlayFabIDsFromKongregateIDsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromKongregateIDsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromKongregateIDsResult>();
-            GetPlayFabIDsFromKongregateIDs(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromKongregateIDs(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>> GetPlayFabIDsFromNintendoSwitchDeviceIdsAsync(GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>> GetPlayFabIDsFromNintendoSwitchDeviceIds(GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>();
-            GetPlayFabIDsFromNintendoSwitchDeviceIds(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromNintendoSwitchDeviceIds(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>> GetPlayFabIDsFromPSNAccountIDsAsync(GetPlayFabIDsFromPSNAccountIDsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>> GetPlayFabIDsFromPSNAccountIDs(GetPlayFabIDsFromPSNAccountIDsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>();
-            GetPlayFabIDsFromPSNAccountIDs(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromPSNAccountIDs(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromSteamIDsResult>> GetPlayFabIDsFromSteamIDsAsync(GetPlayFabIDsFromSteamIDsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromSteamIDsResult>> GetPlayFabIDsFromSteamIDs(GetPlayFabIDsFromSteamIDsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromSteamIDsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromSteamIDsResult>();
-            GetPlayFabIDsFromSteamIDs(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromSteamIDs(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>> GetPlayFabIDsFromTwitchIDsAsync(GetPlayFabIDsFromTwitchIDsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>> GetPlayFabIDsFromTwitchIDs(GetPlayFabIDsFromTwitchIDsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>();
-            GetPlayFabIDsFromTwitchIDs(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromTwitchIDs(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>> GetPlayFabIDsFromXboxLiveIDsAsync(GetPlayFabIDsFromXboxLiveIDsRequest request)
+        public static async Task<PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>> GetPlayFabIDsFromXboxLiveIDs(GetPlayFabIDsFromXboxLiveIDsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> waiter;
             waiter = new PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>();
-            GetPlayFabIDsFromXboxLiveIDs(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPlayFabIDsFromXboxLiveIDs(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPublisherDataResult>> GetPublisherDataAsync(GetPublisherDataRequest request)
+        public static async Task<PlayFabResult<GetPublisherDataResult>> GetPublisherData(GetPublisherDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPublisherDataResult> waiter;
             waiter = new PlayFabResult<GetPublisherDataResult>();
-            GetPublisherData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPublisherData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetPurchaseResult>> GetPurchaseAsync(GetPurchaseRequest request)
+        public static async Task<PlayFabResult<GetPurchaseResult>> GetPurchase(GetPurchaseRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetPurchaseResult> waiter;
             waiter = new PlayFabResult<GetPurchaseResult>();
-            GetPurchase(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetPurchase(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetSharedGroupDataResult>> GetSharedGroupDataAsync(GetSharedGroupDataRequest request)
+        public static async Task<PlayFabResult<GetSharedGroupDataResult>> GetSharedGroupData(GetSharedGroupDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetSharedGroupDataResult> waiter;
             waiter = new PlayFabResult<GetSharedGroupDataResult>();
-            GetSharedGroupData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetSharedGroupData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetStoreItemsResult>> GetStoreItemsAsync(GetStoreItemsRequest request)
+        public static async Task<PlayFabResult<GetStoreItemsResult>> GetStoreItems(GetStoreItemsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetStoreItemsResult> waiter;
             waiter = new PlayFabResult<GetStoreItemsResult>();
-            GetStoreItems(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetStoreItems(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetTimeResult>> GetTimeAsync(GetTimeRequest request)
+        public static async Task<PlayFabResult<GetTimeResult>> GetTime(GetTimeRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetTimeResult> waiter;
             waiter = new PlayFabResult<GetTimeResult>();
-            GetTime(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetTime(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetTitleDataResult>> GetTitleDataAsync(GetTitleDataRequest request)
+        public static async Task<PlayFabResult<GetTitleDataResult>> GetTitleData(GetTitleDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetTitleDataResult> waiter;
             waiter = new PlayFabResult<GetTitleDataResult>();
-            GetTitleData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetTitleData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetTitleNewsResult>> GetTitleNewsAsync(GetTitleNewsRequest request)
+        public static async Task<PlayFabResult<GetTitleNewsResult>> GetTitleNews(GetTitleNewsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetTitleNewsResult> waiter;
             waiter = new PlayFabResult<GetTitleNewsResult>();
-            GetTitleNews(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetTitleNews(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetTitlePublicKeyResult>> GetTitlePublicKeyAsync(GetTitlePublicKeyRequest request)
+        public static async Task<PlayFabResult<GetTitlePublicKeyResult>> GetTitlePublicKey(GetTitlePublicKeyRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetTitlePublicKeyResult> waiter;
             waiter = new PlayFabResult<GetTitlePublicKeyResult>();
-            GetTitlePublicKey(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetTitlePublicKey(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetTradeStatusResponse>> GetTradeStatusAsync(GetTradeStatusRequest request)
+        public static async Task<PlayFabResult<GetTradeStatusResponse>> GetTradeStatus(GetTradeStatusRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetTradeStatusResponse> waiter;
             waiter = new PlayFabResult<GetTradeStatusResponse>();
-            GetTradeStatus(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetTradeStatus(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetUserDataResult>> GetUserDataAsync(GetUserDataRequest request)
+        public static async Task<PlayFabResult<GetUserDataResult>> GetUserData(GetUserDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetUserDataResult> waiter;
             waiter = new PlayFabResult<GetUserDataResult>();
-            GetUserData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetUserData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetUserInventoryResult>> GetUserInventoryAsync(GetUserInventoryRequest request)
+        public static async Task<PlayFabResult<GetUserInventoryResult>> GetUserInventory(GetUserInventoryRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetUserInventoryResult> waiter;
             waiter = new PlayFabResult<GetUserInventoryResult>();
-            GetUserInventory(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetUserInventory(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetUserDataResult>> GetUserPublisherDataAsync(GetUserDataRequest request)
+        public static async Task<PlayFabResult<GetUserDataResult>> GetUserPublisherData(GetUserDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetUserDataResult> waiter;
             waiter = new PlayFabResult<GetUserDataResult>();
-            GetUserPublisherData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetUserPublisherData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetUserDataResult>> GetUserPublisherReadOnlyDataAsync(GetUserDataRequest request)
+        public static async Task<PlayFabResult<GetUserDataResult>> GetUserPublisherReadOnlyData(GetUserDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetUserDataResult> waiter;
             waiter = new PlayFabResult<GetUserDataResult>();
-            GetUserPublisherReadOnlyData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetUserPublisherReadOnlyData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GetUserDataResult>> GetUserReadOnlyDataAsync(GetUserDataRequest request)
+        public static async Task<PlayFabResult<GetUserDataResult>> GetUserReadOnlyData(GetUserDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GetUserDataResult> waiter;
             waiter = new PlayFabResult<GetUserDataResult>();
-            GetUserReadOnlyData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GetUserReadOnlyData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<GrantCharacterToUserResult>> GrantCharacterToUserAsync(GrantCharacterToUserRequest request)
+        public static async Task<PlayFabResult<GrantCharacterToUserResult>> GrantCharacterToUser(GrantCharacterToUserRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<GrantCharacterToUserResult> waiter;
             waiter = new PlayFabResult<GrantCharacterToUserResult>();
-            GrantCharacterToUser(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.GrantCharacterToUser(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkAndroidDeviceIDResult>> LinkAndroidDeviceIDAsync(LinkAndroidDeviceIDRequest request)
+        public static async Task<PlayFabResult<LinkAndroidDeviceIDResult>> LinkAndroidDeviceID(LinkAndroidDeviceIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkAndroidDeviceIDResult> waiter;
             waiter = new PlayFabResult<LinkAndroidDeviceIDResult>();
-            LinkAndroidDeviceID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkAndroidDeviceID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<EmptyResult>> LinkAppleAsync(LinkAppleRequest request)
+        public static async Task<PlayFabResult<EmptyResult>> LinkApple(LinkAppleRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<EmptyResult> waiter;
             waiter = new PlayFabResult<EmptyResult>();
-            LinkApple(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkApple(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkCustomIDResult>> LinkCustomIDAsync(LinkCustomIDRequest request)
+        public static async Task<PlayFabResult<LinkCustomIDResult>> LinkCustomID(LinkCustomIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkCustomIDResult> waiter;
             waiter = new PlayFabResult<LinkCustomIDResult>();
-            LinkCustomID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkCustomID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkFacebookAccountResult>> LinkFacebookAccountAsync(LinkFacebookAccountRequest request)
+        public static async Task<PlayFabResult<LinkFacebookAccountResult>> LinkFacebookAccount(LinkFacebookAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkFacebookAccountResult> waiter;
             waiter = new PlayFabResult<LinkFacebookAccountResult>();
-            LinkFacebookAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkFacebookAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkFacebookInstantGamesIdResult>> LinkFacebookInstantGamesIdAsync(LinkFacebookInstantGamesIdRequest request)
+        public static async Task<PlayFabResult<LinkFacebookInstantGamesIdResult>> LinkFacebookInstantGamesId(LinkFacebookInstantGamesIdRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkFacebookInstantGamesIdResult> waiter;
             waiter = new PlayFabResult<LinkFacebookInstantGamesIdResult>();
-            LinkFacebookInstantGamesId(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkFacebookInstantGamesId(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkGameCenterAccountResult>> LinkGameCenterAccountAsync(LinkGameCenterAccountRequest request)
+        public static async Task<PlayFabResult<LinkGameCenterAccountResult>> LinkGameCenterAccount(LinkGameCenterAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkGameCenterAccountResult> waiter;
             waiter = new PlayFabResult<LinkGameCenterAccountResult>();
-            LinkGameCenterAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkGameCenterAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkGoogleAccountResult>> LinkGoogleAccountAsync(LinkGoogleAccountRequest request)
+        public static async Task<PlayFabResult<LinkGoogleAccountResult>> LinkGoogleAccount(LinkGoogleAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkGoogleAccountResult> waiter;
             waiter = new PlayFabResult<LinkGoogleAccountResult>();
-            LinkGoogleAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkGoogleAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkIOSDeviceIDResult>> LinkIOSDeviceIDAsync(LinkIOSDeviceIDRequest request)
+        public static async Task<PlayFabResult<LinkIOSDeviceIDResult>> LinkIOSDeviceID(LinkIOSDeviceIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkIOSDeviceIDResult> waiter;
             waiter = new PlayFabResult<LinkIOSDeviceIDResult>();
-            LinkIOSDeviceID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkIOSDeviceID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkKongregateAccountResult>> LinkKongregateAsync(LinkKongregateAccountRequest request)
+        public static async Task<PlayFabResult<LinkKongregateAccountResult>> LinkKongregate(LinkKongregateAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkKongregateAccountResult> waiter;
             waiter = new PlayFabResult<LinkKongregateAccountResult>();
-            LinkKongregate(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkKongregate(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<EmptyResult>> LinkNintendoServiceAccountAsync(LinkNintendoServiceAccountRequest request)
+        public static async Task<PlayFabResult<EmptyResult>> LinkNintendoServiceAccount(LinkNintendoServiceAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<EmptyResult> waiter;
             waiter = new PlayFabResult<EmptyResult>();
-            LinkNintendoServiceAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkNintendoServiceAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkNintendoSwitchDeviceIdResult>> LinkNintendoSwitchDeviceIdAsync(LinkNintendoSwitchDeviceIdRequest request)
+        public static async Task<PlayFabResult<LinkNintendoSwitchDeviceIdResult>> LinkNintendoSwitchDeviceId(LinkNintendoSwitchDeviceIdRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkNintendoSwitchDeviceIdResult> waiter;
             waiter = new PlayFabResult<LinkNintendoSwitchDeviceIdResult>();
-            LinkNintendoSwitchDeviceId(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkNintendoSwitchDeviceId(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<EmptyResult>> LinkOpenIdConnectAsync(LinkOpenIdConnectRequest request)
+        public static async Task<PlayFabResult<EmptyResult>> LinkOpenIdConnect(LinkOpenIdConnectRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<EmptyResult> waiter;
             waiter = new PlayFabResult<EmptyResult>();
-            LinkOpenIdConnect(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkOpenIdConnect(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkPSNAccountResult>> LinkPSNAccountAsync(LinkPSNAccountRequest request)
+        public static async Task<PlayFabResult<LinkPSNAccountResult>> LinkPSNAccount(LinkPSNAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkPSNAccountResult> waiter;
             waiter = new PlayFabResult<LinkPSNAccountResult>();
-            LinkPSNAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkPSNAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkSteamAccountResult>> LinkSteamAccountAsync(LinkSteamAccountRequest request)
+        public static async Task<PlayFabResult<LinkSteamAccountResult>> LinkSteamAccount(LinkSteamAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkSteamAccountResult> waiter;
             waiter = new PlayFabResult<LinkSteamAccountResult>();
-            LinkSteamAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkSteamAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkTwitchAccountResult>> LinkTwitchAsync(LinkTwitchAccountRequest request)
+        public static async Task<PlayFabResult<LinkTwitchAccountResult>> LinkTwitch(LinkTwitchAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkTwitchAccountResult> waiter;
             waiter = new PlayFabResult<LinkTwitchAccountResult>();
-            LinkTwitch(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkTwitch(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LinkXboxAccountResult>> LinkXboxAccountAsync(LinkXboxAccountRequest request)
+        public static async Task<PlayFabResult<LinkXboxAccountResult>> LinkXboxAccount(LinkXboxAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LinkXboxAccountResult> waiter;
             waiter = new PlayFabResult<LinkXboxAccountResult>();
-            LinkXboxAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LinkXboxAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithAndroidDeviceIDAsync(LoginWithAndroidDeviceIDRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithAndroidDeviceID(LoginWithAndroidDeviceIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithAndroidDeviceID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithAndroidDeviceID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithAppleAsync(LoginWithAppleRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithApple(LoginWithAppleRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithApple(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithApple(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithCustomIDAsync(LoginWithCustomIDRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithCustomID(LoginWithCustomIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithCustomID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithCustomID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithEmailAddressAsync(LoginWithEmailAddressRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithEmailAddress(LoginWithEmailAddressRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithEmailAddress(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithEmailAddress(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithFacebookAsync(LoginWithFacebookRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithFacebook(LoginWithFacebookRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithFacebook(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithFacebook(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithFacebookInstantGamesIdAsync(LoginWithFacebookInstantGamesIdRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithFacebookInstantGamesId(LoginWithFacebookInstantGamesIdRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithFacebookInstantGamesId(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithFacebookInstantGamesId(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithGameCenterAsync(LoginWithGameCenterRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithGameCenter(LoginWithGameCenterRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithGameCenter(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithGameCenter(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithGoogleAccountAsync(LoginWithGoogleAccountRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithGoogleAccount(LoginWithGoogleAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithGoogleAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithGoogleAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithIOSDeviceIDAsync(LoginWithIOSDeviceIDRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithIOSDeviceID(LoginWithIOSDeviceIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithIOSDeviceID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithIOSDeviceID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithKongregateAsync(LoginWithKongregateRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithKongregate(LoginWithKongregateRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithKongregate(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithKongregate(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithNintendoServiceAccountAsync(LoginWithNintendoServiceAccountRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithNintendoServiceAccount(LoginWithNintendoServiceAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithNintendoServiceAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithNintendoServiceAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithNintendoSwitchDeviceIdAsync(LoginWithNintendoSwitchDeviceIdRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithNintendoSwitchDeviceId(LoginWithNintendoSwitchDeviceIdRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithNintendoSwitchDeviceId(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithNintendoSwitchDeviceId(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithOpenIdConnectAsync(LoginWithOpenIdConnectRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithOpenIdConnect(LoginWithOpenIdConnectRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithOpenIdConnect(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithOpenIdConnect(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithPlayFabAsync(LoginWithPlayFabRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithPlayFab(LoginWithPlayFabRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithPlayFab(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithPlayFab(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithPSNAsync(LoginWithPSNRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithPSN(LoginWithPSNRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithPSN(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithPSN(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithSteamAsync(LoginWithSteamRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithSteam(LoginWithSteamRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithSteam(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithSteam(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithTwitchAsync(LoginWithTwitchRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithTwitch(LoginWithTwitchRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithTwitch(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithTwitch(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<LoginResult>> LoginWithXboxAsync(LoginWithXboxRequest request)
+        public static async Task<PlayFabResult<LoginResult>> LoginWithXbox(LoginWithXboxRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<LoginResult> waiter;
             waiter = new PlayFabResult<LoginResult>();
-            LoginWithXbox(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.LoginWithXbox(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<MatchmakeResult>> MatchmakeAsync(MatchmakeRequest request)
+        public static async Task<PlayFabResult<MatchmakeResult>> Matchmake(MatchmakeRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<MatchmakeResult> waiter;
             waiter = new PlayFabResult<MatchmakeResult>();
-            Matchmake(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.Matchmake(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<OpenTradeResponse>> OpenTradeAsync(OpenTradeRequest request)
+        public static async Task<PlayFabResult<OpenTradeResponse>> OpenTrade(OpenTradeRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<OpenTradeResponse> waiter;
             waiter = new PlayFabResult<OpenTradeResponse>();
-            OpenTrade(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.OpenTrade(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<PayForPurchaseResult>> PayForPurchaseAsync(PayForPurchaseRequest request)
+        public static async Task<PlayFabResult<PayForPurchaseResult>> PayForPurchase(PayForPurchaseRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<PayForPurchaseResult> waiter;
             waiter = new PlayFabResult<PayForPurchaseResult>();
-            PayForPurchase(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.PayForPurchase(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<PurchaseItemResult>> PurchaseItemAsync(PurchaseItemRequest request)
+        public static async Task<PlayFabResult<PurchaseItemResult>> PurchaseItem(PurchaseItemRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<PurchaseItemResult> waiter;
             waiter = new PlayFabResult<PurchaseItemResult>();
-            PurchaseItem(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.PurchaseItem(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<RedeemCouponResult>> RedeemCouponAsync(RedeemCouponRequest request)
+        public static async Task<PlayFabResult<RedeemCouponResult>> RedeemCoupon(RedeemCouponRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<RedeemCouponResult> waiter;
             waiter = new PlayFabResult<RedeemCouponResult>();
-            RedeemCoupon(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.RedeemCoupon(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<EmptyResponse>> RefreshPSNAuthTokenAsync(RefreshPSNAuthTokenRequest request)
+        public static async Task<PlayFabResult<EmptyResponse>> RefreshPSNAuthToken(RefreshPSNAuthTokenRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<EmptyResponse> waiter;
             waiter = new PlayFabResult<EmptyResponse>();
-            RefreshPSNAuthToken(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.RefreshPSNAuthToken(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<RegisterForIOSPushNotificationResult>> RegisterForIOSPushNotificationAsync(RegisterForIOSPushNotificationRequest request)
+        public static async Task<PlayFabResult<RegisterForIOSPushNotificationResult>> RegisterForIOSPushNotification(RegisterForIOSPushNotificationRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<RegisterForIOSPushNotificationResult> waiter;
             waiter = new PlayFabResult<RegisterForIOSPushNotificationResult>();
-            RegisterForIOSPushNotification(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.RegisterForIOSPushNotification(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<RegisterPlayFabUserResult>> RegisterPlayFabUserAsync(RegisterPlayFabUserRequest request)
+        public static async Task<PlayFabResult<RegisterPlayFabUserResult>> RegisterPlayFabUser(RegisterPlayFabUserRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<RegisterPlayFabUserResult> waiter;
             waiter = new PlayFabResult<RegisterPlayFabUserResult>();
-            RegisterPlayFabUser(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.RegisterPlayFabUser(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<RemoveContactEmailResult>> RemoveContactEmailAsync(RemoveContactEmailRequest request)
+        public static async Task<PlayFabResult<RemoveContactEmailResult>> RemoveContactEmail(RemoveContactEmailRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<RemoveContactEmailResult> waiter;
             waiter = new PlayFabResult<RemoveContactEmailResult>();
-            RemoveContactEmail(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.RemoveContactEmail(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<RemoveFriendResult>> RemoveFriendAsync(RemoveFriendRequest request)
+        public static async Task<PlayFabResult<RemoveFriendResult>> RemoveFriend(RemoveFriendRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<RemoveFriendResult> waiter;
             waiter = new PlayFabResult<RemoveFriendResult>();
-            RemoveFriend(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.RemoveFriend(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<RemoveGenericIDResult>> RemoveGenericIDAsync(RemoveGenericIDRequest request)
+        public static async Task<PlayFabResult<RemoveGenericIDResult>> RemoveGenericID(RemoveGenericIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<RemoveGenericIDResult> waiter;
             waiter = new PlayFabResult<RemoveGenericIDResult>();
-            RemoveGenericID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.RemoveGenericID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<RemoveSharedGroupMembersResult>> RemoveSharedGroupMembersAsync(RemoveSharedGroupMembersRequest request)
+        public static async Task<PlayFabResult<RemoveSharedGroupMembersResult>> RemoveSharedGroupMembers(RemoveSharedGroupMembersRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<RemoveSharedGroupMembersResult> waiter;
             waiter = new PlayFabResult<RemoveSharedGroupMembersResult>();
-            RemoveSharedGroupMembers(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.RemoveSharedGroupMembers(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ReportAdActivityResult>> ReportAdActivityAsync(ReportAdActivityRequest request)
+        public static async Task<PlayFabResult<ReportAdActivityResult>> ReportAdActivity(ReportAdActivityRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ReportAdActivityResult> waiter;
             waiter = new PlayFabResult<ReportAdActivityResult>();
-            ReportAdActivity(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ReportAdActivity(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<EmptyResponse>> ReportDeviceInfoAsync(DeviceInfoRequest request)
+        public static async Task<PlayFabResult<EmptyResponse>> ReportDeviceInfo(DeviceInfoRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<EmptyResponse> waiter;
             waiter = new PlayFabResult<EmptyResponse>();
-            ReportDeviceInfo(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ReportDeviceInfo(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ReportPlayerClientResult>> ReportPlayerAsync(ReportPlayerClientRequest request)
+        public static async Task<PlayFabResult<ReportPlayerClientResult>> ReportPlayer(ReportPlayerClientRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ReportPlayerClientResult> waiter;
             waiter = new PlayFabResult<ReportPlayerClientResult>();
-            ReportPlayer(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ReportPlayer(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<RestoreIOSPurchasesResult>> RestoreIOSPurchasesAsync(RestoreIOSPurchasesRequest request)
+        public static async Task<PlayFabResult<RestoreIOSPurchasesResult>> RestoreIOSPurchases(RestoreIOSPurchasesRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<RestoreIOSPurchasesResult> waiter;
             waiter = new PlayFabResult<RestoreIOSPurchasesResult>();
-            RestoreIOSPurchases(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.RestoreIOSPurchases(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<RewardAdActivityResult>> RewardAdActivityAsync(RewardAdActivityRequest request)
+        public static async Task<PlayFabResult<RewardAdActivityResult>> RewardAdActivity(RewardAdActivityRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<RewardAdActivityResult> waiter;
             waiter = new PlayFabResult<RewardAdActivityResult>();
-            RewardAdActivity(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.RewardAdActivity(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<SendAccountRecoveryEmailResult>> SendAccountRecoveryEmailAsync(SendAccountRecoveryEmailRequest request)
+        public static async Task<PlayFabResult<SendAccountRecoveryEmailResult>> SendAccountRecoveryEmail(SendAccountRecoveryEmailRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<SendAccountRecoveryEmailResult> waiter;
             waiter = new PlayFabResult<SendAccountRecoveryEmailResult>();
-            SendAccountRecoveryEmail(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.SendAccountRecoveryEmail(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<SetFriendTagsResult>> SetFriendTagsAsync(SetFriendTagsRequest request)
+        public static async Task<PlayFabResult<SetFriendTagsResult>> SetFriendTags(SetFriendTagsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<SetFriendTagsResult> waiter;
             waiter = new PlayFabResult<SetFriendTagsResult>();
-            SetFriendTags(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.SetFriendTags(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<SetPlayerSecretResult>> SetPlayerSecretAsync(SetPlayerSecretRequest request)
+        public static async Task<PlayFabResult<SetPlayerSecretResult>> SetPlayerSecret(SetPlayerSecretRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<SetPlayerSecretResult> waiter;
             waiter = new PlayFabResult<SetPlayerSecretResult>();
-            SetPlayerSecret(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.SetPlayerSecret(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<StartGameResult>> StartGameAsync(StartGameRequest request)
+        public static async Task<PlayFabResult<StartGameResult>> StartGame(StartGameRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<StartGameResult> waiter;
             waiter = new PlayFabResult<StartGameResult>();
-            StartGame(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.StartGame(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<StartPurchaseResult>> StartPurchaseAsync(StartPurchaseRequest request)
+        public static async Task<PlayFabResult<StartPurchaseResult>> StartPurchase(StartPurchaseRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<StartPurchaseResult> waiter;
             waiter = new PlayFabResult<StartPurchaseResult>();
-            StartPurchase(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.StartPurchase(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ModifyUserVirtualCurrencyResult>> SubtractUserVirtualCurrencyAsync(SubtractUserVirtualCurrencyRequest request)
+        public static async Task<PlayFabResult<ModifyUserVirtualCurrencyResult>> SubtractUserVirtualCurrency(SubtractUserVirtualCurrencyRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ModifyUserVirtualCurrencyResult> waiter;
             waiter = new PlayFabResult<ModifyUserVirtualCurrencyResult>();
-            SubtractUserVirtualCurrency(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.SubtractUserVirtualCurrency(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkAndroidDeviceIDResult>> UnlinkAndroidDeviceIDAsync(UnlinkAndroidDeviceIDRequest request)
+        public static async Task<PlayFabResult<UnlinkAndroidDeviceIDResult>> UnlinkAndroidDeviceID(UnlinkAndroidDeviceIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkAndroidDeviceIDResult> waiter;
             waiter = new PlayFabResult<UnlinkAndroidDeviceIDResult>();
-            UnlinkAndroidDeviceID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkAndroidDeviceID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<EmptyResponse>> UnlinkAppleAsync(UnlinkAppleRequest request)
+        public static async Task<PlayFabResult<EmptyResponse>> UnlinkApple(UnlinkAppleRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<EmptyResponse> waiter;
             waiter = new PlayFabResult<EmptyResponse>();
-            UnlinkApple(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkApple(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkCustomIDResult>> UnlinkCustomIDAsync(UnlinkCustomIDRequest request)
+        public static async Task<PlayFabResult<UnlinkCustomIDResult>> UnlinkCustomID(UnlinkCustomIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkCustomIDResult> waiter;
             waiter = new PlayFabResult<UnlinkCustomIDResult>();
-            UnlinkCustomID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkCustomID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkFacebookAccountResult>> UnlinkFacebookAccountAsync(UnlinkFacebookAccountRequest request)
+        public static async Task<PlayFabResult<UnlinkFacebookAccountResult>> UnlinkFacebookAccount(UnlinkFacebookAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkFacebookAccountResult> waiter;
             waiter = new PlayFabResult<UnlinkFacebookAccountResult>();
-            UnlinkFacebookAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkFacebookAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkFacebookInstantGamesIdResult>> UnlinkFacebookInstantGamesIdAsync(UnlinkFacebookInstantGamesIdRequest request)
+        public static async Task<PlayFabResult<UnlinkFacebookInstantGamesIdResult>> UnlinkFacebookInstantGamesId(UnlinkFacebookInstantGamesIdRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkFacebookInstantGamesIdResult> waiter;
             waiter = new PlayFabResult<UnlinkFacebookInstantGamesIdResult>();
-            UnlinkFacebookInstantGamesId(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkFacebookInstantGamesId(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkGameCenterAccountResult>> UnlinkGameCenterAccountAsync(UnlinkGameCenterAccountRequest request)
+        public static async Task<PlayFabResult<UnlinkGameCenterAccountResult>> UnlinkGameCenterAccount(UnlinkGameCenterAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkGameCenterAccountResult> waiter;
             waiter = new PlayFabResult<UnlinkGameCenterAccountResult>();
-            UnlinkGameCenterAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkGameCenterAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkGoogleAccountResult>> UnlinkGoogleAccountAsync(UnlinkGoogleAccountRequest request)
+        public static async Task<PlayFabResult<UnlinkGoogleAccountResult>> UnlinkGoogleAccount(UnlinkGoogleAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkGoogleAccountResult> waiter;
             waiter = new PlayFabResult<UnlinkGoogleAccountResult>();
-            UnlinkGoogleAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkGoogleAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkIOSDeviceIDResult>> UnlinkIOSDeviceIDAsync(UnlinkIOSDeviceIDRequest request)
+        public static async Task<PlayFabResult<UnlinkIOSDeviceIDResult>> UnlinkIOSDeviceID(UnlinkIOSDeviceIDRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkIOSDeviceIDResult> waiter;
             waiter = new PlayFabResult<UnlinkIOSDeviceIDResult>();
-            UnlinkIOSDeviceID(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkIOSDeviceID(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkKongregateAccountResult>> UnlinkKongregateAsync(UnlinkKongregateAccountRequest request)
+        public static async Task<PlayFabResult<UnlinkKongregateAccountResult>> UnlinkKongregate(UnlinkKongregateAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkKongregateAccountResult> waiter;
             waiter = new PlayFabResult<UnlinkKongregateAccountResult>();
-            UnlinkKongregate(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkKongregate(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<EmptyResponse>> UnlinkNintendoServiceAccountAsync(UnlinkNintendoServiceAccountRequest request)
+        public static async Task<PlayFabResult<EmptyResponse>> UnlinkNintendoServiceAccount(UnlinkNintendoServiceAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<EmptyResponse> waiter;
             waiter = new PlayFabResult<EmptyResponse>();
-            UnlinkNintendoServiceAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkNintendoServiceAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkNintendoSwitchDeviceIdResult>> UnlinkNintendoSwitchDeviceIdAsync(UnlinkNintendoSwitchDeviceIdRequest request)
+        public static async Task<PlayFabResult<UnlinkNintendoSwitchDeviceIdResult>> UnlinkNintendoSwitchDeviceId(UnlinkNintendoSwitchDeviceIdRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkNintendoSwitchDeviceIdResult> waiter;
             waiter = new PlayFabResult<UnlinkNintendoSwitchDeviceIdResult>();
-            UnlinkNintendoSwitchDeviceId(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkNintendoSwitchDeviceId(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<EmptyResponse>> UnlinkOpenIdConnectAsync(UnlinkOpenIdConnectRequest request)
+        public static async Task<PlayFabResult<EmptyResponse>> UnlinkOpenIdConnect(UnlinkOpenIdConnectRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<EmptyResponse> waiter;
             waiter = new PlayFabResult<EmptyResponse>();
-            UnlinkOpenIdConnect(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkOpenIdConnect(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkPSNAccountResult>> UnlinkPSNAccountAsync(UnlinkPSNAccountRequest request)
+        public static async Task<PlayFabResult<UnlinkPSNAccountResult>> UnlinkPSNAccount(UnlinkPSNAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkPSNAccountResult> waiter;
             waiter = new PlayFabResult<UnlinkPSNAccountResult>();
-            UnlinkPSNAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkPSNAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkSteamAccountResult>> UnlinkSteamAccountAsync(UnlinkSteamAccountRequest request)
+        public static async Task<PlayFabResult<UnlinkSteamAccountResult>> UnlinkSteamAccount(UnlinkSteamAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkSteamAccountResult> waiter;
             waiter = new PlayFabResult<UnlinkSteamAccountResult>();
-            UnlinkSteamAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkSteamAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkTwitchAccountResult>> UnlinkTwitchAsync(UnlinkTwitchAccountRequest request)
+        public static async Task<PlayFabResult<UnlinkTwitchAccountResult>> UnlinkTwitch(UnlinkTwitchAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkTwitchAccountResult> waiter;
             waiter = new PlayFabResult<UnlinkTwitchAccountResult>();
-            UnlinkTwitch(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkTwitch(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlinkXboxAccountResult>> UnlinkXboxAccountAsync(UnlinkXboxAccountRequest request)
+        public static async Task<PlayFabResult<UnlinkXboxAccountResult>> UnlinkXboxAccount(UnlinkXboxAccountRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlinkXboxAccountResult> waiter;
             waiter = new PlayFabResult<UnlinkXboxAccountResult>();
-            UnlinkXboxAccount(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlinkXboxAccount(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlockContainerItemResult>> UnlockContainerInstanceAsync(UnlockContainerInstanceRequest request)
+        public static async Task<PlayFabResult<UnlockContainerItemResult>> UnlockContainerInstance(UnlockContainerInstanceRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlockContainerItemResult> waiter;
             waiter = new PlayFabResult<UnlockContainerItemResult>();
-            UnlockContainerInstance(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlockContainerInstance(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UnlockContainerItemResult>> UnlockContainerItemAsync(UnlockContainerItemRequest request)
+        public static async Task<PlayFabResult<UnlockContainerItemResult>> UnlockContainerItem(UnlockContainerItemRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UnlockContainerItemResult> waiter;
             waiter = new PlayFabResult<UnlockContainerItemResult>();
-            UnlockContainerItem(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UnlockContainerItem(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<EmptyResponse>> UpdateAvatarUrlAsync(UpdateAvatarUrlRequest request)
+        public static async Task<PlayFabResult<EmptyResponse>> UpdateAvatarUrl(UpdateAvatarUrlRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<EmptyResponse> waiter;
             waiter = new PlayFabResult<EmptyResponse>();
-            UpdateAvatarUrl(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UpdateAvatarUrl(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UpdateCharacterDataResult>> UpdateCharacterDataAsync(UpdateCharacterDataRequest request)
+        public static async Task<PlayFabResult<UpdateCharacterDataResult>> UpdateCharacterData(UpdateCharacterDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UpdateCharacterDataResult> waiter;
             waiter = new PlayFabResult<UpdateCharacterDataResult>();
-            UpdateCharacterData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UpdateCharacterData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UpdateCharacterStatisticsResult>> UpdateCharacterStatisticsAsync(UpdateCharacterStatisticsRequest request)
+        public static async Task<PlayFabResult<UpdateCharacterStatisticsResult>> UpdateCharacterStatistics(UpdateCharacterStatisticsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UpdateCharacterStatisticsResult> waiter;
             waiter = new PlayFabResult<UpdateCharacterStatisticsResult>();
-            UpdateCharacterStatistics(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UpdateCharacterStatistics(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UpdatePlayerStatisticsResult>> UpdatePlayerStatisticsAsync(UpdatePlayerStatisticsRequest request)
+        public static async Task<PlayFabResult<UpdatePlayerStatisticsResult>> UpdatePlayerStatistics(UpdatePlayerStatisticsRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UpdatePlayerStatisticsResult> waiter;
             waiter = new PlayFabResult<UpdatePlayerStatisticsResult>();
-            UpdatePlayerStatistics(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UpdatePlayerStatistics(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UpdateSharedGroupDataResult>> UpdateSharedGroupDataAsync(UpdateSharedGroupDataRequest request)
+        public static async Task<PlayFabResult<UpdateSharedGroupDataResult>> UpdateSharedGroupData(UpdateSharedGroupDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UpdateSharedGroupDataResult> waiter;
             waiter = new PlayFabResult<UpdateSharedGroupDataResult>();
-            UpdateSharedGroupData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UpdateSharedGroupData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UpdateUserDataResult>> UpdateUserDataAsync(UpdateUserDataRequest request)
+        public static async Task<PlayFabResult<UpdateUserDataResult>> UpdateUserData(UpdateUserDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UpdateUserDataResult> waiter;
             waiter = new PlayFabResult<UpdateUserDataResult>();
-            UpdateUserData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UpdateUserData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UpdateUserDataResult>> UpdateUserPublisherDataAsync(UpdateUserDataRequest request)
+        public static async Task<PlayFabResult<UpdateUserDataResult>> UpdateUserPublisherData(UpdateUserDataRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UpdateUserDataResult> waiter;
             waiter = new PlayFabResult<UpdateUserDataResult>();
-            UpdateUserPublisherData(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UpdateUserPublisherData(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<UpdateUserTitleDisplayNameResult>> UpdateUserTitleDisplayNameAsync(UpdateUserTitleDisplayNameRequest request)
+        public static async Task<PlayFabResult<UpdateUserTitleDisplayNameResult>> UpdateUserTitleDisplayName(UpdateUserTitleDisplayNameRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<UpdateUserTitleDisplayNameResult> waiter;
             waiter = new PlayFabResult<UpdateUserTitleDisplayNameResult>();
-            UpdateUserTitleDisplayName(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.UpdateUserTitleDisplayName(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ValidateAmazonReceiptResult>> ValidateAmazonIAPReceiptAsync(ValidateAmazonReceiptRequest request)
+        public static async Task<PlayFabResult<ValidateAmazonReceiptResult>> ValidateAmazonIAPReceipt(ValidateAmazonReceiptRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ValidateAmazonReceiptResult> waiter;
             waiter = new PlayFabResult<ValidateAmazonReceiptResult>();
-            ValidateAmazonIAPReceipt(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ValidateAmazonIAPReceipt(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ValidateGooglePlayPurchaseResult>> ValidateGooglePlayPurchaseAsync(ValidateGooglePlayPurchaseRequest request)
+        public static async Task<PlayFabResult<ValidateGooglePlayPurchaseResult>> ValidateGooglePlayPurchase(ValidateGooglePlayPurchaseRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ValidateGooglePlayPurchaseResult> waiter;
             waiter = new PlayFabResult<ValidateGooglePlayPurchaseResult>();
-            ValidateGooglePlayPurchase(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ValidateGooglePlayPurchase(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ValidateIOSReceiptResult>> ValidateIOSReceiptAsync(ValidateIOSReceiptRequest request)
+        public static async Task<PlayFabResult<ValidateIOSReceiptResult>> ValidateIOSReceipt(ValidateIOSReceiptRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ValidateIOSReceiptResult> waiter;
             waiter = new PlayFabResult<ValidateIOSReceiptResult>();
-            ValidateIOSReceipt(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ValidateIOSReceipt(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<ValidateWindowsReceiptResult>> ValidateWindowsStoreReceiptAsync(ValidateWindowsReceiptRequest request)
+        public static async Task<PlayFabResult<ValidateWindowsReceiptResult>> ValidateWindowsStoreReceipt(ValidateWindowsReceiptRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<ValidateWindowsReceiptResult> waiter;
             waiter = new PlayFabResult<ValidateWindowsReceiptResult>();
-            ValidateWindowsStoreReceipt(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.ValidateWindowsStoreReceipt(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<WriteEventResponse>> WriteCharacterEventAsync(WriteClientCharacterEventRequest request)
+        public static async Task<PlayFabResult<WriteEventResponse>> WriteCharacterEvent(WriteClientCharacterEventRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<WriteEventResponse> waiter;
             waiter = new PlayFabResult<WriteEventResponse>();
-            WriteCharacterEvent(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.WriteCharacterEvent(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<WriteEventResponse>> WritePlayerEventAsync(WriteClientPlayerEventRequest request)
+        public static async Task<PlayFabResult<WriteEventResponse>> WritePlayerEvent(WriteClientPlayerEventRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<WriteEventResponse> waiter;
             waiter = new PlayFabResult<WriteEventResponse>();
-            WritePlayerEvent(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.WritePlayerEvent(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
         }
-        public static async Task<PlayFabResult<WriteEventResponse>> WriteTitleEventAsync(WriteTitleEventRequest request)
+        public static async Task<PlayFabResult<WriteEventResponse>> WriteTitleEvent(WriteTitleEventRequest request)
         {
             var timingLogger = DelaysLoggerPlayfab.OnBeforeSend(request);
             PlayFabResult<WriteEventResponse> waiter;
             waiter = new PlayFabResult<WriteEventResponse>();
-            WriteTitleEvent(request, waiter.processSuccess, waiter.processFail);
+            PlayFabClientAPI.WriteTitleEvent(request, waiter.processSuccess, waiter.processFail);
             while (waiter.keepWaiting) await Task.Delay(10);
             lastCallTiming = DelaysLoggerPlayfab.OnAfterReceived(timingLogger);
             return waiter;
