@@ -3,7 +3,7 @@ using System;
 namespace Game
 {
     [GenSerialization, GenHashing]
-    public partial class ConnectionInfo : IEquatable<ConnectionInfo>
+    public partial class ConnectionInfo : IEquatable<ConnectionInfo>, IHashable
     {
         public byte ip0;
         public byte ip1;
@@ -71,6 +71,11 @@ namespace Game
             return other != null && CalculateHash() == other.CalculateHash();
         }
         public override string ToString() => $"{ip0}.{ip1}.{ip2}.{ip3}:{port}";
+        public ulong CalculateHash()
+        {
+            throw new NotImplementedException();
+        }
+
         public static ConnectionInfo FromString(string str)
         {
             string[] split1 = str.Split(':');

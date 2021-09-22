@@ -8,7 +8,7 @@ namespace Game
 {
     public partial class CommandSupportModel : LivableRoot
     {
-        [GenIgnore] public IGameControllerBase controllerBase;
+        [GenIgnore] public IGameCommandSink controllerBase;
 
         public void BeforeExecutionLocalCommand(LocalMetaCommand command)
         {

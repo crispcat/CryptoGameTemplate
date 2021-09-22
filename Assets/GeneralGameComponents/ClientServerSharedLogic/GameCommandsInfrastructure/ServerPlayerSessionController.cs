@@ -380,7 +380,7 @@ namespace Game
                 Debug.Log("Player for PlayFabID " + playfabID + " = " + player?.displayName);
 
                 if (player != null)
-                    return new ShortPlayerInfo {displayName = player.displayName, level = player.level};
+                    return new ShortPlayerInfo {displayName = player.displayName};
             }
 
             return new ShortPlayerInfo{level = -1};

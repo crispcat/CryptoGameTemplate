@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0199c11aa6f514784c5c69cd8378d8, type: 3}
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
-  DevAccountEmail: 
-  DevAccountToken: 
+  DevAccountEmail: developer@arrible.com
+  DevAccountToken: d3575mpfsqm7nao3r934a5p6cyknowfef4ynqf5qizfrh655ri851rmdiogqhwt19sqiirwnswdodgtc3g4hkffky5ocene4sueanx8hhpuxif8e7z475bsmka88ty689hmj4jcpsnkm7rcwcdgpd3mprsu4a88axe851iizbsi1jzgm569jsk3ttxy7aw84hhyhtcf7
   SelectedStudio: 
-  SdkPath: 
+  SdkPath: Assets/PlayFabSDK
   EdExPath: 
   LocalCloudScriptPath: 
   PanelIsShown: 0

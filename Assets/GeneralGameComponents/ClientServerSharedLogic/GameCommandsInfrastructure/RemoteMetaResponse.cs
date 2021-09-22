@@ -48,6 +48,7 @@ namespace Game
 
         public string Log(RemoteMetaRequestType requestType)
         {
+            return "";
         }
     }
 }
