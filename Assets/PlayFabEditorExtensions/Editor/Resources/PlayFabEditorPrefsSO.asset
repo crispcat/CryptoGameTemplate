@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DevAccountEmail: developer@arrible.com
   DevAccountToken: d3575mpfsqm7nao3r934a5p6cyknowfef4ynqf5qizfrh655ri851rmdiogqhwt19sqiirwnswdodgtc3g4hkffky5ocene4sueanx8hhpuxif8e7z475bsmka88ty689hmj4jcpsnkm7rcwcdgpd3mprsu4a88axe851iizbsi1jzgm569jsk3ttxy7aw84hhyhtcf7
-  SelectedStudio: 
+  SelectedStudio: My Game Studio
   SdkPath: Assets/PlayFabSDK
   EdExPath: 
   LocalCloudScriptPath: 
   PanelIsShown: 0
-  curMainMenuIdx: 0
-  curSubMenuIdx: 0
+  curMainMenuIdx: 1
+  curSubMenuIdx: 2

@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PlayFab;
 using PlayFab.PfEditor.EditorModels;
 using UnityEngine;
 using ZergRush.CodeGen;
@@ -128,10 +129,12 @@ namespace Game
         [GenServerCommand]
         async Task DeletePlayer()
         {
+            //await PlayFabAdminAPI.DeletePlayerAsync(new PlayFab.AdminModels.DeletePlayerRequest {PlayFabId = playerId});
+            throw new NotImplementedException();
 #if ENABLE_PLAYFABADMIN_API
-            await PlayFabAdminAPI.DeletePlayerAsync(new PlayFab.AdminModels.DeletePlayerRequest {PlayFabId = playerId});
-            AddTiming(PlayFabAdminAPI.lastCallTiming);
-            await FinishSessionInternal();
+            // await PlayFabAdminAPI.DeletePlayerAsync(new PlayFab.AdminModels.DeletePlayerRequest {PlayFabId = playerId});
+            // AddTiming(PlayFabAdminAPI.lastCallTiming);
+            // await FinishSessionInternal();
 #endif
         }
 
