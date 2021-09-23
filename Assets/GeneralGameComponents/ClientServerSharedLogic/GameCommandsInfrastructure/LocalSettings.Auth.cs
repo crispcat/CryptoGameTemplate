@@ -9,7 +9,7 @@ namespace GameTools
     public partial class LocalSettings
     {
         public AuthData authData;
-        public ulong lastRemotePlayerModelHash;
+        public ulong lastRemoteGameModelHash;
         public bool logRemoteGameMetaCommands;
     }
 }

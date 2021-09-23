@@ -13,19 +13,19 @@ namespace Game
         protected ServerBasedGameController() {}
         
         ClientMetaNetworkLayer network;
-        GeneratedServerAPI serverAPI;
+        GameServerAPI serverAPI;
         
         long metaTimeClientShift;
         EventStream<string> restartNeeded = new EventStream<string>();
         
         static LocalSettings settings => LocalSettings.Instance;
         
-        public static string remotePlayerModelCache => $"remote_player_{settings?.authData?.authId}.bin";
+        public static string remoteGameModelCache => $"remote_player_{settings?.authData?.authId}.bin";
 
         public static async Task<ServerBasedGameController> Create(ClientMetaNetworkLayer network)
         {
             var controller = new ServerBasedGameController();
-            var serverAPI = new GeneratedServerAPI(network);
+            var serverAPI = new GameServerAPI(network);
             controller.serverAPI = serverAPI;
             await controller.Authenticate();
             return controller;
@@ -37,7 +37,7 @@ namespace Game
             // Auth on server.
             var localCommands = DrainLocalCommands();
             //Debug.Log("drained commands for authing");
-            var response = await serverAPI.Authenticate(localCommands, LocalSettings.Instance.lastRemotePlayerModelHash, true);
+            var response = await serverAPI.Authenticate(localCommands, LocalSettings.Instance.lastRemoteGameModelHash, true);
             
             metaTimeClientShift = SystemLayer.ticks - response.serverTime - serverAPI.lag;
 
@@ -48,12 +48,12 @@ namespace Game
             {
                 try
                 {
-                    SerializationTools.LoadFromBinaryFile(remotePlayerModelCache, out GameModel g);
+                    SerializationTools.LoadFromBinaryFile(remoteGameModelCache, out GameModel g);
                     game = g;
                 }
                 catch (Exception e)
                 {
-                    LocalSettings.Instance.lastRemotePlayerModelHash = 0;
+                    LocalSettings.Instance.lastRemoteGameModelHash = 0;
                     throw new GameException("Cant load local player model, resetting hash in settings");
                 }
             }
@@ -152,8 +152,8 @@ namespace Game
         public void SaveGame()
         {
             SaveLocalCommands();
-            LocalSettings.Instance.lastRemotePlayerModelHash = game.CalculateHash();
-            game.SaveToFile(remotePlayerModelCache, true);
+            LocalSettings.Instance.lastRemoteGameModelHash = game.CalculateHash();
+            game.SaveToFile(remoteGameModelCache, true);
         }
 
         public void OnAppPause()

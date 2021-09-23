@@ -7,7 +7,13 @@ namespace Game
     {
         Authenticate,
         DebugTimeoutSession,
-        DebugAuthenticateMergedPlayer
+        DebugAuthenticateMergedPlayer,
+        DebugThrowException,
+        GetShortPlayerInfo,
+        FinishSession,
+        DebugLaggyCommand,
+        DeletePlayer,
+        FlushLocalCommands
     }
 
     public enum RemoteMetaResponseType : byte

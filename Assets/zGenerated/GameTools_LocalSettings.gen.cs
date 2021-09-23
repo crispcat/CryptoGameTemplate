@@ -21,8 +21,8 @@ namespace GameTools {
                 case "authData":
                 authData.ReadFromJson(reader);
                 break;
-                case "lastRemotePlayerModelHash":
-                lastRemotePlayerModelHash = ulong.Parse((string)reader.Value);
+                case "lastRemoteGameModelHash":
+                lastRemoteGameModelHash = ulong.Parse((string)reader.Value);
                 break;
                 case "logRemoteGameMetaCommands":
                 logRemoteGameMetaCommands = (System.Boolean)reader.Value;
@@ -44,8 +44,8 @@ namespace GameTools {
         {
             writer.WritePropertyName("authData");
             authData.WriteJson(writer);
-            writer.WritePropertyName("lastRemotePlayerModelHash");
-            writer.WriteValue(lastRemotePlayerModelHash.ToString());
+            writer.WritePropertyName("lastRemoteGameModelHash");
+            writer.WriteValue(lastRemoteGameModelHash.ToString());
             writer.WritePropertyName("logRemoteGameMetaCommands");
             writer.WriteValue(logRemoteGameMetaCommands);
             writer.WritePropertyName("tolerateLocalizationErrors");

@@ -12,10 +12,10 @@ namespace Game
         [CanBeNull] public string playerRaw;
     }
     
-    public partial class GeneratedServerAPI 
+    public partial class GameServerAPI 
     {
         ClientMetaNetworkLayer network;
-        public GeneratedServerAPI(ClientMetaNetworkLayer network) => this.network = network;
+        public GameServerAPI(ClientMetaNetworkLayer network) => this.network = network;
         // async Task<RemoteMetaResponse> TryResendIfNotAuthed(RemoteMetaRequest request, RemoteMetaResponse response)
         // {
         //     if (response.type != RemoteMetaResponseType.NotAuthed)
@@ -28,12 +28,12 @@ namespace Game
         // }
         public long lag => network.lag;
 
-        public async Task FinishSession()
+        public async Task<AuthResponse> Authenticate(LocalCommandsBatch localCommands, object cachedHash, object isTestClient)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<AuthResponse> Authenticate(LocalCommandsBatch localCommands, object cachedHash, object isTestClient)
+        async Task<RemoteMetaResponse> TryResendIfNotAuthed(RemoteMetaRequest command, RemoteMetaResponse result)
         {
             throw new System.NotImplementedException();
         }

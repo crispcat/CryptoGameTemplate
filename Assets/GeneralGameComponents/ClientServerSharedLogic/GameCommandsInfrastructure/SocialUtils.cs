@@ -138,7 +138,7 @@ public class SocialUtils : MonoBehaviour
         return null;
     }
 
-    public static async Task LinkGameCenter(Func<AuthType, ShortPlayerInfo, Task<PlayerModelSelection>> showSelection)
+    public static async Task LinkGameCenter(Func<AuthType, ShortPlayerInfo, Task<GameModelSelection>> showSelection)
     {
         waitingResult = true;
         bool loginResult = false;
@@ -254,7 +254,7 @@ public class SocialUtils : MonoBehaviour
         return null;
     }
 
-    public static async Task LinkFacebook(Func<AuthType, ShortPlayerInfo, Task<PlayerModelSelection>> showSelection)
+    public static async Task LinkFacebook(Func<AuthType, ShortPlayerInfo, Task<GameModelSelection>> showSelection)
     {
         if (!FB.IsInitialized)
         {
@@ -324,7 +324,7 @@ public class SocialUtils : MonoBehaviour
         }
     }
 
-    public static async Task<bool> CheckExistingPlayer(AuthData authData, Func<AuthType, ShortPlayerInfo, Task<PlayerModelSelection>> showSelection)
+    public static async Task<bool> CheckExistingPlayer(AuthData authData, Func<AuthType, ShortPlayerInfo, Task<GameModelSelection>> showSelection)
     {
         var playfabId = await FindPlayfabIDByAuth(authData);
         
@@ -341,14 +341,14 @@ public class SocialUtils : MonoBehaviour
             
             var selected = await showSelection(authData.type, existingPlayer);
 
-            if (selected == PlayerModelSelection.Cancel)
+            if (selected == GameModelSelection.Cancel)
             {
                 Debug.Log("Link cancelled");
                 return false;
             }
 
             //Accept remote player and re-connect
-            if (selected == PlayerModelSelection.SelectLinked)
+            if (selected == GameModelSelection.SelectLinked)
             {
                 Debug.Log("Take existing");
                 

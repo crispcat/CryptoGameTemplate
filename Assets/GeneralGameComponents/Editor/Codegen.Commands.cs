@@ -183,9 +183,9 @@ public static partial class CommandGen
         sink.openBrace();
         string whatCommand = localOrRemoteCommands ? "Local" : "Remote";
         sink.content(
-            $"ServerEngine.Debug.LogError($\"{whatCommand} command {method.Name} execution failed, request args: {method.GetParameters().Select(p => $"{{{p.Name}}}").PrintCollection()}, " +
+            $"SystemLayer.LogError($\"{whatCommand} command {method.Name} execution failed, request args: {method.GetParameters().Select(p => $"{{{p.Name}}}").PrintCollection()}, " +
             $"\\n SERVER ERROR = {{e.Message}}, \\nstacktrace={{e.StackTrace}}\");");
-        //sink.content($"ServerEngine.Debug.LogError(e);");
+        //sink.content($"SystemLayer.LogError(e);");
         execFailed(sink);
     }
 
@@ -273,7 +273,7 @@ public static partial class CommandGen
     }
 
     static string ToPrintStringMethod(Type t) =>
-        typeof(IJsonSerializable).IsAssignableFrom(t) ? "SaveJsonToString" : "ToString";
+        typeof(IJsonSerializable).IsAssignableFrom(t) ? "SaveToJsonString" : "ToString";
 
     static void SinkCommandArgPrinterCase(string enumName, MethodBuilder builder, MethodInfo method)
     {
@@ -353,7 +353,7 @@ public static partial class CommandGen
                     sink.async = true;
                     //sink.content($"if (network.log) ServerEngine.Debug.Log($\"sending {method.Name} meta game remote command request\");");
                     sink.content($"var _result = await network.CallServerApi(command);");
-                    sink.content($"_result = await TryResendIfNotAuthed(command, _result);");
+                    //sink.content($"_result = await TryResendIfNotAuthed(command, _result);");
                     sink.content($"if (!_result.success) throw new GameException(_result.error);");
                     //sink.content($"if (network.log) ServerEngine.Debug.Log($\"receiving {method.Name} meta game remote command response\");");
                     if (method.ReturnType.IsVoidOrTask() == false)
@@ -461,7 +461,7 @@ public static partial class CommandGen
         string commandTypeName = typeof(LocalMetaCommandType).Name; //"CommandType";
         var localResultType = typeof(LocalMetaCommandResult);
 
-        var printerSink = StartGenArgPrinter(PrintArgsLocalStaticClassName, commandTypeName, "PlayerModel");
+        var printerSink = StartGenArgPrinter(PrintArgsLocalStaticClassName, commandTypeName, "GameModel");
 
         var assembly = typeof(IGameCommandSink).Assembly;
             
