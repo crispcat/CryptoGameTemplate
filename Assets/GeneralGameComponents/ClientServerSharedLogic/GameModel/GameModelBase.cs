@@ -7,7 +7,7 @@ using ZergRush.CodeGen;
 namespace Game
 {
     [GenTask(GenTaskFlags.LifeSupport | GenTaskFlags.DefaultConstructor | GenTaskFlags.OwnershipHierarchy |
-             GenTaskFlags.UpdateFrom | GenTaskFlags.CompareChech | GenTaskFlags.Hash), GenModelRootSetup]
+             GenTaskFlags.UpdateFrom | GenTaskFlags.CompareChech | GenTaskFlags.Hash), GenModelRootSetup, GenCommands]
     public partial class GameModel : CommandSupportModel, ISerializable
     {
         public string displayName;

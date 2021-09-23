@@ -18,7 +18,6 @@ namespace Game {
             try
             {
                 var _result = await network.CallServerApi(command);
-                _result = await TryResendIfNotAuthed(command, _result);
                 if (!_result.success) throw new GameException(_result.error);
             }
             catch (Exception e)
@@ -36,7 +35,6 @@ namespace Game {
             try
             {
                 var _result = await network.CallServerApi(command);
-                _result = await TryResendIfNotAuthed(command, _result);
                 if (!_result.success) throw new GameException(_result.error);
             }
             catch (Exception e)
@@ -59,7 +57,6 @@ namespace Game {
             try
             {
                 var _result = await network.CallServerApi(command);
-                _result = await TryResendIfNotAuthed(command, _result);
                 if (!_result.success) throw new GameException(_result.error);
                 var reader = new BinaryReader(new MemoryStream(_result.responseData));
                 Game.AuthResponse parsedResult = default;
@@ -100,7 +97,6 @@ namespace Game {
             try
             {
                 var _result = await network.CallServerApi(command);
-                _result = await TryResendIfNotAuthed(command, _result);
                 if (!_result.success) throw new GameException(_result.error);
                 var reader = new BinaryReader(new MemoryStream(_result.responseData));
                 Game.AuthResponse parsedResult = default;
@@ -124,7 +120,6 @@ namespace Game {
             try
             {
                 var _result = await network.CallServerApi(command);
-                _result = await TryResendIfNotAuthed(command, _result);
                 if (!_result.success) throw new GameException(_result.error);
             }
             catch (Exception e)
@@ -147,7 +142,6 @@ namespace Game {
             try
             {
                 var _result = await network.CallServerApi(command);
-                _result = await TryResendIfNotAuthed(command, _result);
                 if (!_result.success) throw new GameException(_result.error);
                 var reader = new BinaryReader(new MemoryStream(_result.responseData));
                 Game.ShortPlayerInfo parsedResult = default;
@@ -170,7 +164,6 @@ namespace Game {
             try
             {
                 var _result = await network.CallServerApi(command);
-                _result = await TryResendIfNotAuthed(command, _result);
                 if (!_result.success) throw new GameException(_result.error);
             }
             catch (Exception e)
@@ -194,7 +187,6 @@ namespace Game {
             try
             {
                 var _result = await network.CallServerApi(command);
-                _result = await TryResendIfNotAuthed(command, _result);
                 if (!_result.success) throw new GameException(_result.error);
                 var reader = new BinaryReader(new MemoryStream(_result.responseData));
                 int parsedResult = default;
@@ -218,7 +210,6 @@ namespace Game {
             try
             {
                 var _result = await network.CallServerApi(command);
-                _result = await TryResendIfNotAuthed(command, _result);
                 if (!_result.success) throw new GameException(_result.error);
             }
             catch (Exception e)

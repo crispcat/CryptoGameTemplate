@@ -9,6 +9,38 @@ namespace Game {
 
     public partial class GameModel : IUpdatableFrom<Game.GameModel>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable
     {
+        public void TestCommandCommand() 
+        {
+            var command = root.PrepareCommand(LocalMetaCommandType.TestCommand, 0);;
+            var _data = new MemoryStream();
+            var writer = new BinaryWriter(_data);
+            var commandArgData = _data.GetBuffer();
+            command.args = commandArgData;
+            try
+            {
+                root.BeforeExecutionLocalCommand(command);
+                TestCommand();
+                root.SinkLocalCommand(command);
+            }
+            catch (Exception e)
+            {
+                SystemLayer.LogError($"Local command TestCommand execution failed, request args: , \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
+                root.ExecutionFailed(command);
+            }
+        }
+        public virtual Game.LocalMetaCommandResult ExecuteCommand(LocalMetaCommandType _type, BinaryReader reader) 
+        {
+            switch(_type)
+            {
+                case LocalMetaCommandType.TestCommand:
+                {
+                    TestCommand();
+                    return LocalMetaCommandResult.Complete();
+                    break;
+                }
+            }
+            return Game.LocalMetaCommandResult.NotFound;
+        }
         public Game.GameReferencableEntity CreateGameReferencableEntity() 
         {
             var inst = new Game.GameReferencableEntity();

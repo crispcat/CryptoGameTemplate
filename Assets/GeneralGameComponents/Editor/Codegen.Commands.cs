@@ -458,7 +458,7 @@ public static partial class CommandGen
     static void GenerateLocalCommands()
     {
         HashSet<string> allCommands = new HashSet<string>();
-        string commandTypeName = typeof(LocalMetaCommandType).Name; //"CommandType";
+        string commandTypeName = nameof(LocalMetaCommandType); //"CommandType";
         var localResultType = typeof(LocalMetaCommandResult);
 
         var printerSink = StartGenArgPrinter(PrintArgsLocalStaticClassName, commandTypeName, "GameModel");

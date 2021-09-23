@@ -3,19 +3,6 @@ using ZergRush.ReactiveCore;
 
 namespace Game
 {
-    public enum RemoteMetaRequestType
-    {
-        Authenticate,
-        DebugTimeoutSession,
-        DebugAuthenticateMergedPlayer,
-        DebugThrowException,
-        GetShortPlayerInfo,
-        FinishSession,
-        DebugLaggyCommand,
-        DeletePlayer,
-        FlushLocalCommands
-    }
-
     public enum RemoteMetaResponseType : byte
     {
         NotFound,

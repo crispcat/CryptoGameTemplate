@@ -11,14 +11,14 @@ namespace Game {
     {
         public virtual void Deserialize(BinaryReader reader) 
         {
-            type = reader.ReadEnum<Game.LocalMetaCommandType>();
+            type = reader.ReadEnum<LocalMetaCommandType>();
             objId = reader.ReadInt32();
             args = reader.ReadByteArray();
             time = reader.ReadInt64();
         }
         public virtual void Serialize(BinaryWriter writer) 
         {
-            writer.Write((Int32)type);
+            writer.Write((UInt16)type);
             writer.Write(objId);
             writer.WriteByteArray(args);
             writer.Write(time);
@@ -28,7 +28,7 @@ namespace Game {
             switch(__name)
             {
                 case "type":
-                type = ((string)reader.Value).ParseEnum<Game.LocalMetaCommandType>();
+                type = ((string)reader.Value).ParseEnum<LocalMetaCommandType>();
                 break;
                 case "objId":
                 objId = (int)(Int64)reader.Value;

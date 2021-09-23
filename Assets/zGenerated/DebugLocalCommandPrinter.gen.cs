@@ -13,6 +13,10 @@ namespace Game {
             var reader = new BinaryReader(new MemoryStream(__data));
             switch (__type)
             {
+                case LocalMetaCommandType.TestCommand:
+                {
+                    return $"";
+                }
             }
             return "invalid command type";
         }

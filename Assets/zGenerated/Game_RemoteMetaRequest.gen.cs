@@ -12,7 +12,7 @@ namespace Game {
         public virtual void Deserialize(BinaryReader reader) 
         {
             localCommandsBatch.Deserialize(reader);
-            type = reader.ReadEnum<Game.RemoteMetaRequestType>();
+            type = reader.ReadEnum<RemoteMetaRequestType>();
             time = reader.ReadInt64();
             if (!reader.ReadBoolean()) {
                 args = null;
@@ -30,7 +30,7 @@ namespace Game {
         public virtual void Serialize(BinaryWriter writer) 
         {
             localCommandsBatch.Serialize(writer);
-            writer.Write((Int32)type);
+            writer.Write((UInt16)type);
             writer.Write(time);
             if (args == null) writer.Write(false);
             else {
@@ -51,7 +51,7 @@ namespace Game {
                 localCommandsBatch.ReadFromJson(reader);
                 break;
                 case "type":
-                type = ((string)reader.Value).ParseEnum<Game.RemoteMetaRequestType>();
+                type = ((string)reader.Value).ParseEnum<RemoteMetaRequestType>();
                 break;
                 case "time":
                 time = (long)(Int64)reader.Value;
