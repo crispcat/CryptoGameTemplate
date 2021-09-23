@@ -89,7 +89,7 @@ public static partial class PlayFabSyncWrapperGen
                 if (playfablessFunc == null)
                 {
                     // Make calling playfab method throw exception if playfabless implementation does not have such method.
-                    sink.content($"throw new PortalHunter.RiftersException(\"" +
+                    sink.content($"throw new PortalHunter.GameException(\"" +
                                  $"method {playfablessAPIClassType.Name}.{asyncFuncName} does not exist\");");
                 }
                 else

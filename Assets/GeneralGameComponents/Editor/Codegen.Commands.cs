@@ -355,7 +355,7 @@ public static partial class CommandGen
                     //sink.content($"if (network.log) ServerEngine.Debug.Log($\"sending {method.Name} meta game remote command request\");");
                     sink.content($"var _result = await network.CallServerApi(command);");
                     sink.content($"_result = await TryResendIfNotAuthed(command, _result);");
-                    sink.content($"if (!_result.success) throw new RiftersException(_result.error);");
+                    sink.content($"if (!_result.success) throw new GameException(_result.error);");
                     //sink.content($"if (network.log) ServerEngine.Debug.Log($\"receiving {method.Name} meta game remote command response\");");
                     if (method.ReturnType.IsVoidOrTask() == false)
                     {
@@ -446,7 +446,7 @@ public static partial class CommandGen
         }
 
         method.closeBrace();
-        method.content($"throw new RiftersException(\"command id not found\");");
+        method.content($"throw new GameException(\"command id not found\");");
     }
 
     static Type AntiTask(this Type t)

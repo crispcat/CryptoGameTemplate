@@ -231,7 +231,7 @@ namespace Game
             //     new AuthenticateSessionTicketRequest { SessionTicket = sessionId });
             // var authOnPlayfabSuccess = !playfabResponse.failed();
             // if (!authOnPlayfabSuccess)
-            //     throw new RiftersException(playfabResponse.Error.ToString());
+            //     throw new GameException(playfabResponse.Error.ToString());
             // var playfabId = playfabResponse.Result.UserInfo.PlayFabId;
             // return (authOnPlayfabSuccess, playfabId);
             throw new NotImplementedException();

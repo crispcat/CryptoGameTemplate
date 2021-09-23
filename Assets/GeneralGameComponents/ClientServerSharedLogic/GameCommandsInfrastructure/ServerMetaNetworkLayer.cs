@@ -16,8 +16,8 @@ namespace Game
             get
             {
 #if CLIENT
-                if (LocalGameSettings.instance.clientTypeCell.value == MetaClientType.MergedServer)
-                    return LocalGameSettings.instance.logRemoteGameMetaCommands;
+                if (LocalSettings.Instance.clientTypeCell.value == MetaClientType.MergedServer)
+                    return LocalSettings.Instance.logRemoteGameMetaCommands;
 #endif
                 return GameServerSettings.logs_enabled;
             }

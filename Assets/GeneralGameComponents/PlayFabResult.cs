@@ -29,5 +29,7 @@ namespace PlayFab
         }
 
         public bool success => !keepWaiting && Error == null;
+        public bool fail => !keepWaiting && Error != null;
+        public bool failed() => fail;
     }
 }

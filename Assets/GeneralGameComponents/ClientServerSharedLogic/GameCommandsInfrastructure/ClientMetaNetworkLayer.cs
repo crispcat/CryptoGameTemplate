@@ -10,7 +10,7 @@ namespace Game
         static LocalSettings settings => LocalSettings.Instance;
         GameSession session;
         
-        protected static async Task PlayfabAuth(AuthData overrideAuthData = null)
+        protected static async Task PlayfabAuthenticate(AuthData overrideAuthData = null)
         {
             AuthData authData = settings.authData;
             if (overrideAuthData != null)
@@ -19,7 +19,7 @@ namespace Game
                 authData = AuthData.Default();
 
             // auth on playfab.            
-            //var session = await PlayfabAuth.AuthenticateAsClient(authData);
+            var session = await PlayfabAuth.AuthenticateAsClient(authData);
             
         }
         
@@ -39,6 +39,17 @@ namespace Game
                 //Debug.Log($"{request.localCommandsBatch.items.Count} local commands fly to server");
             }            
             return request;
+        }
+
+        public long lag => 0;
+        public virtual void Update() { }
+        protected void OnBeforeCommandSent(RemoteMetaRequest command)
+        {
+            LogSentRequest(command);
+        }
+        protected void OnAfterCommandReceived(RemoteMetaRequestType requestType, RemoteMetaResponse response)
+        {
+            LogReceivedResponse(requestType, response, lag);
         }
         
         protected void LogSentRequest(RemoteMetaRequest command)
@@ -62,17 +73,6 @@ namespace Game
             {
                 // ignored
             }
-        }
-
-        public long lag => 0;
-        public virtual void Update() { }
-        protected void OnBeforeCommandSent(RemoteMetaRequest command)
-        {
-            LogSentRequest(command);
-        }
-        protected void OnAfterCommandReceived(RemoteMetaRequestType requestType, RemoteMetaResponse response)
-        {
-            LogReceivedResponse(requestType, response, lag);
         }
     }
 }
