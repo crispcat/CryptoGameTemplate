@@ -244,8 +244,7 @@ public static partial class CommandGen
     static MethodBuilder StartGenArgPrinter(string className, string enumType, string modelForRefs)
     {
         var senderSink = defaultContext.createSharpClass(className, className,
-            "PortalHunter", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
-        senderSink.usingSink("PortalHunter.Tools");
+            "Game", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
 
         var method = senderSink.Method(PrintCommandArgsFuncName, null, MethodType.StaticFunction,
             typeof(string),
@@ -325,7 +324,7 @@ public static partial class CommandGen
         string commandTypeName = typeof(RemoteMetaRequestType).Name; //"ServerRequestType";
         var responseType = typeof(RemoteMetaResponse);
         var thisTypeCommands = new List<MethodInfo>();
-        var senderSink = defaultContext.createSharpClass("RiftersServerAPI", "PortalHunter", "PortalHunter",
+        var senderSink = defaultContext.createSharpClass("GameServerAPI", "GameServerAPI", "Game",
             isStatic: false, isStruct: false, isSealed: false, isPartial: true);
         senderSink.usingSink("System.Threading.Tasks");
 
@@ -415,11 +414,10 @@ public static partial class CommandGen
         var className = PrintArgsRemoteResultStaticClassName;
         var enumType = typeof(RemoteMetaRequestType).Name;
         var senderSink = defaultContext.createSharpClass(className, className,
-            "PortalHunter", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
+            "Game", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
 
         var method = senderSink.Method(PrintCommandResultFuncName, null, MethodType.StaticFunction,
             typeof(string), $"{enumType} __type, byte[] __data");
-        method.classBuilder.usingSink("PortalHunter.Tools");
 
         method.indent++;
         method.content($"if (__data == null) return \"\";");
@@ -464,7 +462,6 @@ public static partial class CommandGen
         var localResultType = typeof(LocalMetaCommandResult);
 
         var printerSink = StartGenArgPrinter(PrintArgsLocalStaticClassName, commandTypeName, "PlayerModel");
-        printerSink.classBuilder.usingSink("PortalHunter.GameMeta");
 
         var assembly = typeof(IGameCommandSink).Assembly;
             

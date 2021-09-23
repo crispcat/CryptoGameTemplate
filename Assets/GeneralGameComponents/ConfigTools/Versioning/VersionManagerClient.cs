@@ -1,8 +1,4 @@
 ﻿#if CLIENT
-using PortalHunter.GameMeta.View;
-using PortalHunter.GameRoot;
-using PortalHunter.GameTools.AssetBundles;
-using PortalHunter.Tools;
 using System.Threading.Tasks;
 using UnityEngine.Advertisements;
 

@@ -36,16 +36,6 @@ namespace Game
         //     return $"type = {type}\n{(success?"":error)}\n{DebugRemoteCommandResultPrinter.PrintResult(type, responseData)}\n{(timings==null?"no timings":timings.ToString())}";
         // }
 
-        public void Serialize(BinaryWriter writer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Deserialize(BinaryReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
         public string Log(RemoteMetaRequestType requestType)
         {
             return "";

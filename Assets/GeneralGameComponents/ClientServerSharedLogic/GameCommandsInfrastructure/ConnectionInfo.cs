@@ -71,10 +71,6 @@ namespace Game
             return other != null && CalculateHash() == other.CalculateHash();
         }
         public override string ToString() => $"{ip0}.{ip1}.{ip2}.{ip3}:{port}";
-        public ulong CalculateHash()
-        {
-            throw new NotImplementedException();
-        }
 
         public static ConnectionInfo FromString(string str)
         {

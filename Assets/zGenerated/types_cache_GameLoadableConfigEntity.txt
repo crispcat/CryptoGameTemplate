@@ -1,0 +1,2 @@
+GameLoadableConfigEntity 1
+LoadableConfigStub 2

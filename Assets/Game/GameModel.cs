@@ -10,5 +10,11 @@ namespace Game
         {
             return new GameModel();
         }
+
+        [LocalCommand]
+        void TestCommand()
+        {
+            
+        }
     }
 }

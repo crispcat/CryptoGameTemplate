@@ -9,14 +9,5 @@ namespace Game
     public partial class LocalCommandsBatch : ISerializable
     {
         public ReactiveCollection<LocalMetaCommand> items = new ReactiveCollection<LocalMetaCommand>();
-        public void Serialize(BinaryWriter writer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Deserialize(BinaryReader reader)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -16,15 +16,6 @@ namespace Game
         public const string PrevConnectionNoMatchmakeTicket = "PrevConnectionNoMatchmakeTicket";
         public const float MetaSessionTimeoutSeconds = 2f * 60;//5 * 60;
 
-        public void Serialize(BinaryWriter writer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Deserialize(BinaryReader reader)
-        {
-            throw new NotImplementedException();
-        }
 
         public string Log(object o)
         {

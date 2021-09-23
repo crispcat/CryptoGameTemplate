@@ -7,21 +7,8 @@ using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
 namespace Game {
 
-    public partial class GameLoadableConfigEntity : IHashable, IUniquelyIdentifiable, IJsonSerializable, IPolymorphable
+    public partial class LoadableConfigStub : IHashable, IUniquelyIdentifiable, IJsonSerializable, IPolymorphable
     {
-        public enum Types : ushort
-        {
-            GameLoadableConfigEntity = 1,
-            LoadableConfigStub = 2,
-        }
-        static Func<GameLoadableConfigEntity> [] polymorphConstructors = new Func<GameLoadableConfigEntity> [] {
-            () => null, // 0
-            () => new Game.GameLoadableConfigEntity(), // 1
-            () => new Game.LoadableConfigStub(), // 2
-        };
-        public static GameLoadableConfigEntity CreatePolymorphic(System.UInt16 typeId) {
-            return polymorphConstructors[typeId]();
-        }
         public override void Deserialize(BinaryReader reader) 
         {
             base.Deserialize(reader);
@@ -36,7 +23,7 @@ namespace Game {
         {
             var baseVal = base.CalculateHash();
             System.UInt64 hash = baseVal;
-            hash += (ulong)1106995105;
+            hash += (ulong)1712246652;
             hash += hash << 11; hash ^= hash >> 7;
             return hash;
         }
@@ -50,7 +37,7 @@ namespace Game {
             base.CollectConfigs(_collection);
 
         }
-        public  GameLoadableConfigEntity() 
+        public  LoadableConfigStub() 
         {
 
         }
@@ -66,13 +53,13 @@ namespace Game {
             base.WriteJsonFields(writer);
 
         }
-        public virtual ushort GetClassId() 
+        public override ushort GetClassId() 
         {
-        return (System.UInt16)Types.GameLoadableConfigEntity;
+        return (System.UInt16)Types.LoadableConfigStub;
         }
-        public virtual Game.GameLoadableConfigEntity NewInst() 
+        public override Game.GameLoadableConfigEntity NewInst() 
         {
-        return new GameLoadableConfigEntity();
+        return new LoadableConfigStub();
         }
     }
 }

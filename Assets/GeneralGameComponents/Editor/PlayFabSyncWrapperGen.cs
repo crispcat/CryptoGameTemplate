@@ -89,15 +89,16 @@ public static partial class PlayFabSyncWrapperGen
                 if (playfablessFunc == null)
                 {
                     // Make calling playfab method throw exception if playfabless implementation does not have such method.
-                    sink.content($"throw new PortalHunter.GameException(\"" +
+                    sink.content($"throw new GameException(\"" +
                                  $"method {playfablessAPIClassType.Name}.{asyncFuncName} does not exist\");");
                 }
                 else
                 {
+                    throw new NotImplementedException();
                     // Call playfabless implementation.
-                    if (playfabAPIClassType == typeof(PlayFabServerAPI))
-                        sink.content($"PortalHunter.Tools.LoadTests.MetaServerLoadTracking.OnServerAPICall();");
-                    sink.content($"waiter = await {playfablessAPIClassType.Name}.{asyncFuncName}(request);");
+                    //if (playfabAPIClassType == typeof(PlayFabServerAPI))
+                    //   sink.content($"PortalHunter.Tools.LoadTests.MetaServerLoadTracking.OnServerAPICall();");
+                    //sink.content($"waiter = await {playfablessAPIClassType.Name}.{asyncFuncName}(request);");
                 }
                 sink.content("#endif");
             }

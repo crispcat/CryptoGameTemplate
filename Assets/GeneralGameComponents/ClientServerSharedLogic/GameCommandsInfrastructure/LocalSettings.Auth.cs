@@ -11,15 +11,5 @@ namespace GameTools
         public AuthData authData;
         public ulong lastRemotePlayerModelHash;
         public bool logRemoteGameMetaCommands;
-        
-        public void WriteJsonFields(JsonTextWriter writer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void ReadFromJsonField(JsonTextReader reader, string name)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
