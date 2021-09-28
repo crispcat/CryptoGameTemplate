@@ -110,7 +110,7 @@ namespace Game
     [GenTask(GenTaskFlags.CommandsGen)]
     public partial class ServerPlayerSessionController
     {
-        public GameSession session;
+        public PlayfabSessionInfo session;
         public string sessionId => session?.ticket;
         public string playerId => session?.playerId;
         GameModel player;
@@ -299,7 +299,7 @@ namespace Game
                 return new AuthResponse();
             }
             else
-                session = new GameSession {playerId = playfabId, ticket = sessionId};
+                session = new PlayfabSessionInfo {playerId = playfabId, ticket = sessionId};
 
             // Load player model.
             var playerFromDB = await LoadData(playerId,

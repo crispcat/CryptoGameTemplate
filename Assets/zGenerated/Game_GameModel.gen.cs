@@ -81,6 +81,7 @@ namespace Game {
         {
             base.UpdateFrom(other);
             var otherConcrete = (Game.GameModel)other;
+            state = otherConcrete.state;
             displayName = otherConcrete.displayName;
         }
         public void UpdateFrom(Game.GameModel other) 
@@ -90,11 +91,13 @@ namespace Game {
         public override void Deserialize(BinaryReader reader) 
         {
             base.Deserialize(reader);
+            state = reader.ReadInt32();
             displayName = reader.ReadString();
         }
         public override void Serialize(BinaryWriter writer) 
         {
             base.Serialize(writer);
+            writer.Write(state);
             writer.Write(displayName);
         }
         public override ulong CalculateHash() 
@@ -102,6 +105,8 @@ namespace Game {
             var baseVal = base.CalculateHash();
             System.UInt64 hash = baseVal;
             hash += (ulong)709428417;
+            hash += hash << 11; hash ^= hash >> 7;
+            hash += (System.UInt64)state;
             hash += hash << 11; hash ^= hash >> 7;
             hash += (ulong)displayName.GetHashCode();
             hash += hash << 11; hash ^= hash >> 7;
@@ -153,6 +158,7 @@ namespace Game {
         {
             base.CompareCheck(other,__path);
             var otherConcrete = (Game.GameModel)other;
+            if (state != otherConcrete.state) SerializationTools.LogCompError(__path, "state", otherConcrete.state, state);
             if (displayName != otherConcrete.displayName) SerializationTools.LogCompError(__path, "displayName", otherConcrete.displayName, displayName);
         }
         public override void ReadFromJsonField(JsonTextReader reader, string __name) 
@@ -160,6 +166,9 @@ namespace Game {
             base.ReadFromJsonField(reader,__name);
             switch(__name)
             {
+                case "state":
+                state = (int)(Int64)reader.Value;
+                break;
                 case "displayName":
                 displayName = (string) reader.Value;
                 break;
@@ -168,6 +177,8 @@ namespace Game {
         public override void WriteJsonFields(JsonTextWriter writer) 
         {
             base.WriteJsonFields(writer);
+            writer.WritePropertyName("state");
+            writer.WriteValue(state);
             writer.WritePropertyName("displayName");
             writer.WriteValue(displayName);
         }

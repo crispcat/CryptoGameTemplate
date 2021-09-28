@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace Game
 {
-    public partial class GameModel 
+    public partial class GameModel
     {
+        public int state;
+        
         public static GameModel Default()
         {
             return new GameModel();
@@ -14,7 +16,12 @@ namespace Game
         [LocalCommand]
         void TestCommand()
         {
-            
+            state++;
+        }
+
+        public void UnAutherizedStateChange()
+        {
+            state += 100;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Game
     public abstract class ClientMetaNetworkLayer : MetaNetworkLayer
     {
         static LocalSettings settings => LocalSettings.Instance;
-        GameSession session;
+        PlayfabSessionInfo session;
         
         protected static async Task PlayfabAuthenticate(AuthData overrideAuthData = null)
         {

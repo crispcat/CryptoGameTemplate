@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Game
 {
-    public class GameSession
+    public class PlayfabSessionInfo
     {
         public string ticket;
         public string playerId;
@@ -36,7 +36,7 @@ namespace Game
             Debug.Log($"Login success");
         }
 
-        public static async Task<GameSession> AuthenticateAsClient(AuthData authData)
+        public static async Task<PlayfabSessionInfo> AuthenticateAsClient(AuthData authData)
         {
             PlayFabResult<LoginResult> playfabResponse = await SocialUtils.ExistingSocialLogin(authData);
             
@@ -54,7 +54,7 @@ namespace Game
                 Debug.Log(
                     $"authed on playfab with playerid = {playfabResponse.Result.PlayFabId}, ticket = {playfabResponse.Result.SessionTicket}, authId = {authData.authId}");
             }
-            return new GameSession
+            return new PlayfabSessionInfo
                 { playerId = playfabResponse.Result.PlayFabId, ticket = playfabResponse.Result.SessionTicket };
         }
 

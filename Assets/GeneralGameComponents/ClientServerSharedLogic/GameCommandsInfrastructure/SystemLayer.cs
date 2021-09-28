@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Game
 {
@@ -8,11 +9,11 @@ namespace Game
 
         public static void Log(string message)
         {
-            
+            Debug.Log(message);
         }
         public static void LogError(string message)
         {
-            
+            Debug.LogError(message);
         }
     }
 }

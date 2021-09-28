@@ -5,6 +5,15 @@ using ZergRush.CodeGen;
 
 namespace Game
 {
+    public enum RemoteMetaResponseType : byte
+    {
+        NotFound,
+        LocalBatchException,
+        Exception,
+        NotAuthed,
+        Complete
+    }
+    
     [GenSerialization, GenTask(GenTaskFlags.JsonSerialization)]
     public partial class RemoteMetaResponse : ISerializable
     {        
