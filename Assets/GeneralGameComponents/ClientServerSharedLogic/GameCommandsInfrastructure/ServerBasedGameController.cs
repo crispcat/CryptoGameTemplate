@@ -10,8 +10,6 @@ namespace Game
 {
     public class ServerBasedGameController : IGameControllerBase, IGameCommandSink
     {
-        protected ServerBasedGameController() {}
-        
         ClientMetaNetworkLayer network;
         GameServerAPI serverAPI;
         
@@ -22,6 +20,8 @@ namespace Game
         
         public static string remoteGameModelCache => $"remote_player_{settings?.authData?.authId}.bin";
 
+        protected ServerBasedGameController() {}
+        // Can only be created with this function
         public static async Task<ServerBasedGameController> Create(ClientMetaNetworkLayer network)
         {
             var controller = new ServerBasedGameController();
@@ -37,7 +37,7 @@ namespace Game
             // Auth on server.
             var localCommands = DrainLocalCommands();
             //Debug.Log("drained commands for authing");
-            var response = await serverAPI.Authenticate(localCommands, LocalSettings.Instance.lastRemoteGameModelHash, true);
+            var response = await serverAPI.Authenticate(network.sessionId, network.matchmakeTicket, localCommands, LocalSettings.Instance.lastRemoteGameModelHash, true);
             
             metaTimeClientShift = SystemLayer.ticks - response.serverTime - serverAPI.lag;
 

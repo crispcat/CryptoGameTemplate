@@ -26,7 +26,8 @@ namespace Game
             {
                 Debug.LogError($"before the command hashes are no equal, possible serialization problem or unauthorized model changes, comparison:");
                 game.CompareCheck(test, new Stack<string>());
-                Debug.LogError($"comparison ended");
+                Debug.LogError($"before execution comparison ended, restoring test model to be equal to real model");
+                RefreshTest();
             }
         }
 
@@ -70,9 +71,9 @@ namespace Game
 
             if (hashBeforeAfter != hashTestAfter)
             {
-                Debug.LogError($"{command.type} determinism test failed, comparison:");
+                Debug.LogError($"execution {command.type} determinism test failed, comparison:");
                 game.CompareCheck(test, new Stack<string>());
-                Debug.LogError($"{command.type} comparison ended");
+                Debug.LogError($"execution {command.type} comparison ended");
                 RefreshTest();
             }
             else

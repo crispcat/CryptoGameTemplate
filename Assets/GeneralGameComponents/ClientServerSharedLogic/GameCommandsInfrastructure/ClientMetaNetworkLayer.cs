@@ -9,19 +9,14 @@ namespace Game
     {
         static LocalSettings settings => LocalSettings.Instance;
         PlayfabSessionInfo session;
-        
-        protected static async Task PlayfabAuthenticate(AuthData overrideAuthData = null)
-        {
-            AuthData authData = settings.authData;
-            if (overrideAuthData != null)
-                authData = overrideAuthData;
-            if (authData == null || authData.authId == null)
-                authData = AuthData.Default();
 
-            // auth on playfab.            
-            var session = await PlayfabAuth.AuthenticateAsClient(authData);
-            
+        protected ClientMetaNetworkLayer(PlayfabSessionInfo session)
+        {
+            this.session = session;
         }
+
+        public string sessionId => session.ticket;
+        public abstract string matchmakeTicket { get; }
         
         public RemoteMetaRequest PrepareRequest(RemoteMetaRequestType type)
         {
@@ -39,6 +34,18 @@ namespace Game
                 //Debug.Log($"{request.localCommandsBatch.items.Count} local commands fly to server");
             }            
             return request;
+        }
+        
+        protected static async Task<PlayfabSessionInfo> PlayfabAuthenticate(AuthData overrideAuthData = null)
+        {
+            AuthData authData = settings.authData;
+            if (overrideAuthData != null)
+                authData = overrideAuthData;
+            if (authData == null || authData.authId == null)
+                authData = AuthData.Default();
+
+            // auth on playfab.            
+            return await PlayfabAuth.AuthenticateAsClient(authData);
         }
 
         public long lag => 0;

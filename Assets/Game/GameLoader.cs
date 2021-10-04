@@ -11,15 +11,18 @@ namespace Game
     {
         public GameSessionMode mode;
         public int gameSceneIndex = 1;
+
         async void Start()
         {
             var gc = await LoadGC(mode);
+            Debug.Log($"game controller created: {gc}");
             var sessionObj = new GameObject();
             DontDestroyOnLoad(sessionObj);
             var session = sessionObj.AddComponent<GameSession>();
             session.Init(gc);
             SceneManager.LoadScene(gameSceneIndex);
         }
+
         async Task<IGameControllerBase> LoadGC(GameSessionMode mode)
         {
             switch (mode)
@@ -30,10 +33,14 @@ namespace Game
                     return new DevGameControllerWithChecks();
                     break;
                 case GameSessionMode.MergedServerMode:
+                    var networkLayer = await MergedClientMetaNetworkLayer.Create();
+                    Debug.Log("Merged network layer created successfully");
+                    return await ServerBasedGameController.Create(networkLayer);
                 case GameSessionMode.RealServerMode:
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
+
     }
 }

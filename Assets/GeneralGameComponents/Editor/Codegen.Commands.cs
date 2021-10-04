@@ -18,9 +18,6 @@ public static partial class CommandGen
     static string CommandDescriptorObjIdFieldName = "objId";
     static string CommandExecuteFuncName = "ExecuteCommand";
 
-    static bool BinaryProtocol = true;
-    static GenTaskFlags dataProtocolTags = GenTaskFlags.Serialization | GenTaskFlags.JsonSerialization;
-
     static T GetAttributeIfAny<T>(this MemberInfo info) where T : Attribute
     {
         if (info.HasAttribute<T>())
@@ -55,53 +52,6 @@ public static partial class CommandGen
     static string bufferName = "_bytes";
     static string resultObjName = "_result";
 
-    static void InitDataProtocolRead(MethodBuilder sink, string bufferName)
-    {
-        sink.classBuilder.usingSink("System.IO");
-        var www = new StreamWriter(new MemoryStream());
-        if (BinaryProtocol)
-        {
-            sink.content($"var reader = new BinaryReader(new MemoryStream({bufferName}));");
-        }
-        else
-        {
-            sink.classBuilder.usingSink("Newtonsoft.Json");
-            sink.content($"var reader = new JsonTextReader(new StreamReader(new MemoryStream({bufferName})));");
-            sink.content($"reader.Read();");
-        }
-    }
-
-    static void InitDataProtocolWrite(MethodBuilder sink)
-    {
-        sink.classBuilder.usingSink("System.IO");
-        var www = new StreamWriter(new MemoryStream());
-        if (BinaryProtocol)
-        {
-            sink.content($"var {dataStream} = new MemoryStream();");
-            sink.content($"var writer = new BinaryWriter({dataStream});");
-        }
-        else
-        {
-            sink.classBuilder.usingSink("Newtonsoft.Json");
-            sink.content($"var {dataStream} = new MemoryStream();");
-            sink.content($"var writer = new JsonTextWriter(new StreamWriter({dataStream}));");
-            sink.content($"writer.WriteStartObject();");
-        }
-    }
-
-    static void FinishDataProtocolWrite(MethodBuilder sink, string bufferGetterName)
-    {
-        if (BinaryProtocol)
-        {
-        }
-        else
-        {
-            sink.content($"writer.WriteEndObject();");
-        }
-
-        sink.content($"var {bufferGetterName} = {dataStream}.GetBuffer();");
-    }
-
     static void PackArgs(MethodBuilder sink, string bufferGetterName, MethodInfo method)
     {
         PackArgs(sink, bufferGetterName, method.GetParameters().Select(p => new DataInfo
@@ -112,46 +62,6 @@ public static partial class CommandGen
         }));
     }
 
-    static void ReadItem(MethodBuilder eSink, DataInfo arg)
-    {
-        if (BinaryProtocol)
-        {
-            ZergRush.CodeGen.CodeGen.GenReadValueFromStream(eSink, arg,
-                stream: "reader", pooled: false, needVar: true, readDataNodeFromId: true);
-        }
-        else
-        {
-            eSink.content($"reader.ReadAssertPropertyName(\"{arg.baseAccess}\");");
-            eSink.content($"reader.Read();");
-            ReadJsonValueStatement(eSink, arg, true, true);
-        }
-    }
-
-    static void WriteItem(MethodBuilder sink, DataInfo arg)
-    {
-        if (BinaryProtocol)
-        {
-            GenWriteValueToStream(sink, arg, "writer", true);
-        }
-        else
-        {
-            WriteJsonValueStatement(sink, arg, false, true);
-        }
-    }
-
-
-    static void PackArgs(MethodBuilder sink, string bufferGetterName, IEnumerable<DataInfo> args)
-    {
-        InitDataProtocolWrite(sink);
-
-        foreach (var arg in args)
-        {
-            if (arg.type.IsConfig() == false) RequestGen(arg.type, null, dataProtocolTags);
-            WriteItem(sink, arg);
-        }
-
-        FinishDataProtocolWrite(sink, bufferGetterName);
-    }
 
     static void GenCommandSender(Func<string, MethodBuilder> methodFactory, MethodInfo method,
         string commandBuilder, Action<MethodBuilder> exec, Action<MethodBuilder> execFailed,
@@ -313,138 +223,6 @@ public static partial class CommandGen
         str.Append("\"");
         builder.content($"return {str};");
         builder.closeBrace();
-    }
-
-    [CodeGenExtension]
-    static void GenerateServerApi()
-    {
-        HashSet<string> allCommands = new HashSet<string>();
-        var type = typeof(ServerPlayerSessionController);
-
-        string commandTypeName = typeof(RemoteMetaRequestType).Name; //"ServerRequestType";
-        var responseType = typeof(RemoteMetaResponse);
-        var thisTypeCommands = new List<MethodInfo>();
-        var senderSink = defaultContext.createSharpClass("GameServerAPI", "GameServerAPI", "Game",
-            isStatic: false, isStruct: false, isSealed: false, isPartial: true);
-        senderSink.usingSink("System.Threading.Tasks");
-
-        var printerSink = StartGenArgPrinter(PrintArgsRemoteStaticClassName, commandTypeName, null);
-
-        foreach (var method in type.GetMethods(BindingFlags.NonPublic | BindingFlags.Public |
-                                               BindingFlags.Instance))
-        {
-            if (method.HasAttribute<GenServerCommand>() == false) continue;
-            allCommands.Add(method.Name);
-            thisTypeCommands.Add(method);
-
-            SinkCommandArgPrinterCase(commandTypeName, printerSink, method);
-            GenCommandSender(
-                methodFactory: args =>
-                {
-                    var m = senderSink.Method(method.Name, typeof(ClientMetaNetworkLayer),
-                        MethodType.Instance, method.ReturnType, args);
-                    m.async = true;
-                    return m;
-                },
-                method: method,
-                commandBuilder: $"network.PrepareRequest({commandTypeName}.{method.Name});",
-                exec: sink =>
-                {
-                    sink.async = true;
-                    //sink.content($"if (network.log) ServerEngine.Debug.Log($\"sending {method.Name} meta game remote command request\");");
-                    sink.content($"var _result = await network.CallServerApi(command);");
-                    //sink.content($"_result = await TryResendIfNotAuthed(command, _result);");
-                    sink.content($"if (!_result.success) throw new GameException(_result.error);");
-                    //sink.content($"if (network.log) ServerEngine.Debug.Log($\"receiving {method.Name} meta game remote command response\");");
-                    if (method.ReturnType.IsVoidOrTask() == false)
-                    {
-                        InitDataProtocolRead(sink, "_result.responseData");
-                        var parsed = "parsedResult";
-                        ReadItem(sink,
-                            new DataInfo
-                            {
-                                type = method.ReturnType.FirstGenericArg(), baseAccess = parsed, sureIsNull = true
-                            });
-                        sink.content($"return {parsed};");
-                    }
-                },
-                execFailed: sink =>
-                {
-                    //sink.content($"root.ExecutionFailed(command);");
-                    sink.closeBrace();
-                    if (method.ReturnType.IsVoidOrTask() == false)
-                        sink.content($"return default({method.ReturnType.FirstGenericArg().RealName(true)});");
-                },
-                localOrRemoteCommands: false);
-        }
-
-        FinishArgPrinting(printerSink);
-        GenerateCommandResultPrinter(thisTypeCommands);
-
-        var receiverSink = GenClassSink(type);
-        receiverSink.defineSink("SERVER");
-        receiverSink.usingSink("System.Threading.Tasks");
-        receiverSink.usingSink(responseType.Namespace);
-        GenCommandReceiver(type, thisTypeCommands, typeof(Task<RemoteMetaResponse>),
-            $"{responseType.Name}.NotFound",
-            commandTypeName, true,
-            exec:
-            (method, args, eSink) =>
-            {
-                if (method.ReturnType.IsVoidOrTask())
-                {
-                    eSink.content($"await {method.Name}({args});");
-                    eSink.content($"return {responseType.Name}.Complete();");
-                }
-                else
-                {
-                    eSink.content($"var {resultObjName} = await {method.Name}({args});");
-                    InitDataProtocolWrite(eSink);
-                    WriteItem(eSink,
-                        new DataInfo { type = method.ReturnType.FirstGenericArg(), baseAccess = resultObjName });
-                    FinishDataProtocolWrite(eSink, bufferName);
-                    eSink.content($"return {responseType.Name}.Complete({bufferName});");
-                }
-            });
-        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), "Assets/zGenerated/", defaultContext);
-    }
-
-    static void GenerateCommandResultPrinter(List<MethodInfo> commandFunctions)
-    {
-        var className = PrintArgsRemoteResultStaticClassName;
-        var enumType = typeof(RemoteMetaRequestType).Name;
-        var senderSink = defaultContext.createSharpClass(className, className,
-            "Game", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
-
-        var method = senderSink.Method(PrintCommandResultFuncName, null, MethodType.StaticFunction,
-            typeof(string), $"{enumType} __type, byte[] __data");
-
-        method.indent++;
-        method.content($"if (__data == null) return \"\";");
-        InitDataProtocolRead(method, "__data");
-        method.content($"switch (__type)");
-        method.openBrace();
-
-        foreach (var command in commandFunctions)
-        {
-            method.content($"case {enumType}.{command.Name}:");
-            var type = command.ReturnType.AntiTask();
-            if (type == CodeGen.Void) method.content("return \"void\";");
-            else
-            {
-                method.openBrace();
-                GenReadValueFromStream(method, new DataInfo
-                {
-                    type = type, baseAccess = "result", sureIsNull =
-                        true
-                }, "reader", false, true);
-                method.content($"return result.{ToPrintStringMethod(type)}();");
-                method.closeBrace();
-            }
-        }
-
-        method.closeBrace();
-        method.content($"throw new GameException(\"command id not found\");");
     }
 
     static Type AntiTask(this Type t)
