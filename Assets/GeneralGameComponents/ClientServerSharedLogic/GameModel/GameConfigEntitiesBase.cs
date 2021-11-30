@@ -12,4 +12,8 @@ namespace Game
     public partial class GameLoadableConfigEntity : LoadableConfig
     {
     }
+    
+    public partial class LoadableConfigStub : GameLoadableConfigEntity
+    {
+    }
 }

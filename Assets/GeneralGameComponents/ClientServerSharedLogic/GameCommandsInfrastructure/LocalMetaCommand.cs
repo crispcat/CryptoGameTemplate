@@ -1,3 +1,4 @@
+using ZergRush;
 using ZergRush.CodeGen;
 
 namespace Game
@@ -9,5 +10,10 @@ namespace Game
         public int objId;
         public byte[] args;
         public long time;
+
+        public override string ToString()
+        {
+            return $"{type} to obj:{objId} time:{time} args:{args.PrintCollection("")}";
+        }
     }
 }

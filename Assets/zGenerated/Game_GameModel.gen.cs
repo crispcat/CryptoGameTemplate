@@ -9,6 +9,38 @@ namespace Game {
 
     public partial class GameModel : IUpdatableFrom<Game.GameModel>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable
     {
+        public void TestCommandCommand() 
+        {
+            var command = root.PrepareCommand(LocalMetaCommandType.TestCommand, 0);;
+            var _data = new MemoryStream();
+            var writer = new BinaryWriter(_data);
+            var commandArgData = _data.GetBuffer();
+            command.args = commandArgData;
+            try
+            {
+                root.BeforeExecutionLocalCommand(command);
+                TestCommand();
+                root.SinkLocalCommand(command);
+            }
+            catch (Exception e)
+            {
+                SystemLayer.LogError($"Local command TestCommand execution failed, request args: , \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
+                root.ExecutionFailed(command);
+            }
+        }
+        public virtual Game.LocalMetaCommandResult ExecuteCommand(LocalMetaCommandType _type, BinaryReader reader) 
+        {
+            switch(_type)
+            {
+                case LocalMetaCommandType.TestCommand:
+                {
+                    TestCommand();
+                    return LocalMetaCommandResult.Complete();
+                    break;
+                }
+            }
+            return Game.LocalMetaCommandResult.NotFound;
+        }
         public Game.GameReferencableEntity CreateGameReferencableEntity() 
         {
             var inst = new Game.GameReferencableEntity();
@@ -49,6 +81,8 @@ namespace Game {
         {
             base.UpdateFrom(other);
             var otherConcrete = (Game.GameModel)other;
+            state = otherConcrete.state;
+            displayName = otherConcrete.displayName;
         }
         public void UpdateFrom(Game.GameModel other) 
         {
@@ -57,18 +91,24 @@ namespace Game {
         public override void Deserialize(BinaryReader reader) 
         {
             base.Deserialize(reader);
-
+            state = reader.ReadInt32();
+            displayName = reader.ReadString();
         }
         public override void Serialize(BinaryWriter writer) 
         {
             base.Serialize(writer);
-
+            writer.Write(state);
+            writer.Write(displayName);
         }
         public override ulong CalculateHash() 
         {
             var baseVal = base.CalculateHash();
             System.UInt64 hash = baseVal;
             hash += (ulong)709428417;
+            hash += hash << 11; hash ^= hash >> 7;
+            hash += (System.UInt64)state;
+            hash += hash << 11; hash ^= hash >> 7;
+            hash += (ulong)displayName.GetHashCode();
             hash += hash << 11; hash ^= hash >> 7;
             return hash;
         }
@@ -109,21 +149,38 @@ namespace Game {
         }
         public  GameModel() 
         {
+            displayName = string.Empty;
             root = this;
             __GenIds(root);
             __PropagateHierarchyAndRememberIds();
+        }
+        public override void CompareCheck(ZergRush.Alive.DataNode other, Stack<string> __path) 
+        {
+            base.CompareCheck(other,__path);
+            var otherConcrete = (Game.GameModel)other;
+            if (state != otherConcrete.state) SerializationTools.LogCompError(__path, "state", otherConcrete.state, state);
+            if (displayName != otherConcrete.displayName) SerializationTools.LogCompError(__path, "displayName", otherConcrete.displayName, displayName);
         }
         public override void ReadFromJsonField(JsonTextReader reader, string __name) 
         {
             base.ReadFromJsonField(reader,__name);
             switch(__name)
             {
+                case "state":
+                state = (int)(Int64)reader.Value;
+                break;
+                case "displayName":
+                displayName = (string) reader.Value;
+                break;
             }
         }
         public override void WriteJsonFields(JsonTextWriter writer) 
         {
             base.WriteJsonFields(writer);
-
+            writer.WritePropertyName("state");
+            writer.WriteValue(state);
+            writer.WritePropertyName("displayName");
+            writer.WriteValue(displayName);
         }
     }
 }

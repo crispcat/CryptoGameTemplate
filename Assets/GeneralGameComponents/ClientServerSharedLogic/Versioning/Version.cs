@@ -1,5 +1,5 @@
 ﻿
-namespace PortalHunter.Versioning
+namespace Game.Versioning
 {
     public struct Version
     {
