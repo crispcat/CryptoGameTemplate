@@ -13,12 +13,25 @@ public static partial class PlayFabSyncWrapperGen
     [MenuItem("Code Gen/Gen PlayFab Async Api")]
     public static void GeneratePlayFabAPIAsyncWrappers()
     {
-#if !RELEASE
-        GeneratePlayFabAPIAsyncWrapper(typeof(PlayFabServerAPI), null /*typeof(PlayFablessServerAPI)*/, "ENABLE_PLAYFABSERVER_API", new[] { "PlayFab.ServerModels" });
-        GeneratePlayFabAPIAsyncWrapper(typeof(PlayFabClientAPI), null /*typeof(PlayFablessClientAPI)*/, "!DISABLE_PLAYFABCLIENT_API", new[] { "PlayFab.ClientModels" }, true);
-        GeneratePlayFabAPIAsyncWrapper(typeof(PlayFabAdminAPI), null /*typeof(PlayFablessAdminAPI)*/, "ENABLE_PLAYFABADMIN_API", new[] { "PlayFab.AdminModels" }, true);
-        GeneratePlayFabAPIAsyncWrapper(typeof(PlayFabMatchmakerAPI), null, "ENABLE_PLAYFABSERVER_API", new[] { "PlayFab.MatchmakerModels" });
-#endif
+        #if !RELEASE
+        
+        #if ENABLE_PLAYFABSERVER_API && !DISABLE_PLAYFAB_STATIC_API
+        GeneratePlayFabAPIAsyncWrapper(typeof(PlayFabServerAPI), null /*typeof(PlayFablessServerAPI)*/, "ENABLE_PLAYFABSERVER_API && !DISABLE_PLAYFAB_STATIC_API", new[] { "PlayFab.ServerModels" });
+        #endif
+        
+        #if !DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFAB_STATIC_API
+        GeneratePlayFabAPIAsyncWrapper(typeof(PlayFabClientAPI), null /*typeof(PlayFablessClientAPI)*/, "!DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFAB_STATIC_API", new[] { "PlayFab.ClientModels" }, true);
+        #endif
+        
+        #if ENABLE_PLAYFABADMIN_API && !DISABLE_PLAYFAB_STATIC_API        
+        GeneratePlayFabAPIAsyncWrapper(typeof(PlayFabAdminAPI), null /*typeof(PlayFablessAdminAPI)*/, "ENABLE_PLAYFABADMIN_API && !DISABLE_PLAYFAB_STATIC_API", new[] { "PlayFab.AdminModels" }, true);
+        #endif
+        
+        #if ENABLE_PLAYFABSERVER_API && !DISABLE_PLAYFAB_STATIC_API
+        GeneratePlayFabAPIAsyncWrapper(typeof(PlayFabMatchmakerAPI), null, "ENABLE_PLAYFABSERVER_API && !DISABLE_PLAYFAB_STATIC_API", new[] { "PlayFab.MatchmakerModels" });
+        #endif
+        
+        #endif
     }
     private static List<string> allowedMethodsInPlayfabless = new List<string>()
     {

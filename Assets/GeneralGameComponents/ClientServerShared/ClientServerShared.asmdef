@@ -1,0 +1,16 @@
+{
+    "name": "ClientServerShared",
+    "rootNamespace": "",
+    "references": [
+        "GUID:efb0249c8c981a243994c0ba09211157"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

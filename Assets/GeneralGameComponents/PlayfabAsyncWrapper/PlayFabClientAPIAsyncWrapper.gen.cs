@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-#if !DISABLE_PLAYFABCLIENT_API
+#if !DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFAB_STATIC_API
 using PlayFab.ClientModels;
 #endif
 #if !INCLUDE_ONLY_CODE_GENERATION
 namespace PlayFab {
 
-    public static partial class PlayFabClientAPIAsync
+    public static class PlayFabClientAPIAsync
     {
-        #if !DISABLE_PLAYFABCLIENT_API
+        #if !DISABLE_PLAYFABCLIENT_API && !DISABLE_PLAYFAB_STATIC_API
         public static Timing lastCallTiming { get; private set; }
         public static async Task<PlayFabResult<AcceptTradeResponse>> AcceptTrade(AcceptTradeRequest request)
         {

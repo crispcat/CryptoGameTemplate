@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-#if ENABLE_PLAYFABADMIN_API
+#if ENABLE_PLAYFABADMIN_API && !DISABLE_PLAYFAB_STATIC_API
 using PlayFab.AdminModels;
 #endif
 #if !INCLUDE_ONLY_CODE_GENERATION
 namespace PlayFab {
 
-    public static partial class PlayFabAdminAPIAsync
+    public static class PlayFabAdminAPIAsync
     {
-        #if ENABLE_PLAYFABADMIN_API
+        #if ENABLE_PLAYFABADMIN_API && !DISABLE_PLAYFAB_STATIC_API
         public static Timing lastCallTiming { get; private set; }
         public static async Task<PlayFabResult<EmptyResponse>> AbortTaskInstance(AbortTaskInstanceRequest request)
         {

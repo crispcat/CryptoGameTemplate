@@ -1,0 +1,18 @@
+{
+    "name": "ZergRush.CodeGen",
+    "rootNamespace": "",
+    "references": [
+        "ZergRush.Reactive"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
