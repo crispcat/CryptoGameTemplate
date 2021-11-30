@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using UnityEngine;
 using Newtonsoft.Json;
 using ClientServerSharedLogic;
 
@@ -10,16 +9,17 @@ namespace GameServer
     {
         static void Main(string[] args)
         {
-            // test build with unity and 3rd party assemblies referenced from main project
+            // test server build with unity.dll, newtonsoft assemblies and ZergRush referenced from client project
             
             var sw = new StringWriter();
             var jsonWriter = new JsonTextWriter(sw);
-            var playerPos = new PlayerPositionData(new Vector3(5, 5, 5));
+            var playerPos = new PlayerPositionData(5, 5, 5);
             
             playerPos.WriteJson(jsonWriter);
             jsonWriter.Flush();
             
             Console.WriteLine(sw.ToString());
+            Console.ReadKey();
         }
     }
 }

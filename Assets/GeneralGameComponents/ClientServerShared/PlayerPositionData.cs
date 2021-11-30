@@ -4,8 +4,8 @@ using ZergRush.CodeGen;
 namespace ClientServerSharedLogic
 {
     // Test dto struct
-    
     [GenInLocalFolder, GenTask(GenTaskFlags.JsonSerialization | GenTaskFlags.Hash)]
+
     public partial struct PlayerPositionData
     {
         public Vector3 pos;
