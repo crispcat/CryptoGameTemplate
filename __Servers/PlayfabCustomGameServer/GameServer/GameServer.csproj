@@ -5,6 +5,10 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
     <ItemGroup>
       <ProjectReference Include="..\..\..\ClientServerShared.csproj" />
     </ItemGroup>
@@ -13,6 +17,10 @@
       <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
         <HintPath>..\..\..\Assets\NewtonsoftJson\Portable\Newtonsoft.Json.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="com.playfab.csharpgsdk" Version="0.11.210519" />
     </ItemGroup>
 
 </Project>
