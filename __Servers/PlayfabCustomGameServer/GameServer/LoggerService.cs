@@ -53,6 +53,7 @@ namespace GameServer.Logging
             isListening = true;
             Task.Run(ListenForLoggerConnections);
         }
+
         private static void ListenForLoggerConnections()
         {
             loggerEndpoint = TcpListener.Create(ServerConfig.logsPort);
@@ -118,7 +119,7 @@ namespace GameServer.Logging
 
                 byte[] messageBytes = GetMessageBytes(message, type).ToArray();
                 
-                for (int i = clients.Count; i >= 0; i--)
+                for (int i = clients.Count - 1; i >= 0; i--)
                 {
                     if (clients[i].Connected)
                     {
@@ -148,7 +149,16 @@ namespace GameServer.Logging
 
             return bytes;
         }
-        
+
+        public static void StartPingLoggerClients() => Task.Run(async () =>
+        {
+            while (true)
+            {
+                await Task.Delay(5000);
+                Logs.Message("Think watching me? I watching you. You criminal scum.");
+            }
+        });
+
         public static void Message(string message)
         {
             FlushMessageToClients(message, MessageType.Message);

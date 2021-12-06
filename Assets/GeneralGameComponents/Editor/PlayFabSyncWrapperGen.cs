@@ -31,6 +31,10 @@ public static partial class PlayFabSyncWrapperGen
         GeneratePlayFabAPIAsyncWrapper(typeof(PlayFabMatchmakerAPI), null, "ENABLE_PLAYFABSERVER_API && !DISABLE_PLAYFAB_STATIC_API", new[] { "PlayFab.MatchmakerModels" });
         #endif
         
+        #if ENABLE_PLAYFABSERVER_API && !DISABLE_PLAYFAB_STATIC_API
+        GeneratePlayFabAPIAsyncWrapper(typeof(PlayFabMultiplayerAPI), null, "ENABLE_PLAYFABSERVER_API && !DISABLE_PLAYFAB_STATIC_API", new[] { "PlayFab.MultiplayerModels" }, true);
+        #endif
+        
         #endif
     }
     private static List<string> allowedMethodsInPlayfabless = new List<string>()

@@ -40,6 +40,7 @@ namespace GameServer
             
             ServerConfig.Parse(config);
             LoggerService.StartListeningForLoggerConnection();
+            LoggerService.StartPingLoggerClients();
             
             GameserverSDK.Start();
             GameserverSDK.RegisterHealthCallback(IsHealthy);
