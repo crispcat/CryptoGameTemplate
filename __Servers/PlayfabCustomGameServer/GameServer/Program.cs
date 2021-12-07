@@ -1,11 +1,13 @@
-﻿using System;
-using System.Text;
-using System.Threading;
-using GameServer.Logging;
-using Microsoft.Playfab.Gaming.GSDK.CSharp;
-
+﻿
 namespace GameServer
 {
+    using System;
+    using Logging;
+    using Endpoints;
+    using System.Text;
+    using System.Threading;
+    using Microsoft.Playfab.Gaming.GSDK.CSharp;
+    
     internal static class Program
     {
         private static void Main(string[] args)
@@ -49,19 +51,15 @@ namespace GameServer
             GameserverSDK.RegisterMaintenanceCallback(OnMaintenanceScheduled);
         }
         
-        // private static bool isListening;
-        // private static CancellationTokenSource cts;
-
         private static WebSocketEndpoint wssEndpoint;
 
         private static void Listen()
         {
             wssEndpoint = new WebSocketEndpoint()
-                .Mode(WebSocketConfigs.Default)
                 .OnPort(ServerConfig.endpointPort)
-                .Connect(OnConnect)
-                .Data(OnData)
-                .Disconnect(OnDisconnect)
+                .SubConnect(OnConnect)
+                .SubData(OnData)
+                .SubDisconnect(OnDisconnect)
                 .Awake();
 
             Logs.Message($"Game server is listening on port {ServerConfig.endpointPort.ToString()}");

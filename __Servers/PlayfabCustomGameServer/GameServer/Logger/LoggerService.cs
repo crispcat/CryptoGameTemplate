@@ -1,42 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Net.Sockets;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Net;
-using Microsoft.Playfab.Gaming.GSDK.CSharp;
-
-namespace GameServer.Logging
+﻿namespace GameServer.Logging
 {
-    public static class Logs
-    {
-        public static void Message(string message)
-        {
-            WriteDefaultLogs(message);
-            LoggerService.Message(message);
-        }
+    using System;
+    using System.Net;
+    using System.Linq;
+    using System.Text;
+    using System.Threading;
+    using System.Net.Sockets;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
-        public static void Error(string message)
-        {
-            WriteDefaultLogs(message);
-            LoggerService.Error(message);
-        }
-
-        public static void Warning(string message)
-        {
-            WriteDefaultLogs(message);
-            LoggerService.Warning(message);
-        }
-
-        private static void WriteDefaultLogs(string message)
-        {
-            GameserverSDK.LogMessage(message);
-            Console.WriteLine(message);
-        }
-    }
-    
     public static class LoggerService
     {
         private static bool isListening;
@@ -101,13 +73,6 @@ namespace GameServer.Logging
             isListening = false;
             loggerEndpoint.Stop();
             loggerEndpoint = null;
-        }
-
-        private enum MessageType : byte
-        {
-            Message = 0,
-            Error   = 1,
-            Warning = 2
         }
 
         private static void FlushMessageToClients(string message, MessageType type)

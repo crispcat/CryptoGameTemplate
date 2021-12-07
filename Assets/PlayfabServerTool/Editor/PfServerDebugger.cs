@@ -10,29 +10,25 @@ namespace PlayFabServerTool
     public static class PfServerDebugger
     {
         private static bool _isConnected;
-        
-        private static string _ip;
-        private static int _port;
 
         public static void Connect(string ip, int port)
         {
-            _ip = ip;
-            _port = port;
-            
-            var recieveLogThread = new Thread(ReceiveMessage);
+            var recieveLogThread = new Thread(() => ReceiveMessage(ip, port));
             recieveLogThread.Start();
         }
 
-        private static void ReceiveMessage()
+        private static void ReceiveMessage(string ip, int port)
         {
+            ip = ip.Trim();
+
             _isConnected = true;
 
             using var tcpClient = new TcpClient();
             
-            tcpClient.Connect(_ip, _port);
+            tcpClient.Connect(ip, port);
             var stream = tcpClient.GetStream();
             
-            Debug.Log($"Logger service status: ip: {_ip}, port: {_port}, connected: {tcpClient.Connected}, bytes available: {tcpClient.Available}");
+            Debug.Log($"Logger service status: ip: {ip}, port: {port}, connected: {tcpClient.Connected}, bytes available: {tcpClient.Available}");
             
             while (_isConnected)
             {
@@ -48,9 +44,25 @@ namespace PlayFabServerTool
                 var messageType = messageBytes[0];
 
                 stream.Read(messageBytes, 0, messageLenght - 1);
-                var messge = Encoding.ASCII.GetString(messageBytes);
-                
-                Debug.Log(messge);
+                var message = Encoding.ASCII.GetString(messageBytes);
+                var logMessage = $"{ip}:{port} :: {message}";
+
+                switch (messageType)
+                {
+                    case 0 : 
+                        Debug.Log(logMessage); 
+                        break;
+                    case 1 : 
+                        Debug.LogError(logMessage); 
+                        break;
+                    case 2 : 
+                        Debug.LogWarning(logMessage); 
+                        break;
+                    
+                    default :
+                        Debug.LogError("PfServerDebugger: Unknown message type provided by server logger.");
+                        break;
+                }
             }
         }
 
