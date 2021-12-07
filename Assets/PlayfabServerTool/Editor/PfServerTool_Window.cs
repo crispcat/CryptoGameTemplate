@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
-using PlayFab.PfEditor;
 
 namespace PlayFabServerTool
 {
