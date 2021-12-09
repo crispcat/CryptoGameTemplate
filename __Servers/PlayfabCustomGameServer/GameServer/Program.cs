@@ -1,15 +1,15 @@
-﻿
-namespace GameServer
+﻿namespace GameServer
 {
     using System;
     using Logging;
     using Endpoints;
     using System.Text;
-    using System.Threading;
     using Microsoft.Playfab.Gaming.GSDK.CSharp;
     
     internal static class Program
     {
+        private static WebSocketEndpoint wssEndpoint;
+
         private static void Main(string[] args)
         {
             try
@@ -27,9 +27,11 @@ namespace GameServer
                 return;
             }
 
-            // we need to start thread manually, otherwise program will exit
-            var listen = new Thread(Listen);
-            listen.Start();
+            wssEndpoint = new WebSocketEndpoint().OnPort(ServerConfig.endpointPort)
+                                                 .SubConnect(OnConnect)
+                                                 .SubData(OnData)
+                                                 .SubDisconnect(OnDisconnect)
+                                                 .Awake();
             
             if (GameserverSDK.ReadyForPlayers())
                 Logs.Message("Ready for players!");
@@ -50,21 +52,7 @@ namespace GameServer
             GameserverSDK.RegisterShutdownCallback(OnShutdown);
             GameserverSDK.RegisterMaintenanceCallback(OnMaintenanceScheduled);
         }
-        
-        private static WebSocketEndpoint wssEndpoint;
 
-        private static void Listen()
-        {
-            wssEndpoint = new WebSocketEndpoint()
-                .OnPort(ServerConfig.endpointPort)
-                .SubConnect(OnConnect)
-                .SubData(OnData)
-                .SubDisconnect(OnDisconnect)
-                .Awake();
-
-            Logs.Message($"Game server is listening on port {ServerConfig.endpointPort.ToString()}");
-        }
-        
         private static void OnConnect(int sessionId)
         {
             Logs.Message($"Server accepted WSS connection. SessionId: {sessionId}");
@@ -88,9 +76,12 @@ namespace GameServer
 
         private static void OnShutdown()
         {
-            wssEndpoint.Dispose();
+            Logs.Message("Terminating server...");
+            
             LoggerService.Dispose();
-            Logs.Message("Game server terminated successfully.");
+            wssEndpoint.Dispose();
+            
+            Logs.Message("Server: bye-bye.");
         }
         
         private static void OnMaintenanceScheduled(DateTimeOffset dtOffset)

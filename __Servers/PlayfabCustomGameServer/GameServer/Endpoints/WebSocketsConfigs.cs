@@ -20,6 +20,7 @@
             sendTimeout         = 5000,
             receiveTimeout      = 20000,
             maxMessagesPerTick  = 10000,
+            threads             = 1,
         };
 
         public static SslConfig NoSsl = new SslConfig(
@@ -52,5 +53,8 @@
 
         // Caps the number of messages the server will process per tick.
         public int maxMessagesPerTick;
+        
+        // Number of tasks processing incoming messages.
+        public int threads;
     }
 }

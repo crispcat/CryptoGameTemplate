@@ -36,7 +36,7 @@
             {
                 try
                 {
-                    Logs.Message("LoggerService is listening for connections...");
+                    Logs.Message($"LoggerService is listening for connections on port {ServerConfig.logsPort}...");
                     
                     var acceptedClient = loggerEndpoint.AcceptTcpClientAsync();
                     acceptedClient.Wait(cts.Token);
@@ -102,11 +102,11 @@
 
         private static IEnumerable<byte> GetMessageBytes(string message, MessageType type)
         {
-            var messageBytes = Encoding.ASCII.GetBytes(message);
-            var messageLenght = (uint) (sizeof(uint) + sizeof(MessageType) + messageBytes.Length);
-
-            var lenghtBytes = BitConverter.GetBytes(messageLenght);
-            var typeByte    = Enumerable.Repeat((byte) type, 1);
+            var typeByte      = Enumerable.Repeat((byte) type, 1);
+            var messageBytes  = Encoding.ASCII.GetBytes(message);
+            
+            int messageLenght = sizeof(MessageType) /*1 byte*/ + messageBytes.Length;
+            var lenghtBytes   = BitConverter.GetBytes(messageLenght);
 
             var bytes = lenghtBytes     // 4
                 .Concat(typeByte)       // 1

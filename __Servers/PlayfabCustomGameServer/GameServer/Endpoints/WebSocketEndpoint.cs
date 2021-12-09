@@ -5,6 +5,9 @@
     using Sessions;
     using DataRouting;
     using Mirror.SimpleWeb;
+    using System.Threading;
+    using System.Collections.Generic;
+
     using static WebSocketConfigs;
 
     public class WebSocketEndpoint : IEndpoint
@@ -19,6 +22,17 @@
             noDelay:        config.noDelay,
             sendTimeout:    config.sendTimeout,
             receiveTimeout: config.receiveTimeout);
+        
+        private readonly List<Action<int>> onConnectCallbacks;
+        private readonly List<Action<int>> onDisconnectCallbacks;
+        private readonly List<Action<int, ArraySegment<byte>>> onDataCallbacks;
+
+        public WebSocketEndpoint()
+        {
+            onConnectCallbacks    = new List<Action<int>>();
+            onDisconnectCallbacks = new List<Action<int>>();
+            onDataCallbacks       = new List<Action<int, ArraySegment<byte>>>();
+        }
 
         public WebSocketEndpoint WebSocket(WebSocketConfig config)
         {
@@ -40,34 +54,36 @@
 
         public WebSocketEndpoint SubConnect(Action<int> onConnect)
         {
-            webServer.onConnect += onConnect;
+            onConnectCallbacks.Add(onConnect);
             return this;
         }
 
         public WebSocketEndpoint SubData(Action<int, ArraySegment<byte>> onData)
         {
-            webServer.onData += onData;
+            onDataCallbacks.Add(onData);
             return this;
         }
 
         public WebSocketEndpoint SubDisconnect(Action<int> onDisconnect)
         {
-            webServer.onDisconnect += onDisconnect;
+            onConnectCallbacks.Add(onDisconnect);
             return this;
         }
 
         public WebSocketEndpoint SessionsService(ISessionsService sessionsService)
         {
             sessionsService.endpoint = this;
-            webServer.onConnect += sessionsService.CreateSession;
-            webServer.onDisconnect += sessionsService.EndSession;
+            onConnectCallbacks.Add(sessionsService.CreateSession);
+            onDisconnectCallbacks.Add(sessionsService.EndSession);
+            
             return this;
         }
 
         public WebSocketEndpoint DataService(IDataRoutingService dataRoutingService)
         {
             dataRoutingService.endpoint = this;
-            webServer.onData += dataRoutingService.ProcessData;
+            onDataCallbacks.Add(dataRoutingService.ProcessData);
+            
             return this;
         }
 
@@ -86,14 +102,36 @@
                 handshakeMaxSize:   config.handshakeMaxSize,
                 maxMessagesPerTick: config.maxMessagesPerTick);
 
+            foreach (var onConnectCallback in onConnectCallbacks)
+                webServer.onConnect += onConnectCallback;
+            
+            foreach (var onDisconnectCallback in onDisconnectCallbacks)
+                webServer.onDisconnect += onDisconnectCallback;
+
+            foreach (var onDataCallback in onDataCallbacks)
+                webServer.onData += onDataCallback;
+
+            
             webServer.Start(port.Value);
+            
+            for (int i = 0; i < config.threads; i++)
+                new Thread(ProcessMessages).Start();
+
             return this;
+        }
+        
+        private bool hasProcessMessages = true;
+
+        private void ProcessMessages()
+        {
+            while (hasProcessMessages)
+                webServer.ProcessMessageQueue();
         }
 
         public void Dispose()
         {
             webServer.Stop();
-            webServer = null;
+            hasProcessMessages = false;
         }
     }
 }
