@@ -25,42 +25,43 @@ namespace PlayFabServerTool
             _isConnected = true;
 
             using var tcpClient = new TcpClient();
-            
+
             tcpClient.Connect(ip, port);
             var stream = tcpClient.GetStream();
-            
+
             Debug.Log($"Logger service status: ip: {ip}, port: {port}, connected: {tcpClient.Connected}, bytes available: {tcpClient.Available}");
-            
+
             while (_isConnected)
             {
+                // first 4 bytes is message lenght : message type (1 byte) + string data ([0, int.MaxValue] bytes)
                 byte[] lenghtBytes = new byte[4];
-                byte[] messageTypeBytes = new byte[1];
-                
                 stream.Read(lenghtBytes, 0, 4);
-                
-                uint messageLenght = BitConverter.ToUInt32(lenghtBytes, 0);
-                byte[] messageBytes = new byte[messageLenght - 1];
+                int messageLenght = BitConverter.ToInt32(lenghtBytes, 0);
 
+                // next byte is message type
+                byte[] messageTypeBytes = new byte[1];
                 stream.Read(messageTypeBytes, 0, 1);
-                var messageType = messageBytes[0];
+                var messageType = messageTypeBytes[0];
 
-                stream.Read(messageBytes, 0, (int) messageLenght - 1);
+                // everything else is message string
+                byte[] messageBytes = new byte[messageLenght - 1];
+                stream.Read(messageBytes, 0, messageLenght - 1);
                 var message = Encoding.ASCII.GetString(messageBytes);
                 var logMessage = $"{ip}:{port} :: {message}";
 
                 switch (messageType)
                 {
-                    case 0 : 
-                        Debug.Log(logMessage); 
+                    case 0:
+                        Debug.Log(logMessage);
                         break;
-                    case 1 : 
-                        Debug.LogError(logMessage); 
+                    case 1:
+                        Debug.LogError(logMessage);
                         break;
-                    case 2 : 
-                        Debug.LogWarning(logMessage); 
+                    case 2:
+                        Debug.LogWarning(logMessage);
                         break;
-                    
-                    default :
+
+                    default:
                         Debug.LogError("PfServerDebugger: Unknown message type provided by server logger.");
                         break;
                 }

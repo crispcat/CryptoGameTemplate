@@ -4,6 +4,7 @@
     using Logging;
     using Sessions;
     using DataRouting;
+    using System.Linq;
     using Mirror.SimpleWeb;
     using System.Threading;
     using System.Collections.Generic;
@@ -12,7 +13,8 @@
 
     public class WebSocketEndpoint : IEndpoint
     {
-        private SimpleWebServer webServer;
+        // composition over inheritance ;)
+        public SimpleWebServer server { get; private set; }
 
         private ushort? port;
         private SslConfig sslConfig = NoSsl;
@@ -66,7 +68,7 @@
 
         public WebSocketEndpoint SubDisconnect(Action<int> onDisconnect)
         {
-            onConnectCallbacks.Add(onDisconnect);
+            onDisconnectCallbacks.Add(onDisconnect);
             return this;
         }
 
@@ -95,7 +97,7 @@
                 return null;
             }
 
-            webServer = new SimpleWebServer(
+            server = new SimpleWebServer(
                 tcpConfig:          tcpConfig,
                 sslConfig:          sslConfig,
                 maxMessageSize:     config.maxMessageSize,
@@ -103,16 +105,16 @@
                 maxMessagesPerTick: config.maxMessagesPerTick);
 
             foreach (var onConnectCallback in onConnectCallbacks)
-                webServer.onConnect += onConnectCallback;
+                server.onConnect += onConnectCallback;
             
             foreach (var onDisconnectCallback in onDisconnectCallbacks)
-                webServer.onDisconnect += onDisconnectCallback;
+                server.onDisconnect += onDisconnectCallback;
 
             foreach (var onDataCallback in onDataCallbacks)
-                webServer.onData += onDataCallback;
+                server.onData += onDataCallback;
 
             
-            webServer.Start(port.Value);
+            server.Start(port.Value);
             
             for (int i = 0; i < config.threads; i++)
                 new Thread(ProcessMessages).Start();
@@ -125,12 +127,27 @@
         private void ProcessMessages()
         {
             while (hasProcessMessages)
-                webServer.ProcessMessageQueue();
+                server.ProcessMessageQueue();
+        }
+
+        public void Broadcast(ArraySegment<byte> data)
+        {
+            var allConnectionIds = server.GetActiveConnections();
+            server.SendAll(allConnectionIds, data);
+        }
+
+        public string SessionsStatus()
+        {
+            var connections = server.GetActiveConnections();
+            return connections.Count == 0 
+                ? "none" 
+                : connections.Select(c => $"(id:{c} ip:{server.GetClientAddress(c)}), ")
+                             .Aggregate(string.Concat);
         }
 
         public void Dispose()
         {
-            webServer.Stop();
+            server.Stop();
             hasProcessMessages = false;
         }
     }

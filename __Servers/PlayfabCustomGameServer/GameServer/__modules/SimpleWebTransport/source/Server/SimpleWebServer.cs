@@ -10,6 +10,8 @@ namespace Mirror.SimpleWeb
         readonly WebSocketServer server;
         readonly BufferPool bufferPool;
 
+        public List<int> GetActiveConnections() => server.GetActiveConnections();
+
         public SimpleWebServer(int maxMessagesPerTick, TcpConfig tcpConfig, int maxMessageSize, int handshakeMaxSize, SslConfig sslConfig)
         {
             this.maxMessagesPerTick = maxMessagesPerTick;

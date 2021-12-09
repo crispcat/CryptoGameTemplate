@@ -4,6 +4,8 @@
     using Logging;
     using Endpoints;
     using System.Text;
+    using System.Threading;
+    using ClientServerSharedLogic;
     using Microsoft.Playfab.Gaming.GSDK.CSharp;
     
     internal static class Program
@@ -32,7 +34,10 @@
                                                  .SubData(OnData)
                                                  .SubDisconnect(OnDisconnect)
                                                  .Awake();
-            
+            if (ServerConstants.LOG_STATUS)
+                new Thread(LogStatus) { IsBackground = true }
+                    .Start();
+
             if (GameserverSDK.ReadyForPlayers())
                 Logs.Message("Ready for players!");
             else
@@ -45,8 +50,7 @@
             
             ServerConfig.Parse(config);
             LoggerService.StartListeningForLoggerConnection();
-            LoggerService.StartPingLoggerClients();
-            
+
             GameserverSDK.Start();
             GameserverSDK.RegisterHealthCallback(IsHealthy);
             GameserverSDK.RegisterShutdownCallback(OnShutdown);
@@ -56,17 +60,27 @@
         private static void OnConnect(int sessionId)
         {
             Logs.Message($"Server accepted WSS connection. SessionId: {sessionId}");
+            wssEndpoint.server.SendOne(sessionId, $"Greetings, my {sessionId}th buddy!".ToBytes());
         }
         
         private static void OnData(int sessionId, ArraySegment<byte> data)
         {
             var message = Encoding.ASCII.GetString(data);
-            Logs.Message($"Session {sessionId} talks : {message}");
+            Logs.Message($"Buddy {sessionId} talks : {message}");
         }
 
         private static void OnDisconnect(int sessionId)
         {
             Logs.Message($"WSS client session {sessionId} disconnected.");
+        }
+
+        private static void LogStatus()
+        {
+            while (true)
+            {
+                Thread.Sleep(ServerConstants.LOG_STATUS_DELTA);
+                Logs.Message($"Server is running. Active sessions: {wssEndpoint.SessionsStatus()}");
+            }
         }
 
         private static bool IsHealthy()

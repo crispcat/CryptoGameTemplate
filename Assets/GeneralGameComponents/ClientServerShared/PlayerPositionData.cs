@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using ZergRush.CodeGen;
-
-namespace ClientServerSharedLogic
+﻿namespace ClientServerSharedLogic
 {
+    using UnityEngine;
+    using ZergRush.CodeGen;
+    
     // Test dto struct
     [GenInLocalFolder, GenTask(GenTaskFlags.JsonSerialization | GenTaskFlags.Hash)]
 

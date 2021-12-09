@@ -3,6 +3,7 @@
     using Logging;
     using Mirror.SimpleWeb;
     using System.Security.Authentication;
+    using ClientServerSharedLogic;
 
     public static class WebSocketConfigs
     {
@@ -14,13 +15,13 @@
 
         public static WebSocketConfig Default = new WebSocketConfig
         {
-            maxMessageSize      = 16 * 1024,
-            handshakeMaxSize    = 3000,
-            noDelay             = true,
-            sendTimeout         = 5000,
-            receiveTimeout      = 20000,
-            maxMessagesPerTick  = 10000,
-            threads             = 1,
+            maxMessageSize      = ServerConstants.WSS_MAX_MESSAGE_SIZE,
+            handshakeMaxSize    = ServerConstants.WSS_HANDSHAKE_MAX_SIZE,
+            noDelay             = ServerConstants.WSS_NO_DELAY,
+            sendTimeout         = ServerConstants.WSS_SEND_TIMEOUT,
+            receiveTimeout      = ServerConstants.WSS_RECEIVE_TIMEOUT,
+            maxMessagesPerTick  = ServerConstants.WSS_MESSAGES_PER_TICK,
+            threads             = ServerConstants.ENDPOINT_THREADS,
         };
 
         public static SslConfig NoSsl = new SslConfig(
@@ -33,28 +34,36 @@
     
     public struct WebSocketConfig
     {
-        // Protect against allocation attacks by keeping the max message size small.
-        // Otherwise an attacker might send multiple fake packets with 2GB headers, causing the server to run out
-        // of memory after allocating multiple large packets.
+        /// <summary>
+        /// Protect against allocation attacks by keeping the max message size small.
+        /// Otherwise an attacker might send multiple fake packets with 2GB headers, causing the server to run out
+        /// of memory after allocating multiple large packets.
+        /// </summary>
         public int maxMessageSize;
-
-        // Max size for http header send as handshake for websockets"
+        /// <summary>
+        /// Max size for http header send as handshake for websockets.
+        /// </summary>
         public int handshakeMaxSize;
-
-        // Disables nagle algorithm.
-        // Lowers CPU% and latency but increases bandwidth
+        /// <summary>
+        /// Disables nagle algorithm.
+        /// Lowers CPU% and latency but increases bandwidth
+        /// </summary>
         public bool noDelay;
-
-        // Send would stall forever if the network is cut off during a send, so we need a timeout (in milliseconds)
+        /// <summary>
+        /// Send would stall forever if the network is cut off during a send, so we need a timeout (in milliseconds)
+        /// </summary>
         public int sendTimeout;
-
-        // How long without a message before disconnecting (in milliseconds)
+        /// <summary>
+        /// How long without a message before disconnecting (in milliseconds)
+        /// </summary>
         public int receiveTimeout;
-
-        // Caps the number of messages the server will process per tick.
+        /// <summary>
+        /// Caps the number of messages the server will process per tick.
+        /// </summary>
         public int maxMessagesPerTick;
-        
-        // Number of tasks processing incoming messages.
+        /// <summary>
+        /// Number of tasks processing incoming messages.
+        /// </summary>
         public int threads;
     }
 }

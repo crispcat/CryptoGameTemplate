@@ -93,6 +93,7 @@
                     }
                     else
                     {
+                        Logs.Message($"LoggerService: Disconnecting client {((IPEndPoint) clients[i].Client.RemoteEndPoint).Address}");
                         clients[i].Close();
                         clients.RemoveAt(i);
                     }
@@ -109,20 +110,11 @@
             var lenghtBytes   = BitConverter.GetBytes(messageLenght);
 
             var bytes = lenghtBytes     // 4
-                .Concat(typeByte)       // 1
+                .Concat(typeByte)       // 1 
                 .Concat(messageBytes);  // lenghtBytes
 
             return bytes;
         }
-
-        public static void StartPingLoggerClients() => Task.Run(async () =>
-        {
-            while (true)
-            {
-                await Task.Delay(5000);
-                Logs.Message("Think watching me? I watching you. You criminal scum.");
-            }
-        });
 
         public static void Message(string message)
         {

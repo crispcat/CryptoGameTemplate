@@ -6,6 +6,8 @@ using System.Threading;
 
 namespace Mirror.SimpleWeb
 {
+    using System.Collections.Generic;
+
     public class WebSocketServer
     {
         public readonly ConcurrentQueue<Message> receiveQueue = new ConcurrentQueue<Message>();
@@ -225,6 +227,11 @@ namespace Mirror.SimpleWeb
                 Log.Error($"Cant close connection to {id} because connection was not found in dictionary");
                 return null;
             }
+        }
+
+        public List<int> GetActiveConnections()
+        {
+            return connections.Keys.ToList();
         }
     }
 }
