@@ -8,7 +8,7 @@
     using System.Net.Sockets;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-
+    
     public static class LoggerService
     {
         private static bool isListening;
@@ -74,9 +74,10 @@
             loggerEndpoint.Stop();
             loggerEndpoint = null;
         }
-
+        
         private static void FlushMessageToClients(string message, MessageType type)
         {
+            // TODO: make queue and add to it here
             lock (clients)
             {
                 if (clients.Count == 0)
