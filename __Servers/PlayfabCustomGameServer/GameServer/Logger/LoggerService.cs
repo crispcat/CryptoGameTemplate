@@ -8,7 +8,7 @@
     using System.Net.Sockets;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    
+
     public static class LoggerService
     {
         private static bool isListening;
@@ -69,35 +69,43 @@
 
             lock (clients)
                   clients.Clear();
-            
+
             isListening = false;
             loggerEndpoint.Stop();
             loggerEndpoint = null;
         }
-        
-        private static void FlushMessageToClients(string message, MessageType type)
-        {
-            // TODO: make queue and add to it here
-            lock (clients)
-            {
-                if (clients.Count == 0)
-                    return;
 
-                byte[] messageBytes = GetMessageBytes(message, type).ToArray();
-                
-                for (int i = clients.Count - 1; i >= 0; i--)
+        private static async void FlushMessageToClients(string message, MessageType type)
+        {
+            if (clients.Count == 0)
+                return;
+            
+            try
+            {
+                await Task.Run(() => FlushMessageTask(message, type));
+            }
+            catch (Exception e)
+            {
+                Logs.WriteDefaultLogs(e.ToString());
+            }
+        }
+
+        private static void FlushMessageTask(string message, MessageType type)
+        {
+            byte[] messageBytes = GetMessageBytes(message, type).ToArray();
+
+            lock (clients) for (int i = clients.Count - 1; i >= 0; i--)
+            {
+                if (clients[i].Connected)
                 {
-                    if (clients[i].Connected)
-                    {
-                        var stream = clients[i].GetStream();
-                        stream.WriteAsync(messageBytes);
-                    }
-                    else
-                    {
-                        Logs.Message($"LoggerService: Disconnecting client {((IPEndPoint) clients[i].Client.RemoteEndPoint).Address}");
-                        clients[i].Close();
-                        clients.RemoveAt(i);
-                    }
+                    var stream = clients[i].GetStream();
+                    stream.Write(messageBytes);
+                }
+                else
+                {
+                    Logs.Message($"LoggerService: Disconnecting client {((IPEndPoint) clients[i].Client.RemoteEndPoint).Address}");
+                    clients[i].Close();
+                    clients.RemoveAt(i);
                 }
             }
         }

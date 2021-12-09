@@ -5,14 +5,14 @@
     public static class ServerConstants
     {
         // CONFIGS
-        public const string  LOGS_PORT_NAME       = "logs";
-        public const string  ENDPOINT_PORT_NAME   = "endpoint";
+        public const string  LOGS_PORT_NAME      = "logs";
+        public const string  ENDPOINT_PORT_NAME  = "endpoint";
         
         // LOGS
-        public const Levels  MIRROR_LOG_LEVEL     = Levels.verbose;
-        public const bool    LOG_STATUS           = true;
-        public const int     LOG_STATUS_DELTA     = 5_000;
-        
+        public const Levels  MIRROR_LOG_LEVEL   = Levels.verbose;
+        public const bool    LOG_STATUS         = true;
+        public const int     LOG_STATUS_DELTA   = 5_000;
+
         //  WSS
         /// <summary>
         /// Protect against allocation attacks by keeping the max message size small.

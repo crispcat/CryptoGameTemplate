@@ -23,7 +23,7 @@
             LoggerService.Warning(message);
         }
 
-        private static void WriteDefaultLogs(string message)
+        public static void WriteDefaultLogs(string message)
         {
             GameserverSDK.LogMessage(message);
             Console.WriteLine(message);
