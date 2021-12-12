@@ -29,6 +29,7 @@
         private static void ListenForLoggerConnections()
         {
             loggerEndpoint = TcpListener.Create(ServerConfig.logsPort);
+            loggerEndpoint.ExclusiveAddressUse = true;
             loggerEndpoint.Start();
             
             cts = new CancellationTokenSource();
@@ -62,6 +63,8 @@
 
         public static void Dispose()
         {
+            Logs.Message("Dispose called !!!");
+            
             if (!isListening)
                 return;
 

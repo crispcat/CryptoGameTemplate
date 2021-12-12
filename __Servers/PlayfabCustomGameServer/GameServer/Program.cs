@@ -60,7 +60,7 @@
         private static void OnConnect(int sessionId)
         {
             Logs.Message($"Server accepted WSS connection. SessionId: {sessionId}");
-            wssEndpoint.server.SendOne(sessionId, $"Greetings, my {sessionId}th buddy!".ToBytes());
+            wssEndpoint.server.SendOne(sessionId, $"Greetings, my {sessionId}th buddy!".Bytes());
         }
         
         private static void OnData(int sessionId, ArraySegment<byte> data)

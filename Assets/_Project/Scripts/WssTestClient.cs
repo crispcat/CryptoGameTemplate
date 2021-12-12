@@ -3,7 +3,10 @@ using System.Collections;
 using ClientServerSharedLogic;
 using UnityEngine;
 using Mirror.SimpleWeb;
+#if UNITY_EDITOR
 using PlayFabServerTool;
+#endif
+using UnityEngine.UI;
 
 public class WssTestClient : MonoBehaviour
 {
@@ -27,7 +30,9 @@ public class WssTestClient : MonoBehaviour
     public int receiveTimeout      = int.MaxValue;
     public bool noDelay            = true;
 
-    [Space]
+    [Space] 
+    
+    [SerializeField] private Text output;
 
     private SimpleWebClient wssClient;
 
@@ -50,28 +55,42 @@ public class WssTestClient : MonoBehaviour
         
         wssClient.onConnect += () =>
         {
-            Debug.Log("Connected to server.");
+            var message = "Connected to server.";
+            Debug.Log(message);
+            output.text = message;
+            
+            wssClient.Send("Hi server!".Bytes());
+            
             counting = true;
             StartCoroutine(CountSeconds());
         };
 
         wssClient.onData += (data) =>
         {
-            Debug.Log($"Server send: {data.WideString()}");
+            var message = data.WideString();
+            Debug.Log($"Server send: {message}");
+            output.text = message;
         };
         
         wssClient.onDisconnect += () =>
         {
             counting = false;
-            Debug.Log("Disconnected from server.");
+            
+            var message = "Disconnected from server.";
+            Debug.Log(message);
+            output.text = message;
         };
     }
 
     public void SayHi()
     {
         endpontIp = endpontIp.Trim();
-        wssClient.Connect(new Uri($"http://{endpontIp}:{endpontPort}"));
-        wssClient.Send("Hi server!".ToBytes());
+        wssClient.Connect(new Uri($"ws://{endpontIp}:{endpontPort}"));
+    }
+
+    public void End()
+    {
+        wssClient.Disconnect();
     }
 
     private void Update()

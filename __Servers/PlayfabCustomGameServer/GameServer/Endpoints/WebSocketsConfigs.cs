@@ -3,7 +3,6 @@
     using Logging;
     using Mirror.SimpleWeb;
     using System.Security.Authentication;
-    using ClientServerSharedLogic;
 
     public static class WebSocketConfigs
     {
@@ -28,7 +27,7 @@
             enabled:       false,
             certPath:      string.Empty,
             certPassword:  string.Empty,
-            sslProtocols:  SslProtocols.None
+            sslProtocols:  SslProtocols.Tls12
         );
     }
     

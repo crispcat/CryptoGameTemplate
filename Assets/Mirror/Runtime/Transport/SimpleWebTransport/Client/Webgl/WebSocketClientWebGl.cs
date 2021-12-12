@@ -4,6 +4,8 @@ using AOT;
 
 namespace Mirror.SimpleWeb
 {
+    using UnityEngine;
+
     public class WebSocketClientWebGl : SimpleWebClient
     {
         static readonly Dictionary<int, WebSocketClientWebGl> instances = new Dictionary<int, WebSocketClientWebGl>();
@@ -24,6 +26,7 @@ namespace Mirror.SimpleWeb
 
         public override void Connect(Uri serverAddress)
         {
+            Debug.Log($"Connecting to {serverAddress}...");
             index = SimpleWebJSLib.Connect(serverAddress.ToString(), OpenCallback, CloseCallBack, MessageCallback, ErrorCallback);
             instances.Add(index, this);
             state = ClientState.Connecting;
