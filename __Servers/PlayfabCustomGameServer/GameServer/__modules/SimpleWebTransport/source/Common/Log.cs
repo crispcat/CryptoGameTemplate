@@ -33,6 +33,17 @@ namespace Mirror.SimpleWeb
         }
         
         public static Levels level = Levels.none;
+        
+        private static Levels __oldLevel;
+        public static void StartNoLog()
+        {
+            __oldLevel = level;
+            level = Levels.none;
+        }
+        public static void EndNoLog()
+        {
+            level = __oldLevel;
+        }
 
         public static string BufferToString(byte[] buffer, int offset = 0, int? length = null)
         {

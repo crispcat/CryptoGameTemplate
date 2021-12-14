@@ -29,11 +29,13 @@
         private readonly List<Action<int>> onDisconnectCallbacks;
         private readonly List<Action<int, ArraySegment<byte>>> onDataCallbacks;
 
+        private Thread[] processMessagesThreads;
+
         public WebSocketEndpoint()
         {
-            onConnectCallbacks    = new List<Action<int>>();
-            onDisconnectCallbacks = new List<Action<int>>();
-            onDataCallbacks       = new List<Action<int, ArraySegment<byte>>>();
+            onConnectCallbacks     = new List<Action<int>>();
+            onDisconnectCallbacks  = new List<Action<int>>();
+            onDataCallbacks        = new List<Action<int, ArraySegment<byte>>>();
         }
 
         public WebSocketEndpoint WebSocket(WebSocketConfig config)
@@ -115,9 +117,14 @@
 
             
             server.Start(port.Value);
+
+            processMessagesThreads = new Thread[config.threads];
             
             for (int i = 0; i < config.threads; i++)
-                new Thread(ProcessMessages).Start();
+            {
+                processMessagesThreads[i] = new Thread(ProcessMessages) { IsBackground = false };
+                processMessagesThreads[i].Start();
+            }
 
             return this;
         }
@@ -126,8 +133,15 @@
 
         private void ProcessMessages()
         {
-            while (hasProcessMessages)
-                server.ProcessMessageQueue();
+            try
+            {
+                while (hasProcessMessages)
+                    server.ProcessMessageQueue();
+            }
+            catch (Exception e)
+            {
+                Logs.Message($"Exception while processing incoming messages: {e}");
+            }
         }
 
         public void Broadcast(ArraySegment<byte> data)

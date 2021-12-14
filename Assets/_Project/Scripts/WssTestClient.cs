@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using ClientServerSharedLogic;
 using UnityEngine;
 using Mirror.SimpleWeb;
+using PlayFab;
+using PlayFab.MultiplayerModels;
 #if UNITY_EDITOR
 using PlayFabServerTool;
 #endif
@@ -42,9 +45,9 @@ public class WssTestClient : MonoBehaviour
         PfServerDebugger.Disconnect();
         PfServerDebugger.Connect(debuggerIp, debuggerPort); 
         #endif
-        
+
         Log.level = Log.Levels.verbose;
-        
+
         wssClient = SimpleWebClient.Create(
             maxMessageSize, 
             maxMessagesPerTick, 

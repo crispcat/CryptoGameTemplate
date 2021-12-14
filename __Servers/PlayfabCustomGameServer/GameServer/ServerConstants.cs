@@ -5,13 +5,18 @@
     public static class ServerConstants
     {
         // CONFIGS
+        public const bool    USE_PLAYFAB         = false;
         public const string  LOGS_PORT_NAME      = "logs";
         public const string  ENDPOINT_PORT_NAME  = "endpoint";
-        
+
         // LOGS
-        public const Levels  MIRROR_LOG_LEVEL   = Levels.verbose;
-        public const bool    LOG_STATUS         = true;
-        public const int     LOG_STATUS_DELTA   = 5_000;
+        public const Levels  MIRROR_LOG_LEVEL      = Levels.verbose;
+        public const bool    LOG_STATUS            = true;
+        public const int     LOG_STATUS_DELTA      = 5_000;
+        public const int LG_MAX_MESSAGE_SIZE       = 1024 * 4;
+        public const int LG_MIN_MESSAGE_SIZE       = 20;
+        public const int LG_MAX_MESSAGES_PER_TICK  = 1000;
+        public const int LG_SEND_PERIOD            = 200;
 
         //  WSS
         /// <summary>

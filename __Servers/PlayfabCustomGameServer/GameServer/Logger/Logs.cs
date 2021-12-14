@@ -25,8 +25,9 @@
 
         public static void WriteDefaultLogs(string message)
         {
-            GameserverSDK.LogMessage(message);
             Console.WriteLine(message);
+            if (ServerConstants.USE_PLAYFAB)
+                GameserverSDK.LogMessage(message);
         }
     }
 }
