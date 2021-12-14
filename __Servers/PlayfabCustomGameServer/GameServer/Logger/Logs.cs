@@ -7,27 +7,49 @@
     {
         public static void Message(string message)
         {
-            WriteDefaultLogs(message);
-            LoggerService.Message(message);
+            try
+            {
+                WriteDefaultLogs(message);
+                LoggerService.Message(message);
+            }
+            catch
+            {
+                // ignore general cases when called thread interrupted or aborted and cant access resources
+            }
         }
 
         public static void Error(string message)
         {
-            WriteDefaultLogs(message);
-            LoggerService.Error(message);
+            try
+            {
+                WriteDefaultLogs(message);
+                LoggerService.Error(message);
+            }
+            catch
+            {
+                // ignore general cases when called thread interrupted or aborted and cant access resources
+            }
         }
 
         public static void Warning(string message)
         {
-            WriteDefaultLogs(message);
-            LoggerService.Warning(message);
+            try
+            {
+                WriteDefaultLogs(message);
+                LoggerService.Warning(message);
+            }
+            catch
+            {
+                // ignore general cases when called thread interrupted or aborted and cant access resources
+            }
         }
 
         public static void WriteDefaultLogs(string message)
         {
-            Console.WriteLine(message);
             if (ServerConstants.USE_PLAYFAB)
                 GameserverSDK.LogMessage(message);
+            
+            Console.WriteLine(message);
         }
     }
 }

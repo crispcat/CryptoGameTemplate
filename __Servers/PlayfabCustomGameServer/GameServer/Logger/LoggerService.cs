@@ -10,6 +10,18 @@
     using System.Collections.Generic;
     using System.Collections.Concurrent;
 
+    public readonly struct Message
+    {
+        public readonly string text;
+        public readonly MessageType type;
+        
+        public Message(string text, MessageType type)
+        {
+            this.text = text;
+            this.type = type;
+        }
+    }
+
     public static class LoggerService
     {
         private static bool isSending;
@@ -18,7 +30,7 @@
         private static CancellationTokenSource cts;
 
         private static readonly List<TcpClient> clients = new List<TcpClient>();
-        private static readonly ConcurrentQueue<ArrayBuffer> messages = new ConcurrentQueue<ArrayBuffer>();
+        private static readonly ConcurrentQueue<Message> messages = new ConcurrentQueue<Message>();
         private static readonly BufferPool bufferPool = new BufferPool(
             bucketCount: 5, 
             ServerConstants.LG_MIN_MESSAGE_SIZE, 
@@ -87,17 +99,22 @@
                 int processedCount = 0;
                 while (
                     processedCount < ServerConstants.LG_MAX_MESSAGES_PER_TICK &&
-                    messages.TryDequeue(out ArrayBuffer next))
+                    messages.TryDequeue(out Message next))
                 {
                     processedCount++;
+                    
+                    var bytes = GetMessageBytes(next).ToArray();
+                    var buffer = bufferPool.Take(bytes.Length);
+
+                    buffer.CopyFrom(new ArraySegment<byte>(bytes));
 
                     lock (clients) for (int i = clients.Count - 1; i >= 0; i--)
                     {
                         if (clients[i].Connected)
                         {
                             var stream = clients[i].GetStream();
-                            stream.Write(next.ToSegment());
-                            next.Release();
+                            stream.Write(buffer.ToSegment());
+                            buffer.Release();
                         }
                         else
                         {
@@ -114,22 +131,10 @@
             }
         }
 
-        private static void QueueMessage(string message, MessageType type)
+        private static IEnumerable<byte> GetMessageBytes(Message message)
         {
-            var bytes = GetMessageBytes(message, type).ToArray();
-
-            Mirror.SimpleWeb.Log.StartNoLog();
-            var buffer = bufferPool.Take(bytes.Length);
-            Mirror.SimpleWeb.Log.EndNoLog();
-
-            buffer.CopyFrom(new ArraySegment<byte>(bytes));
-            messages.Enqueue(buffer);
-        }
-        
-        private static IEnumerable<byte> GetMessageBytes(string message, MessageType type)
-        {
-            var typeByte      = Enumerable.Repeat((byte) type, 1);
-            var messageBytes  = Encoding.ASCII.GetBytes(message);
+            var typeByte      = Enumerable.Repeat((byte) message.type, 1);
+            var messageBytes  = Encoding.ASCII.GetBytes(message.text);
             
             int messageLenght = sizeof(MessageType) /*1 byte*/ + messageBytes.Length;
             var lenghtBytes   = BitConverter.GetBytes(messageLenght);
@@ -154,6 +159,14 @@
         public static void Warning(string message)
         {
             QueueMessage(message, MessageType.Warning);
+        }
+        
+        private static void QueueMessage(string message, MessageType type)
+        {
+            if (message.Length + 1 > ServerConstants.LG_MAX_MESSAGE_SIZE)
+                messages.Enqueue(new Message("LoggerService: trying to log message greater then LG_MAX_MESSAGE_SIZE", MessageType.Error));
+            
+            messages.Enqueue(new Message(message, type));
         }
         
         public static void Dispose()

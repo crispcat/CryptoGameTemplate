@@ -81,10 +81,10 @@ namespace Mirror.SimpleWeb
             }
         }
 
-        public override string ToString()
-        {
-            System.Net.EndPoint endpoint = client?.Client?.RemoteEndPoint;
-            return $"[Conn:{connId}, endPoint:{endpoint}]";
-        }
+        // public override string ToString()
+        // {
+        //     System.Net.EndPoint endpoint = client?.Client?.RemoteEndPoint;
+        //     return $"[Conn:{connId}, endPoint:{endpoint}]";
+        // }
     }
 }
