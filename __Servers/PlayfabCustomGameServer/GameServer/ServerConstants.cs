@@ -5,7 +5,7 @@
     public static class ServerConstants
     {
         // CONFIGS
-        public const bool    USE_PLAYFAB         = false;
+        public const bool    USE_PLAYFAB         = true;
         public const string  LOGS_PORT_NAME      = "logs";
         public const string  ENDPOINT_PORT_NAME  = "endpoint";
 
@@ -41,7 +41,7 @@
         /// <summary>
         /// How long without a message before disconnecting (in milliseconds)
         /// </summary>
-        public const int WSS_RECEIVE_TIMEOUT = 900_000;
+        public const int WSS_RECEIVE_TIMEOUT = 30_000;
         /// <summary>
         /// Caps the number of messages the server will process per tick.
         /// </summary>
