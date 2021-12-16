@@ -523,9 +523,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a298c90a26ea04ab142f59603edf5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endpontIp: '20.85.136.235 '
+  endpontIp: 52.226.197.129
   endpontPort: 30000
-  debuggerIp: '20.85.136.235 '
+  debuggerIp: 52.226.197.129
   debuggerPort: 30100
   maxMessageSize: 16384
   maxMessagesPerTick: 1000

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <DefineConstants>TRACE; SIMPLEWEB_LOG_ENABLED</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="GameLiftServerSDKNet45, Version=4.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>lib\GameLiftServerSDKNet45.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+        <HintPath>..\..\..\Assets\NewtonsoftJson\Portable\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="com.playfab.csharpgsdk" Version="0.11.210519" />
+      <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="__modules" />
+    </ItemGroup>
+
+</Project>

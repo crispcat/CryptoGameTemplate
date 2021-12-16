@@ -82,6 +82,9 @@ public class WssTestClient : MonoBehaviour
             var message = "Disconnected from server.";
             Debug.Log(message);
             output.text = message;
+            
+            StopAllCoroutines();
+            SayHi();
         };
     }
 

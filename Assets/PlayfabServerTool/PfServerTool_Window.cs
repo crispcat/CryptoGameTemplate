@@ -70,14 +70,14 @@ namespace PlayFabServerTool
             if (GUILayout.Button("Disconnect"))
                 PfServerDebugger.Disconnect();
             
-            // GUILayout.Space(10);
-            // GUILayout.Label("Kill server session:");
-            // GUILayout.BeginHorizontal();
-            // GUILayout.Label("SessionID:");
-            // killServerSessionId = EditorGUILayout.TextField(killServerSessionId);
-            // GUILayout.EndHorizontal();
-            // if (GUILayout.Button("Kill"))
-            //     PfServerTool.KillServerSession(killServerSessionId);
+            GUILayout.Space(10);
+            GUILayout.Label("Kill server session:");
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("SessionID:");
+            killServerSessionId = EditorGUILayout.TextField(killServerSessionId);
+            GUILayout.EndHorizontal();
+            if (GUILayout.Button("Kill"))
+                PfServerTool.KillServerSession(killServerSessionId);
         }
     }
 }
