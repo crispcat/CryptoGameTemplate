@@ -1,6 +1,6 @@
 ﻿<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="publish" type="DotNetFolderPublish" factoryName="Publish to folder">
-    <riderPublish runtime="win-x64" self_contained="true" target_folder="$PROJECT_DIR$/build" target_framework="netcoreapp3.1" uuid_high="8251034491630273312" uuid_low="-7584660390148390900" />
+  <configuration default="false" name="publish-win" type="DotNetFolderPublish" factoryName="Publish to folder">
+    <riderPublish runtime="win-x64" self_contained="true" target_folder="$PROJECT_DIR$/build-win" target_framework="netcoreapp3.1" uuid_high="8251034491630273312" uuid_low="-7584660390148390900" />
     <method v="2">
       <option name="Build Solution" enabled="true" />
     </method>

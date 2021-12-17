@@ -88,7 +88,7 @@
             if (outcome.Success)
                 Logs.Message($"Game Lift: {method} succeed.");
             else
-                Logs.Error($"Game Lift error: {outcome.Error.ErrorMessage}");
+                Logs.Error($"Game Lift: {method} error: {outcome.Error.ErrorMessage}");
         }
 
         public override int GetPort(string name)

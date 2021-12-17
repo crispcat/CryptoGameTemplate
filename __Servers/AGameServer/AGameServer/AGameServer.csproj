@@ -27,4 +27,10 @@
       <Folder Include="__modules" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="install-lin.sh">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
