@@ -41,7 +41,7 @@
     {
         private static readonly AGameServerConfig config = new AGameServerConfig
         {
-            PROVIDER = HostingProvider.AwsGameLift,
+            PROVIDER = HostingProvider.Localhost,
             STATUS_PRINTERS = new List<Func<string>>
             {
                 () => $"Server is running. Active sessions: {SessionsString()}"

@@ -2,9 +2,7 @@
 {
     using System;
     using Logging;
-    using System.Net;
     using Aws.GameLift;
-    using System.Net.Sockets;
     using Aws.GameLift.Server;
     using Aws.GameLift.Server.Model;
     using System.Collections.Generic;
@@ -13,8 +11,6 @@
 
     public class AwsGameLift : HostingProviderImpl
     {
-        private readonly Dictionary<string, int> allocatedPorts = new Dictionary<string, int>();
-
         private GenericOutcome processReady;
         
         public override void Initialize()
@@ -89,28 +85,6 @@
                 Logs.Message($"Game Lift: {method} succeed.");
             else
                 Logs.Error($"Game Lift: {method} error: {outcome.Error.ErrorMessage}");
-        }
-
-        public override int GetPort(string name)
-        {
-            if (!allocatedPorts.TryGetValue(name, out int port))
-            {
-                port = FindFreeTcpPort();
-                allocatedPorts.Add(name, port);
-            }
-            
-            return port;
-        }
-        
-        private static int FindFreeTcpPort()
-        {
-            var listener = new TcpListener(IPAddress.Loopback, 0);
-            listener.Start();
-            
-            var port = ((IPEndPoint)listener.LocalEndpoint).Port;
-            listener.Stop();
-            
-            return port;
         }
     }
 }

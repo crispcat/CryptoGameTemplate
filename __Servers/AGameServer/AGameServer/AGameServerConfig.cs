@@ -16,11 +16,11 @@
         //  GENERAL                                            DEFAULT VALUES
         public HostingProvider     PROVIDER                    = HostingProvider.AwsGameLift;
         public string              ENDPOINT_PORT_NAME          = "endpoint";
-        public ushort              ENPOINT_FALLBACK_PID        = 30000;
+        public ushort              PORT_RANGE_MIN              = 30000;
+        public ushort              PORT_RANGE_MAX              = 40000;
      
         //  LOGS
         public string              LOGS_PORT_NAME              = "logs";
-        public ushort              LOGS_FALLBACK_PID           = 30100;
         public Levels              MIRROR_LOG_LEVEL            = Levels.verbose;
         public bool                LOG_STATUS                  = true;
         public int                 LOG_STATUS_DELTA            = 5_000;
@@ -32,7 +32,7 @@
         //  ACTIONS
         public Action              ON_SHUTDOWN                 = () => { };
         public Func<bool>          HEALTH_CHECK                = () => true;
-        public List<Func<string>>  STATUS_PRINTERS             = new List<Func<string>>();            
+        public List<Func<string>>  STATUS_PRINTERS             = new List<Func<string>>();
 
         //  WSS
         /// <summary>
