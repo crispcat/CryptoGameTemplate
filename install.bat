@@ -1,0 +1,1 @@
+mklink /d /h "..\Assets\CryptoGameTemplate (submodule)" "..\CryptoGameTemplate\Assets\CryptoGameTemplate (submodule)"
