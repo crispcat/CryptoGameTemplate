@@ -99,6 +99,10 @@ UserSettings/
 Packages/
 ProjectSettings/
 local_player_model
+Assets/zGenerated/
+Assets/zGenerated.meta
+Assets/CryptoGameTemplate (submodule)/GeneralGameComponents/ClientServerShared/x_generated
+Assets/CryptoGameTemplate (submodule)/GeneralGameComponents/ClientServerShared/x_generated.meta
 
 
 
