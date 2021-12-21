@@ -13,7 +13,7 @@ namespace Game
         [CanBeNull] public byte[] args;
         [CanBeNull] public string sessionId;
         
-        public const string PrevConnectionNoMatchmakeTicket = "PrevConnectionNoMatchmakeTicket";
+        public const string DefaultSessionId = "NoSession";
         public const float MetaSessionTimeoutSeconds = 2f * 60;//5 * 60;
 
 

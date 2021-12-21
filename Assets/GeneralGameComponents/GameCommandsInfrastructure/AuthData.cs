@@ -13,20 +13,23 @@ namespace Game
     public enum AuthType
     {
         DeviceID,
+        EmailPassword,
         GameCenter,
         GooglePlay,
-        FaceBook
+        FaceBook,
     }
 
     [GenSerialization, GenTask(GenTaskFlags.JsonSerialization)]
     public partial class AuthData
     {
+        [CanBeNull] public string email;
+        [CanBeNull] public string password;
         [CanBeNull] public string authId;
         [CanBeNull] public string facebookId;
         [CanBeNull] public string gamecenterId;
         [CanBeNull] public string googleId;
         
-        public AuthType type = AuthType.DeviceID;
+        public AuthType type = AuthType.EmailPassword;
         
         public static string GetAuthIdFromCommandLine()
         {

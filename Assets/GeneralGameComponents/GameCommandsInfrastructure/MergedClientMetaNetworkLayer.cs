@@ -5,18 +5,16 @@ namespace Game
     // I live on merged client and send commands to its merged server.
     public class MergedClientMetaNetworkLayer : ClientMetaNetworkLayer
     {
-        public MergedClientMetaNetworkLayer(PlayfabSessionInfo session) : base(session)
+        public MergedClientMetaNetworkLayer(SessionInfo session) : base(session)
         {
         }
         
         public static async Task<MergedClientMetaNetworkLayer> Create(AuthData overrideAuthData = null)
         {
-            var sessionInfo = await ClientMetaNetworkLayer.PlayfabAuthenticate(overrideAuthData);
+            var sessionInfo = await ClientMetaNetworkLayer.Authenticate(overrideAuthData);
             return new MergedClientMetaNetworkLayer(sessionInfo);
         }
 
-        public override string matchmakeTicket => string.Empty;
-        
         ServerMetaNetworkLayer serverNetwork = new ServerMetaNetworkLayer();
         public override async Task<RemoteMetaResponse> CallServerApi(RemoteMetaRequest request)
         {

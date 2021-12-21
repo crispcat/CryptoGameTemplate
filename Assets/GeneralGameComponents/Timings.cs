@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using PlayFab.SharedModels;
 using Debug = UnityEngine.Debug;
 
 public struct Timing
@@ -137,19 +135,19 @@ public class DelaysLogger
 #if SERVER
 #endif
 
-public static class DelaysLoggerPlayfab
-{
-    public static DelaysLogger OnBeforeSend(PlayFabRequestCommon request)
-    {
-        DelaysLogger logger = DelaysLogger.Get();
-        logger.OnBeforeStart(request.GetType().Name);
-        return logger;
-    }
-
-    public static Timing OnAfterReceived(DelaysLogger logger)
-    {
-        Timing timing = logger.OnAfterFinish();
-        DelaysLogger.Return(logger);
-        return timing;
-    }
-}
+// public static class DelaysLoggerPlayfab
+// {
+//     public static DelaysLogger OnBeforeSend(PlayFabRequestCommon request)
+//     {
+//         DelaysLogger logger = DelaysLogger.Get();
+//         logger.OnBeforeStart(request.GetType().Name);
+//         return logger;
+//     }
+//
+//     public static Timing OnAfterReceived(DelaysLogger logger)
+//     {
+//         Timing timing = logger.OnAfterFinish();
+//         DelaysLogger.Return(logger);
+//         return timing;
+//     }
+// }

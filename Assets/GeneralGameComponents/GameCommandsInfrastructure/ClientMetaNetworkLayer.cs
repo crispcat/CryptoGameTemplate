@@ -1,33 +1,33 @@
 using System;
 using System.Threading.Tasks;
 using GameTools;
-using ZergRush;
 
 namespace Game
 {
+    using AWS.Auth;
+
     public abstract class ClientMetaNetworkLayer : MetaNetworkLayer
     {
         static LocalSettings settings => LocalSettings.Instance;
-        PlayfabSessionInfo session;
+        public SessionInfo session;
 
-        protected ClientMetaNetworkLayer(PlayfabSessionInfo session)
+        protected ClientMetaNetworkLayer(SessionInfo session)
         {
             this.session = session;
         }
 
-        public string sessionId => session.ticket;
-        public abstract string matchmakeTicket { get; }
-        
+        public string sessionId => session.sessionId;
+
         public RemoteMetaRequest PrepareRequest(RemoteMetaRequestType type)
         {
             //long time = controller.metaTime;
             var request = new RemoteMetaRequest
             {
                 type = type,
-                sessionId = session?.ticket,
+                sessionId = session?.sessionId,
                 //time = time
             };
-            if (type != RemoteMetaRequestType.Authenticate)
+            if (type != RemoteMetaRequestType.ConnectToServer)
             {
                 //request.localCommandsBatch = controller.DrainLocalCommands();
                 //Debug.Log($"drained commands for preparing request for {type}");
@@ -36,16 +36,15 @@ namespace Game
             return request;
         }
         
-        protected static async Task<PlayfabSessionInfo> PlayfabAuthenticate(AuthData overrideAuthData = null)
+        protected static async Task<SessionInfo> Authenticate(AuthData overrideAuthData = null)
         {
             AuthData authData = settings.authData;
             if (overrideAuthData != null)
                 authData = overrideAuthData;
-            if (authData == null || authData.authId == null)
+            if (authData?.authId == null)
                 authData = AuthData.Default();
-
-            // auth on playfab.            
-            return await PlayfabAuth.AuthenticateAsClient(authData);
+            
+            return await AwsCognitoAuthProvider.AuthenticateAsClient(authData);
         }
 
         public long lag => 0;

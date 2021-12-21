@@ -12,6 +12,18 @@ namespace Game {
         public virtual void Deserialize(BinaryReader reader) 
         {
             if (!reader.ReadBoolean()) {
+                email = null;
+            }
+            else { 
+                email = reader.ReadString();
+            }
+            if (!reader.ReadBoolean()) {
+                password = null;
+            }
+            else { 
+                password = reader.ReadString();
+            }
+            if (!reader.ReadBoolean()) {
                 authId = null;
             }
             else { 
@@ -39,6 +51,16 @@ namespace Game {
         }
         public virtual void Serialize(BinaryWriter writer) 
         {
+            if (email == null) writer.Write(false);
+            else {
+                writer.Write(true);
+                writer.Write(email);
+            }
+            if (password == null) writer.Write(false);
+            else {
+                writer.Write(true);
+                writer.Write(password);
+            }
             if (authId == null) writer.Write(false);
             else {
                 writer.Write(true);
@@ -65,6 +87,22 @@ namespace Game {
         {
             switch(__name)
             {
+                case "email":
+                if (reader.TokenType == JsonToken.Null) {
+                    email = null;
+                }
+                else { 
+                    email = (string) reader.Value;
+                }
+                break;
+                case "password":
+                if (reader.TokenType == JsonToken.Null) {
+                    password = null;
+                }
+                else { 
+                    password = (string) reader.Value;
+                }
+                break;
                 case "authId":
                 if (reader.TokenType == JsonToken.Null) {
                     authId = null;
@@ -104,6 +142,26 @@ namespace Game {
         }
         public virtual void WriteJsonFields(JsonTextWriter writer) 
         {
+            if (email == null)
+            {
+                writer.WritePropertyName("email");
+                writer.WriteNull();
+            }
+            else
+            {
+                writer.WritePropertyName("email");
+                writer.WriteValue(email);
+            }
+            if (password == null)
+            {
+                writer.WritePropertyName("password");
+                writer.WriteNull();
+            }
+            else
+            {
+                writer.WritePropertyName("password");
+                writer.WriteValue(password);
+            }
             if (authId == null)
             {
                 writer.WritePropertyName("authId");

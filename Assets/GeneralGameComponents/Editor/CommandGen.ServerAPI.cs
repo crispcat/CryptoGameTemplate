@@ -11,7 +11,7 @@ public static partial class CommandGen
     static void GenerateServerApi()
     {
         HashSet<string> allCommands = new HashSet<string>();
-        var type = typeof(ServerPlayerSessionController);
+        var type = typeof(MetaServerPlayerSessionController);
 
         string commandTypeName = typeof(RemoteMetaRequestType).Name; //"ServerRequestType";
         var responseType = typeof(RemoteMetaResponse);

@@ -27,17 +27,18 @@ namespace Game
             var controller = new ServerBasedGameController();
             var serverAPI = new GameServerAPI(network);
             controller.serverAPI = serverAPI;
-            await controller.Authenticate();
+            await controller.ConnectToServer();
             return controller;
         }
 
-        async Task Authenticate()
+        async Task ConnectToServer()
         {
             LoadLocalCommands();
             // Auth on server.
             var localCommands = DrainLocalCommands();
             //Debug.Log("drained commands for authing");
-            var response = await serverAPI.Authenticate(network.sessionId, network.matchmakeTicket, localCommands, LocalSettings.Instance.lastRemoteGameModelHash, true);
+
+            var response = await serverAPI.ConnectToServer(network.session, localCommands, LocalSettings.Instance.lastRemoteGameModelHash);
             
             metaTimeClientShift = SystemLayer.ticks - response.serverTime - serverAPI.lag;
 

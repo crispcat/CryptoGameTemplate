@@ -13,8 +13,6 @@ namespace Game {
             var reader = new BinaryReader(new MemoryStream(__data));
             switch (__type)
             {
-                case RemoteMetaRequestType.DeletePlayer:
-                return "void";
                 case RemoteMetaRequestType.FlushLocalCommands:
                 return "void";
                 case RemoteMetaRequestType.DebugAuthenticateMergedPlayer:
@@ -24,7 +22,7 @@ namespace Game {
                     result.Deserialize(reader);
                     return result.SaveToJsonString();
                 }
-                case RemoteMetaRequestType.Authenticate:
+                case RemoteMetaRequestType.ConnectToServer:
                 {
                     Game.AuthResponse result = default;
                     result = new Game.AuthResponse();

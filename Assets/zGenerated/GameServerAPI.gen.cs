@@ -8,23 +8,6 @@ namespace Game {
 
     public partial class GameServerAPI
     {
-        public async System.Threading.Tasks.Task DeletePlayer() 
-        {
-            var command = network.PrepareRequest(RemoteMetaRequestType.DeletePlayer);;
-            var _data = new MemoryStream();
-            var writer = new BinaryWriter(_data);
-            var commandArgData = _data.GetBuffer();
-            command.args = commandArgData;
-            try
-            {
-                var _result = await network.CallServerApi(command);
-                if (!_result.success) throw new GameException(_result.error);
-            }
-            catch (Exception e)
-            {
-                SystemLayer.LogError($"Remote command DeletePlayer execution failed, request args: , \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
-            }
-        }
         public async System.Threading.Tasks.Task FlushLocalCommands() 
         {
             var command = network.PrepareRequest(RemoteMetaRequestType.FlushLocalCommands);;
@@ -70,20 +53,15 @@ namespace Game {
             }
             return default(Game.AuthResponse);
         }
-        public async System.Threading.Tasks.Task<Game.AuthResponse> Authenticate(System.String sessionId, System.String matchmakeTicket, Game.LocalCommandsBatch localCommands, System.UInt64 savedModelHash, System.Boolean isTestPlayer) 
+        public async System.Threading.Tasks.Task<Game.AuthResponse> ConnectToServer(Game.SessionInfo session, Game.LocalCommandsBatch localCommands, System.UInt64 savedModelHash) 
         {
-            var command = network.PrepareRequest(RemoteMetaRequestType.Authenticate);;
+            var command = network.PrepareRequest(RemoteMetaRequestType.ConnectToServer);;
             var _data = new MemoryStream();
             var writer = new BinaryWriter(_data);
-            if (sessionId == null) writer.Write(false);
+            if (session == null) writer.Write(false);
             else {
                 writer.Write(true);
-                writer.Write(sessionId);
-            }
-            if (matchmakeTicket == null) writer.Write(false);
-            else {
-                writer.Write(true);
-                writer.Write(matchmakeTicket);
+                session.Serialize(writer);
             }
             if (localCommands == null) writer.Write(false);
             else {
@@ -91,7 +69,6 @@ namespace Game {
                 localCommands.Serialize(writer);
             }
             writer.Write(savedModelHash);
-            writer.Write(isTestPlayer);
             var commandArgData = _data.GetBuffer();
             command.args = commandArgData;
             try
@@ -106,7 +83,7 @@ namespace Game {
             }
             catch (Exception e)
             {
-                SystemLayer.LogError($"Remote command Authenticate execution failed, request args: {sessionId}, {matchmakeTicket}, {localCommands}, {savedModelHash}, {isTestPlayer}, \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
+                SystemLayer.LogError($"Remote command ConnectToServer execution failed, request args: {session}, {localCommands}, {savedModelHash}, \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
             }
             return default(Game.AuthResponse);
         }
@@ -127,15 +104,15 @@ namespace Game {
                 SystemLayer.LogError($"Remote command FinishSession execution failed, request args: , \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
             }
         }
-        public async System.Threading.Tasks.Task<Game.ShortPlayerInfo> GetShortPlayerInfo(System.String playfabID) 
+        public async System.Threading.Tasks.Task<Game.ShortPlayerInfo> GetShortPlayerInfo(System.String playerId) 
         {
             var command = network.PrepareRequest(RemoteMetaRequestType.GetShortPlayerInfo);;
             var _data = new MemoryStream();
             var writer = new BinaryWriter(_data);
-            if (playfabID == null) writer.Write(false);
+            if (playerId == null) writer.Write(false);
             else {
                 writer.Write(true);
-                writer.Write(playfabID);
+                writer.Write(playerId);
             }
             var commandArgData = _data.GetBuffer();
             command.args = commandArgData;
@@ -150,7 +127,7 @@ namespace Game {
             }
             catch (Exception e)
             {
-                SystemLayer.LogError($"Remote command GetShortPlayerInfo execution failed, request args: {playfabID}, \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
+                SystemLayer.LogError($"Remote command GetShortPlayerInfo execution failed, request args: {playerId}, \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
             }
             return default(Game.ShortPlayerInfo);
         }

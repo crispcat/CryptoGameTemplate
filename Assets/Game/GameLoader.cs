@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 namespace Game
 {
+    using AWS.Auth;
+
     public class GameLoader : MonoBehaviour
     {
         public GameSessionMode mode;
@@ -25,18 +27,23 @@ namespace Game
 
         async Task<IGameControllerBase> LoadGC(GameSessionMode mode)
         {
+            MetaNetworkLayer networkLayer;
             switch (mode)
             {
                 case GameSessionMode.DevelopMode:
                     return new DevGameController();
+                
                 case GameSessionMode.DevelopCheckMode:
                     return new DevGameControllerWithChecks();
-                    break;
+                
                 case GameSessionMode.MergedServerMode:
-                    var networkLayer = await MergedClientMetaNetworkLayer.Create();
+                    networkLayer = await MergedClientMetaNetworkLayer.Create();
                     Debug.Log("Merged network layer created successfully");
-                    return await ServerBasedGameController.Create(networkLayer);
+                    return await ServerBasedGameController.Create((ClientMetaNetworkLayer) networkLayer);
+                
                 case GameSessionMode.RealServerMode:
+                    throw new NotImplementedException();
+                
                 default:
                     throw new ArgumentOutOfRangeException();
             }

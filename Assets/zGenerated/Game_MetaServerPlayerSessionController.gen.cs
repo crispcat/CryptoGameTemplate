@@ -1,21 +1,25 @@
+#if SERVER
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ZergRush.Alive;
+using System.Threading.Tasks;
+using Game;
 using System.IO;
 #if !INCLUDE_ONLY_CODE_GENERATION
 namespace Game {
 
-    public static partial class DebugRemoteCommandPrinter
+    public partial class MetaServerPlayerSessionController
     {
-        public static string PrintArgs(RemoteMetaRequestType __type, byte[] __data) 
+        public virtual async System.Threading.Tasks.Task<Game.RemoteMetaResponse> ExecuteCommand(RemoteMetaRequestType _type, BinaryReader reader) 
         {
-            if (__data == null) return "";
-            var reader = new BinaryReader(new MemoryStream(__data));
-            switch (__type)
+            switch(_type)
             {
                 case RemoteMetaRequestType.FlushLocalCommands:
                 {
-                    return $"";
+                    await FlushLocalCommands();
+                    return RemoteMetaResponse.Complete();
+                    break;
                 }
                 case RemoteMetaRequestType.DebugAuthenticateMergedPlayer:
                 {
@@ -27,7 +31,13 @@ namespace Game {
                         authId = string.Empty;
                         authId = reader.ReadString();
                     }
-                    return $"authId: {(authId == null ? "null" : authId.ToString())}; ";
+                    var _result = await DebugAuthenticateMergedPlayer(authId);
+                    var _data = new MemoryStream();
+                    var writer = new BinaryWriter(_data);
+                    _result.Serialize(writer);
+                    var _bytes = _data.GetBuffer();
+                    return RemoteMetaResponse.Complete(_bytes);
+                    break;
                 }
                 case RemoteMetaRequestType.ConnectToServer:
                 {
@@ -49,11 +59,19 @@ namespace Game {
                     }
                     ulong savedModelHash = default;
                     savedModelHash = reader.ReadUInt64();
-                    return $"session: {(session == null ? "null" : session.ToString())}; localCommands: {(localCommands == null ? "null" : localCommands.SaveToJsonString())}; savedModelHash: {savedModelHash.ToString()}; ";
+                    var _result = await ConnectToServer(session, localCommands, savedModelHash);
+                    var _data = new MemoryStream();
+                    var writer = new BinaryWriter(_data);
+                    _result.Serialize(writer);
+                    var _bytes = _data.GetBuffer();
+                    return RemoteMetaResponse.Complete(_bytes);
+                    break;
                 }
                 case RemoteMetaRequestType.FinishSession:
                 {
-                    return $"";
+                    await FinishSession();
+                    return RemoteMetaResponse.Complete();
+                    break;
                 }
                 case RemoteMetaRequestType.GetShortPlayerInfo:
                 {
@@ -65,11 +83,19 @@ namespace Game {
                         playerId = string.Empty;
                         playerId = reader.ReadString();
                     }
-                    return $"playerId: {(playerId == null ? "null" : playerId.ToString())}; ";
+                    var _result = await GetShortPlayerInfo(playerId);
+                    var _data = new MemoryStream();
+                    var writer = new BinaryWriter(_data);
+                    _result.Serialize(writer);
+                    var _bytes = _data.GetBuffer();
+                    return RemoteMetaResponse.Complete(_bytes);
+                    break;
                 }
                 case RemoteMetaRequestType.DebugTimeoutSession:
                 {
-                    return $"";
+                    await DebugTimeoutSession();
+                    return RemoteMetaResponse.Complete();
+                    break;
                 }
                 case RemoteMetaRequestType.DebugThrowException:
                 {
@@ -83,17 +109,26 @@ namespace Game {
                         riftersErrorMessage = string.Empty;
                         riftersErrorMessage = reader.ReadString();
                     }
-                    return $"type: {type.ToString()}; riftersErrorMessage: {(riftersErrorMessage == null ? "null" : riftersErrorMessage.ToString())}; ";
+                    var _result = await DebugThrowException(type, riftersErrorMessage);
+                    var _data = new MemoryStream();
+                    var writer = new BinaryWriter(_data);
+                    writer.Write(_result);
+                    var _bytes = _data.GetBuffer();
+                    return RemoteMetaResponse.Complete(_bytes);
+                    break;
                 }
                 case RemoteMetaRequestType.DebugLaggyCommand:
                 {
                     int lagInMS = default;
                     lagInMS = reader.ReadInt32();
-                    return $"lagInMS: {lagInMS.ToString()}; ";
+                    await DebugLaggyCommand(lagInMS);
+                    return RemoteMetaResponse.Complete();
+                    break;
                 }
             }
-            return "invalid command type";
+            return RemoteMetaResponse.NotFound;
         }
     }
 }
+#endif
 #endif

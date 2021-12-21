@@ -34,7 +34,7 @@ namespace Game
             Debug.Log($"META SERVER SENT ({lag}ms)  RemoteMetaResponse = {command.Log(requestType)}");
         }
 
-        public ServerPlayerSessionController playerSession { get; private set; } = new ServerPlayerSessionController();
+        public MetaServerPlayerSessionController playerSession { get; private set; } = new MetaServerPlayerSessionController();
 
         // public DelaysLogger detailedDelays
         // {
@@ -57,7 +57,7 @@ namespace Game
             ResetTimeout();
             if (request.type == RemoteMetaRequestType.DebugTimeoutSession)
                 timeoutTime = 0; // Kills session by timeout.
-            bool isAuthing = request.type == RemoteMetaRequestType.Authenticate ||
+            bool isAuthing = request.type == RemoteMetaRequestType.ConnectToServer ||
                              request.type == RemoteMetaRequestType.DebugAuthenticateMergedPlayer;
             if (!playerSession.authed && !isAuthing)
             {
