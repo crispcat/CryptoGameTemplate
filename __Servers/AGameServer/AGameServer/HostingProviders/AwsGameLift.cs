@@ -6,8 +6,9 @@
     using Aws.GameLift.Server;
     using Aws.GameLift.Server.Model;
     using System.Collections.Generic;
-    
     using static AGameServer;
+    
+    using GameSession = Aws.GameLift.Server.Model.GameSession;
 
     public class AwsGameLift : HostingProviderImpl
     {

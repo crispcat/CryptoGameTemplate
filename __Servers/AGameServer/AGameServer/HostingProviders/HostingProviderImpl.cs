@@ -9,8 +9,6 @@
 
     public abstract class HostingProviderImpl
     {
-        private Dictionary<string, int> allocatedPorts;
-
         protected HostingProviderImpl()
         {
             checkHealth = ServerConfig.HEALTH_CHECK;
@@ -19,8 +17,9 @@
             
             AllocatePorts();
         }
-        
-        
+
+        #region External API
+
         public abstract void Initialize();
         
         public abstract void Ready();
@@ -32,6 +31,11 @@
         public event Action Shutdown;
         protected void InvokeShutdown() => Shutdown?.Invoke();
 
+        #endregion
+
+        #region Ports allocator
+
+        private Dictionary<string, int> allocatedPorts;
 
         public virtual int GetPort(string name)
         {
@@ -41,7 +45,7 @@
             return port;
         }
 
-        protected void AllocatePorts()
+        protected virtual void AllocatePorts()
         {
             const ushort PORTS_COUNT = 2;
             
@@ -88,5 +92,7 @@
 
             return false;
         }
+        
+        #endregion
     }
 }

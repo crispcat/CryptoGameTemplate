@@ -19,6 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AWSSDK.GameLift" Version="3.7.1.20" />
       <PackageReference Include="com.playfab.csharpgsdk" Version="0.11.210519" />
       <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
     </ItemGroup>

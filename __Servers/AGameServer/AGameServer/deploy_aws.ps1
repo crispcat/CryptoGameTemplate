@@ -1,0 +1,1 @@
+aws gamelift upload-build --name TestGameServer --build-version 0 --build-root "C:\dev\work\arrible\CryptoGameTemplate\__Servers\AGameServer\build-lin" --operating-system AMAZON_LINUX --region eu-central-1

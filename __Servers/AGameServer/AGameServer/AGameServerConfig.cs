@@ -2,11 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    
     using static Mirror.SimpleWeb.Log;
     
     public enum HostingProvider
     {
-        AwsGameLift, AwsFleetIQ, Playfab, Localhost
+        AwsGameLift, Playfab, Localhost
     }
 
     public class AGameServerConfig

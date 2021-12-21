@@ -64,7 +64,6 @@
             {
                 HostingProvider.Playfab      =>  new Playfab(),
                 HostingProvider.Localhost    =>  new Localhost(),
-                HostingProvider.AwsFleetIQ   =>  new AwsFleetIQ(),
                 HostingProvider.AwsGameLift  =>  new AwsGameLift(),
 
                 _ => throw new NotImplementedException($"Hosting provider {ServerConfig.PROVIDER} is not implemented.")
