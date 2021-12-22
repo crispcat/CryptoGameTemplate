@@ -91,7 +91,12 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 
+# ========================== #
+#     Submodule specific     #
+# ========================== #
+
 Packages/
 UserSettings/
 ProjectSettings/
 local_player_model
+*.meta
