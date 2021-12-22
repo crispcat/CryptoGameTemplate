@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 public enum RemoteMetaRequestType : ushort
 {
-    FlushLocalCommands = 2,
-    DebugAuthenticateMergedPlayer = 3,
-    ConnectToServer = 1,
-    FinishSession = 5,
-    GetShortPlayerInfo = 6,
-    DebugTimeoutSession = 7,
-    DebugThrowException = 8,
-    DebugLaggyCommand = 9,
+    FlushLocalCommands = 1,
+    DebugAuthenticateMergedPlayer = 2,
+    ConnectToServer = 3,
+    FinishSession = 4,
+    GetShortPlayerInfo = 5,
+    DebugTimeoutSession = 6,
+    DebugThrowException = 7,
+    DebugLaggyCommand = 8,
 }

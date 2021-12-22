@@ -25,10 +25,10 @@ namespace GameTools {
                 lastRemoteGameModelHash = ulong.Parse((string)reader.Value);
                 break;
                 case "logRemoteGameMetaCommands":
-                logRemoteGameMetaCommands = (System.Boolean)reader.Value;
+                logRemoteGameMetaCommands = (bool)reader.Value;
                 break;
                 case "tolerateLocalizationErrors":
-                tolerateLocalizationErrors = (System.Boolean)reader.Value;
+                tolerateLocalizationErrors = (bool)reader.Value;
                 break;
                 case "currentLocale":
                 if (reader.TokenType == JsonToken.Null) {

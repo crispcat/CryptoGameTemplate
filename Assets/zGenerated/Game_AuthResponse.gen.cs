@@ -35,7 +35,7 @@ namespace Game {
             switch(__name)
             {
                 case "useLocalModel":
-                useLocalModel = (System.Boolean)reader.Value;
+                useLocalModel = (bool)reader.Value;
                 break;
                 case "serverTime":
                 serverTime = (long)(Int64)reader.Value;
