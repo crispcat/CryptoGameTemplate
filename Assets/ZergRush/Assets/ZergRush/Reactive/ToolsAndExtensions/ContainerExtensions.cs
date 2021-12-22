@@ -347,6 +347,8 @@ namespace ZergRush
             return default;
         }
 
+        public static IEnumerable<T> Exclude<T>(this IEnumerable<T> list, T item) => list.Where(i => !EqualityComparer<T>.Default.Equals(i, item));
+
         public static T TakeOne<T>(this List<T> list, Func<T, bool> filter)
         {
             for (var index = 0; index < list.Count; index++)

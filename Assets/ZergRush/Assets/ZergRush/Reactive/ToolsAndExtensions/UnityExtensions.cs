@@ -1,6 +1,4 @@
-﻿#if UNITY_5_3_OR_NEWER
-
-using System;
+﻿using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -393,7 +391,6 @@ public static class UnityExtensions
         image.SetActiveSafe(val);
     }
 
-
     public static IDisposable SetSprite(this SpriteRenderer image, ICell<Sprite> sprite)
     {
         return sprite.Bind(s => image.sprite = s);
@@ -696,5 +693,3 @@ public static class UnityExtensions
         }
 
 }
-
-#endif

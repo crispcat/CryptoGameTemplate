@@ -16,6 +16,8 @@ namespace ZergRush.CodeGen
         public string name;
         public string path;
         public string suffix;
+        public string extenssion = ".cs";
+
         public abstract void Commit();
     }
 

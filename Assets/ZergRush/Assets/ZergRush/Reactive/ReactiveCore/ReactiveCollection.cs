@@ -117,9 +117,6 @@ namespace ZergRush.ReactiveCore
         {
             return data.IndexOf(item);
         }
-		
-		 public int IndexOf(Func<T, bool> predicate)
-            => data.IndexOf(predicate);
 
         public void Insert(int index, T item)
         {
@@ -772,24 +769,24 @@ namespace ZergRush.ReactiveCore
             });
         }
 
-        public static ICell<T> AtIndex<T>(this IReactiveCollection<T> collection, int index)
+        public static ICell<T> AtIndex<T>(this IReactiveCollection<T> collection, int index, T ifNoElement = default)
         {
             return new AnonymousCell<T>(action =>
             {
                 return collection.AsCell().ListenUpdates(coll =>
                 {
-                    action(coll.Count > index ? coll[index] : default(T));
+                    action(coll.Count > index ? coll[index] : ifNoElement);
                 });
             }, () =>
             {
                 var coll = collection;
-                return coll.Count > index ? coll[index] : default(T);
+                return coll.Count > index ? coll[index] : ifNoElement;
             });
         }
         
-        public static ICell<T> AtIndex<T>(this IReactiveCollection<T> collection, ICell<int> index)
+        public static ICell<T> AtIndex<T>(this IReactiveCollection<T> collection, ICell<int> index, T ifNoElement = default)
         {
-            return index.FlatMap(collection.AtIndex);
+            return index.FlatMap(v => collection.AtIndex(v, ifNoElement));
         }
 
         public static ICell<IReadOnlyList<T>> AsCell<T>(this IReactiveCollection<T> collection)
@@ -1286,6 +1283,75 @@ namespace ZergRush.ReactiveCore
                     buffer.Add(cell.value);
                 }
             }
+        }
+        
+        [DebuggerDisplay("{this.ToString()}")]
+        public class SortedCollection<T> : AbstractCollectionTransform<T>
+        {
+            public readonly Func<T, T, int> sorter;
+            public readonly IReactiveCollection<T> collection;
+            
+            public SortedCollection(IReactiveCollection<T> collection, Func<T, T, int> predicate)
+            {
+                this.collection = collection;
+                this.sorter = predicate;
+            }
+
+            void Insert(T item)
+            {
+                buffer.InsertSorted(sorter, item);
+            }
+
+            void Remove(T oldItem)
+            {
+                buffer.Remove(oldItem);
+            }
+
+            void Process(IReactiveCollectionEvent<T> e)
+            {
+                switch (e.type)
+                {
+                    case ReactiveCollectionEventType.Reset:
+                        RefillRaw();
+                        break;
+                    case ReactiveCollectionEventType.Insert:
+                        Insert(e.newItem);
+                        break;
+                    case ReactiveCollectionEventType.Remove:
+                        Remove(e.oldItem);
+                        break;
+                    case ReactiveCollectionEventType.Set:
+                        //TODO make proper set event resolve if needed
+                        Remove(e.oldItem); 
+                        Insert(e.newItem);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            
+            protected override IDisposable StartListenAndRefill()
+            {
+                RefillRaw();
+                return collection.update.Subscribe(Process);
+            }
+
+            protected override void RefillRaw()
+            {
+                buffer.Clear();
+                var coll = collection;
+                for (int i = 0; i < coll.Count; i++)
+                {
+                    var item = coll[i];
+                    buffer.InsertSorted(sorter, item);
+                }
+            }
+        }
+
+        public static IReactiveCollection<T> SortReactive<T>(this ReactiveCollection<T> collection,
+            Func<T, T, int> comparator)
+        {
+            return new SortedCollection<T>(collection, comparator);
         }
         
         [DebuggerDisplay("{this.ToString()}")]

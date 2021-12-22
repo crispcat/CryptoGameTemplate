@@ -1,6 +1,4 @@
-﻿#if UNITY_5_3_OR_NEWER
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -183,11 +181,11 @@ namespace ZergRush.ReactiveUI
         {
             int mainIndex = index / gridSize;
             float viewPosMain = directionMainSign *
-                                (topShift.value + mainIndex * settings.mainSize +
-                                 settings.mainSize / 2);
+                                ((topShift.value + mainIndex * settings.mainSize +
+                                 settings.mainSize / 2) - settings.marginVec.x / 2);
             int subIndex = index % gridSize;
             float viewSubPos = directionSubSign *
-                               ((subIndex - (gridSize - 1) / 2f) * settings.subSize);
+                               (((subIndex - (gridSize - 1) / 2f) * settings.subSize) - settings.marginVec.y / 2);
             Vector2 finalPos = settings.direction == LayoutDirection.Horizontal
                 ? new Vector2(viewPosMain, viewSubPos)
                 : new Vector2(viewSubPos, viewPosMain);
@@ -315,4 +313,3 @@ namespace ZergRush.ReactiveUI
         protected override bool expandViews => ((LinearLayoutSettings)settings).expandViews;
     }
 }
-#endif
