@@ -265,7 +265,11 @@ namespace ZergRush.CodeGen
             //     return inProject;
             // }
             
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName.StartsWith("Assembly-CSharp") || a.FullName.StartsWith("ZergRush") || a.FullName.StartsWith("CodeGen")).ToList();
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(a => a.FullName.StartsWith("Assembly-CSharp")
+                         || a.FullName.StartsWith("ZergRush")
+                         || a.FullName.StartsWith("CodeGen")
+                         || a.FullName.StartsWith("ClientServerShared")).ToList();
             var typesEnumerable = assemblies.SelectMany(assembly => assembly.GetTypes());
 
             allTypesInAssemblies.Clear();
