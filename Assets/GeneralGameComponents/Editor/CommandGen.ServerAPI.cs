@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,11 +8,17 @@ using ZergRush.CodeGen;
 
 public static partial class CommandGen
 {
+    private static GeneratorContext _context;
+    
     [CodeGenExtension]
     static void GenerateServerApi()
     {
         HashSet<string> allCommands = new HashSet<string>();
         var type = typeof(MetaServerPlayerSessionController);
+        var genLocal = (GenInLocalFolder) Attribute.GetCustomAttribute(type, typeof(GenInLocalFolder));
+
+        var genPath = GetLocalOrDefaultPath(type);
+        _context = GetLocalOrDefaultContext(type);
 
         string commandTypeName = typeof(RemoteMetaRequestType).Name; //"ServerRequestType";
         var responseType = typeof(RemoteMetaResponse);
@@ -20,7 +27,7 @@ public static partial class CommandGen
             isStatic: false, isStruct: false, isSealed: false, isPartial: true);
         senderSink.usingSink("System.Threading.Tasks");
 
-        var printerSink = StartGenArgPrinter(PrintArgsRemoteStaticClassName, commandTypeName, null);
+        var printerSink = StartGenArgPrinter(PrintArgsRemoteStaticClassName, commandTypeName, null, _context);
 
         foreach (var method in type.GetMethods(BindingFlags.NonPublic | BindingFlags.Public |
                                                BindingFlags.Instance))
@@ -98,14 +105,14 @@ public static partial class CommandGen
                     eSink.content($"return {responseType.Name}.Complete({bufferName});");
                 }
             });
-        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), "Assets/zGenerated/", CodeGen.defaultContext);
+        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), genPath, _context);
     }
 
     static void GenerateCommandResultPrinter(List<MethodInfo> commandFunctions)
     {
         var className = PrintArgsRemoteResultStaticClassName;
         var enumType = typeof(RemoteMetaRequestType).Name;
-        var senderSink = CodeGen.defaultContext.createSharpClass(className, className,
+        var senderSink = _context.createSharpClass(className, className,
             "CGT", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
 
         var method = senderSink.Method(PrintCommandResultFuncName, null, MethodType.StaticFunction,

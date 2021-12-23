@@ -3,7 +3,7 @@ using ZergRush.CodeGen;
 
 namespace CGT
 {
-    [GenSerialization, GenTask(GenTaskFlags.JsonSerialization)]
+    [GenSerialization, GenTask(GenTaskFlags.JsonSerialization), GenInLocalFolder]
     public partial class LocalMetaCommand
     {
         public LocalMetaCommandType type;

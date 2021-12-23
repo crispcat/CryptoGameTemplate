@@ -5,7 +5,7 @@ using ZergRush.ReactiveCore;
 
 namespace CGT
 {
-    [GenSerialization, GenTask(GenTaskFlags.JsonSerialization)]
+    [GenSerialization, GenTask(GenTaskFlags.JsonSerialization), GenInLocalFolder]
     public partial class LocalCommandsBatch : ISerializable
     {
         public ReactiveCollection<LocalMetaCommand> items = new ReactiveCollection<LocalMetaCommand>();

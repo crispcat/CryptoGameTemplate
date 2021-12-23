@@ -4,7 +4,7 @@ using ZergRush.CodeGen;
 
 namespace CGT
 {
-    [GenSerialization, GenTask(GenTaskFlags.JsonSerialization)]
+    [GenSerialization, GenTask(GenTaskFlags.JsonSerialization), GenInLocalFolder]
     public partial class RemoteMetaRequest : ISerializable
     {
         public LocalCommandsBatch localCommandsBatch = new LocalCommandsBatch();

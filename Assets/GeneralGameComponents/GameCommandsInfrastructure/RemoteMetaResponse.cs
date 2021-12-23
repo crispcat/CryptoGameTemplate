@@ -14,7 +14,7 @@ namespace CGT
         Complete
     }
     
-    [GenSerialization, GenTask(GenTaskFlags.JsonSerialization)]
+    [GenSerialization, GenTask(GenTaskFlags.JsonSerialization), GenInLocalFolder]
     public partial class RemoteMetaResponse : ISerializable
     {        
         public RemoteMetaResponseType type;

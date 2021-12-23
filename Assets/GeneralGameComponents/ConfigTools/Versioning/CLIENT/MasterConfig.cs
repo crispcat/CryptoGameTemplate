@@ -6,7 +6,7 @@ using ZergRush.CodeGen;
 
 namespace CGT
 {
-    [GenTask(GenTaskFlags.Serialization | GenTaskFlags.JsonSerialization)]
+    [GenTask(GenTaskFlags.Serialization | GenTaskFlags.JsonSerialization), GenInLocalFolder]
     public partial class MasterConfig : ISerializable, IJsonSerializable
     {
         public VersionStatus status;

@@ -6,7 +6,7 @@ using ZergRush.ReactiveCore;
 
 namespace CGT
 {
-    [GenTask(GenTaskFlags.DefaultConstructor | GenTaskFlags.JsonSerialization)]
+    [GenTask(GenTaskFlags.DefaultConstructor | GenTaskFlags.JsonSerialization), GenInLocalFolder]
     public partial class LocalSettings : IJsonSerializable
     {
         public bool tolerateLocalizationErrors = true;

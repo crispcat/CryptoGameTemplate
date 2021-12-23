@@ -12,6 +12,7 @@ using ZergRush.Alive;
 using ZergRush.CodeGen;
 using static ZergRush.CodeGen.CodeGen;
 
+[GenInLocalFolder]
 public static partial class CommandGen
 {
     static string CommandDescriptorCommandTypeFieldName = "command";
@@ -151,9 +152,9 @@ public static partial class CommandGen
     static string PrintArgsRemoteResultStaticClassName = "DebugRemoteCommandResultPrinter";
     static string PrintArgsLocalStaticClassName = "DebugLocalCommandPrinter";
 
-    static MethodBuilder StartGenArgPrinter(string className, string enumType, string modelForRefs)
+    static MethodBuilder StartGenArgPrinter(string className, string enumType, string modelForRefs, GeneratorContext context)
     {
-        var senderSink = defaultContext.createSharpClass(className, className,
+        var senderSink = context.createSharpClass(className, className,
             "CGT", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
 
         var method = senderSink.Method(PrintCommandArgsFuncName, null, MethodType.StaticFunction,
@@ -232,6 +233,22 @@ public static partial class CommandGen
         return t;
     }
 
+    public static GeneratorContext GetLocalOrDefaultContext(Type type)
+    {
+        var genLocal = GetAttributeIfAny<GenInLocalFolder>(type);
+        return genLocal == null
+            ? defaultContext
+            : new GeneratorContext(new GenInfo { sharpGenPath = genLocal.folder }, false);
+    }
+
+    public static string GetLocalOrDefaultPath(Type type)
+    {
+        var genLocal = GetAttributeIfAny<GenInLocalFolder>(type);
+        return genLocal == null
+            ? "Assets/zGenerated/"
+            : genLocal.folder;
+    }
+
     [CodeGenExtension]
     static void GenerateLocalCommands()
     {
@@ -239,13 +256,21 @@ public static partial class CommandGen
         string commandTypeName = nameof(LocalMetaCommandType); //"CommandType";
         var localResultType = typeof(LocalMetaCommandResult);
 
-        var printerSink = StartGenArgPrinter(PrintArgsLocalStaticClassName, commandTypeName, "GameModel");
+        var assembly = AppDomain.CurrentDomain.GetAssemblies()
+            .First(a => a.FullName.StartsWith("CryptoGameTemplate"));
 
-        var assembly = typeof(IGameCommandSink).Assembly;
-            
+        string genPath = null;
+        GeneratorContext genContext = null;
+        MethodBuilder printerSink = null;
+
         foreach (var type in assembly.GetTypes())
         {
             if (type.HasInHierarchy(p => p.HasAttribute<GenCommands>()) == false) continue;
+
+            genPath = GetLocalOrDefaultPath(type);
+            genContext = GetLocalOrDefaultContext(type);
+            printerSink = StartGenArgPrinter(PrintArgsLocalStaticClassName, commandTypeName, "GameModel", genContext);
+            
             var thisTypeCommands = new List<MethodInfo>();
             var classSink = GenClassSink(type);
             foreach (var method in type.GetMethods(BindingFlags.NonPublic | BindingFlags.Public |
@@ -300,8 +325,9 @@ public static partial class CommandGen
                 });
         }
 
-        FinishArgPrinting(printerSink);
+        if (printerSink != null) 
+            FinishArgPrinting(printerSink);
 
-        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), "Assets/zGenerated/", defaultContext);
+        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), genPath, genContext);
     }
 }

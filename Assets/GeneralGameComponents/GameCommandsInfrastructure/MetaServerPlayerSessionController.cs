@@ -7,7 +7,7 @@ using ZergRush.CodeGen;
 
 namespace CGT
 {
-    [GenTask(GenTaskFlags.CommandsGen)]
+    [GenTask(GenTaskFlags.CommandsGen), GenInLocalFolder]
     public partial class MetaServerPlayerSessionController
     {
         public SessionInfo session;

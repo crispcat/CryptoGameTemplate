@@ -9,7 +9,7 @@ using ZergRush.CodeGen;
 
 namespace CGT
 {
-    [GenTask(GenTaskFlags.ConfigData)]
+    [GenTask(GenTaskFlags.ConfigData), GenInLocalFolder]
     public partial class GameConfig : ISerializable, IJsonSerializable
     {
         public static string SaveDir = "Assets/Game/Resources/";

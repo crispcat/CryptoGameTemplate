@@ -3,7 +3,7 @@ using ZergRush.CodeGen;
 
 namespace CGT
 {
-    [GenTask(GenTaskFlags.LivableNodePack), RootType(typeof(GameModel)), ConfigRootType(typeof(GameConfig))]
+    [GenTask(GenTaskFlags.LivableNodePack), RootType(typeof(GameModel)), ConfigRootType(typeof(GameConfig)), GenInLocalFolder]
     public partial class GameEntity : Livable
     {
         public GameModel game => ((GameModel) root);
@@ -15,7 +15,7 @@ namespace CGT
         public int id;
     }
     
-    [GenTask(GenTaskFlags.PolymorphicDataPack), ConfigRootType(typeof(GameConfig))]
+    [GenTask(GenTaskFlags.PolymorphicDataPack), ConfigRootType(typeof(GameConfig)), GenInLocalFolder]
     public partial class GameData
     {
     }

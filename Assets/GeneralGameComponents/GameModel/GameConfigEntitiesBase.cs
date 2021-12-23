@@ -3,12 +3,12 @@ using ZergRush.CodeGen;
 
 namespace CGT
 {
-    [GenTask(GenTaskFlags.ConfigData), ConfigRootType(typeof(GameConfig))]
+    [GenTask(GenTaskFlags.ConfigData), ConfigRootType(typeof(GameConfig)), GenInLocalFolder]
     public partial class GameConfigEntity
     {
     }
     
-    [GenTask(GenTaskFlags.ConfigData), ConfigRootType(typeof(GameConfig))]
+    [GenTask(GenTaskFlags.ConfigData), ConfigRootType(typeof(GameConfig)), GenInLocalFolder]
     public partial class GameLoadableConfigEntity : LoadableConfig
     {
     }
