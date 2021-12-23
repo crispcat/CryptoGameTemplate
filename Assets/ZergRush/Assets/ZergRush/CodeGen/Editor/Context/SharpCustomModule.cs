@@ -77,7 +77,9 @@ namespace ZergRush.CodeGen
 
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
             var combine = Path.Combine(path, fileName);
-            File.WriteAllText(combine, GeneratorContext.PrepareToWrite(result.ToString()));
+
+            var fileText = GeneratorContext.PrepareToWrite(result.ToString());
+            File.WriteAllText(combine, fileText);
         }
     }
 }
