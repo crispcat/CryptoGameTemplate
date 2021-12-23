@@ -15,7 +15,6 @@ public static partial class CommandGen
     {
         HashSet<string> allCommands = new HashSet<string>();
         var type = typeof(MetaServerPlayerSessionController);
-        var genLocal = (GenInLocalFolder) Attribute.GetCustomAttribute(type, typeof(GenInLocalFolder));
 
         var genPath = GetLocalOrDefaultPath(type);
         _context = GetLocalOrDefaultContext(type);

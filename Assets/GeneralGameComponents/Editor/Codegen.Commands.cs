@@ -235,7 +235,7 @@ public static partial class CommandGen
 
     public static GeneratorContext GetLocalOrDefaultContext(Type type)
     {
-        var genLocal = GetAttributeIfAny<GenInLocalFolder>(type);
+        var genLocal = (GenInLocalFolder) Attribute.GetCustomAttribute(type, typeof(GenInLocalFolder));
         return genLocal == null
             ? defaultContext
             : new GeneratorContext(new GenInfo { sharpGenPath = genLocal.folder }, false);
@@ -243,7 +243,7 @@ public static partial class CommandGen
 
     public static string GetLocalOrDefaultPath(Type type)
     {
-        var genLocal = GetAttributeIfAny<GenInLocalFolder>(type);
+        var genLocal = (GenInLocalFolder) Attribute.GetCustomAttribute(type, typeof(GenInLocalFolder));
         return genLocal == null
             ? "Assets/zGenerated/"
             : genLocal.folder;

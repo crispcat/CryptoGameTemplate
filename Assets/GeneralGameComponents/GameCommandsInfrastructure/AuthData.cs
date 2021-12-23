@@ -19,7 +19,7 @@ namespace CGT
         FaceBook,
     }
 
-    [GenSerialization, GenTask(GenTaskFlags.JsonSerialization), GenInLocalFolder, GenInLocalFolder]
+    [GenSerialization, GenTask(GenTaskFlags.JsonSerialization), GenInLocalFolder]
     public partial class AuthData
     {
         [CanBeNull] public string email;
