@@ -16,7 +16,7 @@ public static partial class CommandGen
         string commandTypeName = typeof(RemoteMetaRequestType).Name; //"ServerRequestType";
         var responseType = typeof(RemoteMetaResponse);
         var thisTypeCommands = new List<MethodInfo>();
-        var senderSink = CodeGen.defaultContext.createSharpClass("GameServerAPI", "GameServerAPI", "Game",
+        var senderSink = CodeGen.defaultContext.createSharpClass("GameServerAPI", "GameServerAPI", "CGT",
             isStatic: false, isStruct: false, isSealed: false, isPartial: true);
         senderSink.usingSink("System.Threading.Tasks");
 
@@ -106,7 +106,7 @@ public static partial class CommandGen
         var className = PrintArgsRemoteResultStaticClassName;
         var enumType = typeof(RemoteMetaRequestType).Name;
         var senderSink = CodeGen.defaultContext.createSharpClass(className, className,
-            "Game", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
+            "CGT", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
 
         var method = senderSink.Method(PrintCommandResultFuncName, null, MethodType.StaticFunction,
             typeof(string), $"{enumType} __type, byte[] __data");

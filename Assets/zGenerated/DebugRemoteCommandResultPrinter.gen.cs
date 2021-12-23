@@ -17,15 +17,15 @@ namespace CGT {
                 return "void";
                 case RemoteMetaRequestType.DebugAuthenticateMergedPlayer:
                 {
-                    AuthResponse result = default;
-                    result = new AuthResponse();
+                    CGT.AuthResponse result = default;
+                    result = new CGT.AuthResponse();
                     result.Deserialize(reader);
                     return result.SaveToJsonString();
                 }
                 case RemoteMetaRequestType.ConnectToServer:
                 {
-                    AuthResponse result = default;
-                    result = new AuthResponse();
+                    CGT.AuthResponse result = default;
+                    result = new CGT.AuthResponse();
                     result.Deserialize(reader);
                     return result.SaveToJsonString();
                 }
@@ -33,7 +33,7 @@ namespace CGT {
                 return "void";
                 case RemoteMetaRequestType.GetShortPlayerInfo:
                 {
-                    ShortPlayerInfo result = default;
+                    CGT.ShortPlayerInfo result = default;
                     result.Deserialize(reader);
                     return result.ToString();
                 }

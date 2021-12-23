@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
 namespace CGT {
 
-    public partial class GameModel : IUpdatableFrom<GameModel>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable
+    public partial class GameModel : IUpdatableFrom<CGT.GameModel>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable
     {
         public void TestCommandCommand() 
         {
@@ -28,7 +28,7 @@ namespace CGT {
                 root.ExecutionFailed(command);
             }
         }
-        public virtual LocalMetaCommandResult ExecuteCommand(LocalMetaCommandType _type, BinaryReader reader) 
+        public virtual CGT.LocalMetaCommandResult ExecuteCommand(LocalMetaCommandType _type, BinaryReader reader) 
         {
             switch(_type)
             {
@@ -39,38 +39,38 @@ namespace CGT {
                     break;
                 }
             }
-            return LocalMetaCommandResult.NotFound;
+            return CGT.LocalMetaCommandResult.NotFound;
         }
-        public GameReferencableEntity CreateGameReferencableEntity() 
+        public CGT.GameReferencableEntity CreateGameReferencableEntity() 
         {
-            var inst = new GameReferencableEntity();
+            var inst = new CGT.GameReferencableEntity();
             inst.root = this;
             inst.__GenIds(this);
             inst.__PropagateHierarchyAndRememberIds();
             return inst;
         }
-        public GameReferencableEntity CreateGameReferencableEntity(GameReferencableEntity prototype) 
+        public CGT.GameReferencableEntity CreateGameReferencableEntity(CGT.GameReferencableEntity prototype) 
         {
-            GameReferencableEntity inst = default;
-            inst = new GameReferencableEntity();
+            CGT.GameReferencableEntity inst = default;
+            inst = new CGT.GameReferencableEntity();
             inst.UpdateFrom(prototype);
             inst.root = this;
             inst.__GenIds(this);
             inst.__PropagateHierarchyAndRememberIds();
             return inst;
         }
-        public GameEntity CreateGameEntity() 
+        public CGT.GameEntity CreateGameEntity() 
         {
-            var inst = (GameEntity)new GameEntity();
+            var inst = (CGT.GameEntity)new CGT.GameEntity();
             inst.root = this;
             inst.__GenIds(this);
             inst.__PropagateHierarchyAndRememberIds();
             return inst;
         }
-        public GameEntity CreateGameEntity(GameEntity prototype) 
+        public CGT.GameEntity CreateGameEntity(CGT.GameEntity prototype) 
         {
-            GameEntity inst = default;
-            inst = (GameEntity)prototype.NewInst();
+            CGT.GameEntity inst = default;
+            inst = (CGT.GameEntity)prototype.NewInst();
             inst.UpdateFrom(prototype);
             inst.root = this;
             inst.__GenIds(this);
@@ -80,11 +80,11 @@ namespace CGT {
         public override void UpdateFrom(ZergRush.Alive.DataNode other) 
         {
             base.UpdateFrom(other);
-            var otherConcrete = (GameModel)other;
+            var otherConcrete = (CGT.GameModel)other;
             state = otherConcrete.state;
             displayName = otherConcrete.displayName;
         }
-        public void UpdateFrom(GameModel other) 
+        public void UpdateFrom(CGT.GameModel other) 
         {
             this.UpdateFrom((ZergRush.Alive.DataNode)other);
         }
@@ -157,7 +157,7 @@ namespace CGT {
         public override void CompareCheck(ZergRush.Alive.DataNode other, Stack<string> __path) 
         {
             base.CompareCheck(other,__path);
-            var otherConcrete = (GameModel)other;
+            var otherConcrete = (CGT.GameModel)other;
             if (state != otherConcrete.state) SerializationTools.LogCompError(__path, "state", otherConcrete.state, state);
             if (displayName != otherConcrete.displayName) SerializationTools.LogCompError(__path, "displayName", otherConcrete.displayName, displayName);
         }

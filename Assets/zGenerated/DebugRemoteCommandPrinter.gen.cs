@@ -39,12 +39,12 @@ namespace CGT {
                         session = new CGT.SessionInfo();
                         session.Deserialize(reader);
                     }
-                    LocalCommandsBatch localCommands = default;
+                    CGT.LocalCommandsBatch localCommands = default;
                     if (!reader.ReadBoolean()) {
                         localCommands = null;
                     }
                     else { 
-                        localCommands = new LocalCommandsBatch();
+                        localCommands = new CGT.LocalCommandsBatch();
                         localCommands.Deserialize(reader);
                     }
                     ulong savedModelHash = default;

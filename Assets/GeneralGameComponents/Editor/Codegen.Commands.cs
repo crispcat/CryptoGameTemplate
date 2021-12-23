@@ -154,7 +154,7 @@ public static partial class CommandGen
     static MethodBuilder StartGenArgPrinter(string className, string enumType, string modelForRefs)
     {
         var senderSink = defaultContext.createSharpClass(className, className,
-            "Game", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
+            "CGT", isStatic: true, isStruct: false, isSealed: false, isPartial: true);
 
         var method = senderSink.Method(PrintCommandArgsFuncName, null, MethodType.StaticFunction,
             typeof(string),

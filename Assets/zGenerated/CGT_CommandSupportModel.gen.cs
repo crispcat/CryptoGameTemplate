@@ -7,27 +7,14 @@ using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
 namespace CGT {
 
-    public partial class GameEntity : IUpdatableFrom<GameEntity>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable, IPolymorphable
+    public partial class CommandSupportModel : IUpdatableFrom<CGT.CommandSupportModel>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable
     {
-        public enum Types : ushort
-        {
-            GameEntity = 1,
-            GameReferencableEntity = 2,
-        }
-        static Func<GameEntity> [] polymorphConstructors = new Func<GameEntity> [] {
-            () => null, // 0
-            () => new GameEntity(), // 1
-            () => new GameReferencableEntity(), // 2
-        };
-        public static GameEntity CreatePolymorphic(System.UInt16 typeId) {
-            return polymorphConstructors[typeId]();
-        }
         public override void UpdateFrom(ZergRush.Alive.DataNode other) 
         {
             base.UpdateFrom(other);
-            var otherConcrete = (GameEntity)other;
+            var otherConcrete = (CGT.CommandSupportModel)other;
         }
-        public void UpdateFrom(GameEntity other) 
+        public void UpdateFrom(CGT.CommandSupportModel other) 
         {
             this.UpdateFrom((ZergRush.Alive.DataNode)other);
         }
@@ -45,29 +32,9 @@ namespace CGT {
         {
             var baseVal = base.CalculateHash();
             System.UInt64 hash = baseVal;
-            hash += (ulong)507791003;
+            hash += (ulong)1896138627;
             hash += hash << 11; hash ^= hash >> 7;
             return hash;
-        }
-        public override void Enlive() 
-        {
-            EnliveSelf();
-            EnliveChildren();
-        }
-        public override void Mortify() 
-        {
-            MortifySelf();
-            MortifyChildren();
-        }
-        protected override void EnliveChildren() 
-        {
-            base.EnliveChildren();
-
-        }
-        protected override void MortifyChildren() 
-        {
-            base.MortifyChildren();
-
         }
         public override void __GenIds(DataRoot __root) 
         {
@@ -84,7 +51,7 @@ namespace CGT {
             base.__ForgetIds();
 
         }
-        public  GameEntity() 
+        public  CommandSupportModel() 
         {
 
         }
@@ -99,14 +66,6 @@ namespace CGT {
         {
             base.WriteJsonFields(writer);
 
-        }
-        public virtual ushort GetClassId() 
-        {
-        return (System.UInt16)Types.GameEntity;
-        }
-        public virtual GameEntity NewInst() 
-        {
-        return new GameEntity();
         }
     }
 }

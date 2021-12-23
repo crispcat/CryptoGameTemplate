@@ -7,8 +7,21 @@ using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
 namespace CGT {
 
-    public partial class LoadableConfigStub : IHashable, IUniquelyIdentifiable, IJsonSerializable, IPolymorphable
+    public partial class GameLoadableConfigEntity : IHashable, IUniquelyIdentifiable, IJsonSerializable, IPolymorphable
     {
+        public enum Types : ushort
+        {
+            GameLoadableConfigEntity = 1,
+            LoadableConfigStub = 2,
+        }
+        static Func<GameLoadableConfigEntity> [] polymorphConstructors = new Func<GameLoadableConfigEntity> [] {
+            () => null, // 0
+            () => new CGT.GameLoadableConfigEntity(), // 1
+            () => new CGT.LoadableConfigStub(), // 2
+        };
+        public static GameLoadableConfigEntity CreatePolymorphic(System.UInt16 typeId) {
+            return polymorphConstructors[typeId]();
+        }
         public override void Deserialize(BinaryReader reader) 
         {
             base.Deserialize(reader);
@@ -23,7 +36,7 @@ namespace CGT {
         {
             var baseVal = base.CalculateHash();
             System.UInt64 hash = baseVal;
-            hash += (ulong)1712246652;
+            hash += (ulong)1106995105;
             hash += hash << 11; hash ^= hash >> 7;
             return hash;
         }
@@ -37,7 +50,7 @@ namespace CGT {
             base.CollectConfigs(_collection);
 
         }
-        public  LoadableConfigStub() 
+        public  GameLoadableConfigEntity() 
         {
 
         }
@@ -53,13 +66,13 @@ namespace CGT {
             base.WriteJsonFields(writer);
 
         }
-        public override ushort GetClassId() 
+        public virtual ushort GetClassId() 
         {
-        return (System.UInt16)Types.LoadableConfigStub;
+        return (System.UInt16)Types.GameLoadableConfigEntity;
         }
-        public override GameLoadableConfigEntity NewInst() 
+        public virtual CGT.GameLoadableConfigEntity NewInst() 
         {
-        return new LoadableConfigStub();
+        return new GameLoadableConfigEntity();
         }
     }
 }

@@ -7,9 +7,9 @@ using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
 namespace CGT {
 
-    public partial class GameData : IUpdatableFrom<GameData>, IHashable, ICompareChechable<GameData>, IJsonSerializable
+    public partial class GameData : IUpdatableFrom<CGT.GameData>, IHashable, ICompareChechable<CGT.GameData>, IJsonSerializable
     {
-        public virtual void UpdateFrom(GameData other) 
+        public virtual void UpdateFrom(CGT.GameData other) 
         {
 
         }
@@ -32,7 +32,7 @@ namespace CGT {
         {
 
         }
-        public virtual void CompareCheck(GameData other, Stack<string> __path) 
+        public virtual void CompareCheck(CGT.GameData other, Stack<string> __path) 
         {
 
         }

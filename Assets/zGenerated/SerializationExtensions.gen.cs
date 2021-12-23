@@ -8,46 +8,6 @@ using Newtonsoft.Json;
 
 public static partial class SerializationExtensions
 {
-    public static void Deserialize(this CGT.SessionInfo self, BinaryReader reader) 
-    {
-        self.playerId = reader.ReadString();
-        self.sessionId = reader.ReadString();
-    }
-    public static void Serialize(this CGT.SessionInfo self, BinaryWriter writer) 
-    {
-        writer.Write(self.playerId);
-        writer.Write(self.sessionId);
-    }
-    public static void ReadFromJson(this CGT.SessionInfo self, JsonTextReader reader) 
-    {
-        while (reader.Read())
-        {
-            if (reader.TokenType == JsonToken.PropertyName)
-            {
-                var __name = (string) reader.Value;
-                reader.Read();
-                switch(__name)
-                {
-                    case "playerId":
-                    self.playerId = (string) reader.Value;
-                    break;
-                    case "sessionId":
-                    self.sessionId = (string) reader.Value;
-                    break;
-                }
-            }
-            else if (reader.TokenType == JsonToken.EndObject) { break; }
-        }
-    }
-    public static void WriteJson(this CGT.SessionInfo self, JsonTextWriter writer) 
-    {
-        writer.WriteStartObject();
-        writer.WritePropertyName("playerId");
-        writer.WriteValue(self.playerId);
-        writer.WritePropertyName("sessionId");
-        writer.WriteValue(self.sessionId);
-        writer.WriteEndObject();
-    }
     public static void ReadFromJson(this ZergRush.ReactiveCore.ReactiveCollection<CGT.LocalMetaCommand> self, JsonTextReader reader) 
     {
         if (reader.TokenType != JsonToken.StartArray) throw new JsonSerializationException("Bad Json Format");
@@ -89,6 +49,46 @@ public static partial class SerializationExtensions
             val.Deserialize(reader);
             self.Add(val);
         }
+    }
+    public static void Deserialize(this CGT.SessionInfo self, BinaryReader reader) 
+    {
+        self.playerId = reader.ReadString();
+        self.sessionId = reader.ReadString();
+    }
+    public static void Serialize(this CGT.SessionInfo self, BinaryWriter writer) 
+    {
+        writer.Write(self.playerId);
+        writer.Write(self.sessionId);
+    }
+    public static void ReadFromJson(this CGT.SessionInfo self, JsonTextReader reader) 
+    {
+        while (reader.Read())
+        {
+            if (reader.TokenType == JsonToken.PropertyName)
+            {
+                var __name = (string) reader.Value;
+                reader.Read();
+                switch(__name)
+                {
+                    case "playerId":
+                    self.playerId = (string) reader.Value;
+                    break;
+                    case "sessionId":
+                    self.sessionId = (string) reader.Value;
+                    break;
+                }
+            }
+            else if (reader.TokenType == JsonToken.EndObject) { break; }
+        }
+    }
+    public static void WriteJson(this CGT.SessionInfo self, JsonTextWriter writer) 
+    {
+        writer.WriteStartObject();
+        writer.WritePropertyName("playerId");
+        writer.WriteValue(self.playerId);
+        writer.WritePropertyName("sessionId");
+        writer.WriteValue(self.sessionId);
+        writer.WriteEndObject();
     }
 }
 #endif
