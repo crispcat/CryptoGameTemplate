@@ -1,8 +1,8 @@
-﻿using GameTools;
+﻿using CGT;
 using System;
 using System.Threading.Tasks;
 
-namespace GameTemplate
+namespace CGT
 {
     public static partial class VersionManager
     {

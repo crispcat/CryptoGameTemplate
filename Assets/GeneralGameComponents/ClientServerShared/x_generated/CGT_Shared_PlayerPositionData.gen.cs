@@ -5,7 +5,7 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace ClientServerSharedLogic {
+namespace CGT.Shared {
 
     public partial struct PlayerPositionData : IHashable
     {

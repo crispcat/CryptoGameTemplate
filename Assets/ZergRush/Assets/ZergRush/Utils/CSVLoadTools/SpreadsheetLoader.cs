@@ -25,7 +25,7 @@ using Google.Apis.Services;
 using Google.Apis.Util.Store;
 #endif
 
-namespace GameTools
+namespace CGT
 {
     public class GoogleSheetConfig : List<GoogleSheet>
     {

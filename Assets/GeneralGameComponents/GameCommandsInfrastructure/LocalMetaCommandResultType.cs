@@ -1,4 +1,4 @@
-namespace Game
+namespace CGT
 {
     public enum LocalMetaCommandResultType : byte
     {

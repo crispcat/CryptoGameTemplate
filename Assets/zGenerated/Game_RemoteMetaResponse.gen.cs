@@ -5,13 +5,13 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
     public partial class RemoteMetaResponse : IJsonSerializable
     {
         public virtual void Deserialize(BinaryReader reader) 
         {
-            type = reader.ReadEnum<Game.RemoteMetaResponseType>();
+            type = reader.ReadEnum<CGT.RemoteMetaResponseType>();
             if (!reader.ReadBoolean()) {
                 error = null;
             }
@@ -44,7 +44,7 @@ namespace Game {
             switch(__name)
             {
                 case "type":
-                type = ((string)reader.Value).ParseEnum<Game.RemoteMetaResponseType>();
+                type = ((string)reader.Value).ParseEnum<CGT.RemoteMetaResponseType>();
                 break;
                 case "error":
                 if (reader.TokenType == JsonToken.Null) {

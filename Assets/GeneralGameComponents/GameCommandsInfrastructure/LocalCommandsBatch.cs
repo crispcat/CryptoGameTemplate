@@ -3,7 +3,7 @@ using System.IO;
 using ZergRush.CodeGen;
 using ZergRush.ReactiveCore;
 
-namespace Game
+namespace CGT
 {
     [GenSerialization, GenTask(GenTaskFlags.JsonSerialization)]
     public partial class LocalCommandsBatch : ISerializable

@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     [GenSerialization, GenTask(GenTaskFlags.JsonSerialization)]
     public partial class RemoteMetaRequest : ISerializable

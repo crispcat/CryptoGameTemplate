@@ -5,13 +5,13 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace GameTools {
+namespace CGT {
 
     public partial class LocalSettings : IJsonSerializable
     {
         public  LocalSettings() 
         {
-            authData = new Game.AuthData();
+            authData = new CGT.AuthData();
             currentLocale = new ZergRush.ReactiveCore.Cell<string>();
         }
         public virtual void ReadFromJsonField(JsonTextReader reader, string __name) 

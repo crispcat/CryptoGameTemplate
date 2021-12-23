@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     [GenTask(GenTaskFlags.CommandsGen)]
     public partial class MetaServerPlayerSessionController

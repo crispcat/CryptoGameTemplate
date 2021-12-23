@@ -4,7 +4,7 @@ using System.Text;
 using ZergRush.Alive;
 using System.IO;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
     public partial class ConnectionInfo : IHashable
     {

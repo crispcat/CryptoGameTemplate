@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     [GenTask(GenTaskFlags.ConfigData)]
     public partial class GameConfig : ISerializable, IJsonSerializable

@@ -3,7 +3,7 @@ using System.IO;
 using UnityEngine;
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     public enum RemoteMetaResponseType : byte
     {

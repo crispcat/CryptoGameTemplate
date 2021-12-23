@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
     public static partial class DebugLocalCommandPrinter
     {

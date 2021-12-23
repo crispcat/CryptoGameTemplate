@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Game
+namespace CGT
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class GenServerCommand : Attribute {}

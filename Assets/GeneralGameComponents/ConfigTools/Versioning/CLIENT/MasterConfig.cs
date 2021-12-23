@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ZergRush.CodeGen;
 
-namespace GameTemplate
+namespace CGT
 {
     [GenTask(GenTaskFlags.Serialization | GenTaskFlags.JsonSerialization)]
     public partial class MasterConfig : ISerializable, IJsonSerializable

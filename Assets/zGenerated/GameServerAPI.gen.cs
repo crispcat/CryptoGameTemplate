@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
     public partial class GameServerAPI
     {
@@ -25,7 +25,7 @@ namespace Game {
                 SystemLayer.LogError($"Remote command FlushLocalCommands execution failed, request args: , \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
             }
         }
-        public async System.Threading.Tasks.Task<Game.AuthResponse> DebugAuthenticateMergedPlayer(System.String authId) 
+        public async System.Threading.Tasks.Task<AuthResponse> DebugAuthenticateMergedPlayer(System.String authId) 
         {
             var command = network.PrepareRequest(RemoteMetaRequestType.DebugAuthenticateMergedPlayer);;
             var _data = new MemoryStream();
@@ -42,8 +42,8 @@ namespace Game {
                 var _result = await network.CallServerApi(command);
                 if (!_result.success) throw new GameException(_result.error);
                 var reader = new BinaryReader(new MemoryStream(_result.responseData));
-                Game.AuthResponse parsedResult = default;
-                parsedResult = new Game.AuthResponse();
+                AuthResponse parsedResult = default;
+                parsedResult = new AuthResponse();
                 parsedResult.Deserialize(reader);
                 return parsedResult;
             }
@@ -51,9 +51,9 @@ namespace Game {
             {
                 SystemLayer.LogError($"Remote command DebugAuthenticateMergedPlayer execution failed, request args: {authId}, \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
             }
-            return default(Game.AuthResponse);
+            return default(AuthResponse);
         }
-        public async System.Threading.Tasks.Task<Game.AuthResponse> ConnectToServer(Game.SessionInfo session, Game.LocalCommandsBatch localCommands, System.UInt64 savedModelHash) 
+        public async System.Threading.Tasks.Task<AuthResponse> ConnectToServer(CGT.SessionInfo session, LocalCommandsBatch localCommands, System.UInt64 savedModelHash) 
         {
             var command = network.PrepareRequest(RemoteMetaRequestType.ConnectToServer);;
             var _data = new MemoryStream();
@@ -76,8 +76,8 @@ namespace Game {
                 var _result = await network.CallServerApi(command);
                 if (!_result.success) throw new GameException(_result.error);
                 var reader = new BinaryReader(new MemoryStream(_result.responseData));
-                Game.AuthResponse parsedResult = default;
-                parsedResult = new Game.AuthResponse();
+                AuthResponse parsedResult = default;
+                parsedResult = new AuthResponse();
                 parsedResult.Deserialize(reader);
                 return parsedResult;
             }
@@ -85,7 +85,7 @@ namespace Game {
             {
                 SystemLayer.LogError($"Remote command ConnectToServer execution failed, request args: {session}, {localCommands}, {savedModelHash}, \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
             }
-            return default(Game.AuthResponse);
+            return default(AuthResponse);
         }
         public async System.Threading.Tasks.Task FinishSession() 
         {
@@ -104,7 +104,7 @@ namespace Game {
                 SystemLayer.LogError($"Remote command FinishSession execution failed, request args: , \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
             }
         }
-        public async System.Threading.Tasks.Task<Game.ShortPlayerInfo> GetShortPlayerInfo(System.String playerId) 
+        public async System.Threading.Tasks.Task<ShortPlayerInfo> GetShortPlayerInfo(System.String playerId) 
         {
             var command = network.PrepareRequest(RemoteMetaRequestType.GetShortPlayerInfo);;
             var _data = new MemoryStream();
@@ -121,7 +121,7 @@ namespace Game {
                 var _result = await network.CallServerApi(command);
                 if (!_result.success) throw new GameException(_result.error);
                 var reader = new BinaryReader(new MemoryStream(_result.responseData));
-                Game.ShortPlayerInfo parsedResult = default;
+                ShortPlayerInfo parsedResult = default;
                 parsedResult.Deserialize(reader);
                 return parsedResult;
             }
@@ -129,7 +129,7 @@ namespace Game {
             {
                 SystemLayer.LogError($"Remote command GetShortPlayerInfo execution failed, request args: {playerId}, \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
             }
-            return default(Game.ShortPlayerInfo);
+            return default(ShortPlayerInfo);
         }
         public async System.Threading.Tasks.Task DebugTimeoutSession() 
         {
@@ -148,7 +148,7 @@ namespace Game {
                 SystemLayer.LogError($"Remote command DebugTimeoutSession execution failed, request args: , \n SERVER ERROR = {e.Message}, \nstacktrace={e.StackTrace}");
             }
         }
-        public async System.Threading.Tasks.Task<int> DebugThrowException(Game.ExceptionToThrow type, System.String riftersErrorMessage) 
+        public async System.Threading.Tasks.Task<int> DebugThrowException(CGT.ExceptionToThrow type, System.String riftersErrorMessage) 
         {
             var command = network.PrepareRequest(RemoteMetaRequestType.DebugThrowException);;
             var _data = new MemoryStream();

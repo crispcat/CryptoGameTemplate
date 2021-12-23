@@ -5,13 +5,13 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace GameTemplate {
+namespace CGT {
 
     public partial class MasterConfig : IJsonSerializable
     {
         public virtual void Deserialize(BinaryReader reader) 
         {
-            status = reader.ReadEnum<GameTemplate.VersionStatus>();
+            status = reader.ReadEnum<CGT.VersionStatus>();
             configHash = reader.ReadUInt64();
         }
         public virtual void Serialize(BinaryWriter writer) 
@@ -24,7 +24,7 @@ namespace GameTemplate {
             switch(__name)
             {
                 case "status":
-                status = ((string)reader.Value).ParseEnum<GameTemplate.VersionStatus>();
+                status = ((string)reader.Value).ParseEnum<CGT.VersionStatus>();
                 break;
                 case "configHash":
                 configHash = ulong.Parse((string)reader.Value);

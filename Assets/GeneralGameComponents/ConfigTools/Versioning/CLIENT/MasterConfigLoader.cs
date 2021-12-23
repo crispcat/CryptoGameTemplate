@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using ZergRush;
 
-namespace GameTemplate
+namespace CGT
 {
     /*
      *     TODO

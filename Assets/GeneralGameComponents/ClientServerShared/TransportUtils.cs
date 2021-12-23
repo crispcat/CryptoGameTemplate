@@ -1,4 +1,4 @@
-﻿namespace ClientServerSharedLogic
+﻿namespace CGT.Shared
 {
     using System;
     using System.Text;

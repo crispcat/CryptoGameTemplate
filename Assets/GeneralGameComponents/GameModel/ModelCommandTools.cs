@@ -1,6 +1,6 @@
 using ZergRush.Alive;
 
-namespace Game
+namespace CGT
 {
     public static class ModelCommandTools
     {

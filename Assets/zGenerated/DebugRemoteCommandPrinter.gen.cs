@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
     public static partial class DebugRemoteCommandPrinter
     {
@@ -31,20 +31,20 @@ namespace Game {
                 }
                 case RemoteMetaRequestType.ConnectToServer:
                 {
-                    Game.SessionInfo session = default;
+                    CGT.SessionInfo session = default;
                     if (!reader.ReadBoolean()) {
                         session = null;
                     }
                     else { 
-                        session = new Game.SessionInfo();
+                        session = new CGT.SessionInfo();
                         session.Deserialize(reader);
                     }
-                    Game.LocalCommandsBatch localCommands = default;
+                    LocalCommandsBatch localCommands = default;
                     if (!reader.ReadBoolean()) {
                         localCommands = null;
                     }
                     else { 
-                        localCommands = new Game.LocalCommandsBatch();
+                        localCommands = new LocalCommandsBatch();
                         localCommands.Deserialize(reader);
                     }
                     ulong savedModelHash = default;
@@ -73,8 +73,8 @@ namespace Game {
                 }
                 case RemoteMetaRequestType.DebugThrowException:
                 {
-                    Game.ExceptionToThrow type = default;
-                    type = reader.ReadEnum<Game.ExceptionToThrow>();
+                    CGT.ExceptionToThrow type = default;
+                    type = reader.ReadEnum<CGT.ExceptionToThrow>();
                     string riftersErrorMessage = default;
                     if (!reader.ReadBoolean()) {
                         riftersErrorMessage = null;

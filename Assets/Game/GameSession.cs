@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Game;
+using CGT;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

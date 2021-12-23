@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Game;
-using GameTools;
+using CGT;
 using UnityEngine;
 using ZergRush;
 
-namespace GameTemplate
+namespace CGT
 {
     public static class ConfigsLoader
     {

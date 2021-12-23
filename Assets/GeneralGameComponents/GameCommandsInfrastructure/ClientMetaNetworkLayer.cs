@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using GameTools;
+using CGT;
 
-namespace Game
+namespace CGT
 {
     using AWS.Auth;
 

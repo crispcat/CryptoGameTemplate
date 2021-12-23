@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Game;
+using CGT;
 using ZergRush;
 using ZergRush.Alive;
 using ZergRush.CodeGen;

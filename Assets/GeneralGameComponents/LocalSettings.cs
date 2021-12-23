@@ -4,7 +4,7 @@ using ZergRush;
 using ZergRush.CodeGen;
 using ZergRush.ReactiveCore;
 
-namespace GameTools
+namespace CGT
 {
     [GenTask(GenTaskFlags.DefaultConstructor | GenTaskFlags.JsonSerialization)]
     public partial class LocalSettings : IJsonSerializable

@@ -5,7 +5,7 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
     public partial class LoadableConfigStub : IHashable, IUniquelyIdentifiable, IJsonSerializable, IPolymorphable
     {
@@ -57,7 +57,7 @@ namespace Game {
         {
         return (System.UInt16)Types.LoadableConfigStub;
         }
-        public override Game.GameLoadableConfigEntity NewInst() 
+        public override GameLoadableConfigEntity NewInst() 
         {
         return new LoadableConfigStub();
         }

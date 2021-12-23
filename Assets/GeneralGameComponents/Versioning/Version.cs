@@ -1,5 +1,5 @@
 ﻿
-namespace Game.Versioning
+namespace CGT.Versioning
 {
     public struct Version
     {

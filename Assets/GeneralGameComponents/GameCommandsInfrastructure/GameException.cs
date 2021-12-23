@@ -1,6 +1,6 @@
 using System;
 
-namespace Game
+namespace CGT
 {
     public class GameException : Exception
     {

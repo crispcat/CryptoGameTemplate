@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using ZergRush.ReactiveCore;
 
-namespace Game
+namespace CGT
 {
     public abstract class MetaNetworkLayer
     {

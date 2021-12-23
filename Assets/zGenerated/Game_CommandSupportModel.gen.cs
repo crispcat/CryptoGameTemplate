@@ -5,16 +5,16 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
-    public partial class CommandSupportModel : IUpdatableFrom<Game.CommandSupportModel>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable
+    public partial class CommandSupportModel : IUpdatableFrom<CommandSupportModel>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable
     {
         public override void UpdateFrom(ZergRush.Alive.DataNode other) 
         {
             base.UpdateFrom(other);
-            var otherConcrete = (Game.CommandSupportModel)other;
+            var otherConcrete = (CommandSupportModel)other;
         }
-        public void UpdateFrom(Game.CommandSupportModel other) 
+        public void UpdateFrom(CommandSupportModel other) 
         {
             this.UpdateFrom((ZergRush.Alive.DataNode)other);
         }

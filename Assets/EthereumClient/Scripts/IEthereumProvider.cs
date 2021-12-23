@@ -1,4 +1,4 @@
-namespace EthereumClient
+namespace CGT.EthereumClient
 {
   public interface IEthereumProvider
   {

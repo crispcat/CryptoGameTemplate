@@ -5,7 +5,7 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
     public partial class GameLoadableConfigEntity : IHashable, IUniquelyIdentifiable, IJsonSerializable, IPolymorphable
     {
@@ -16,8 +16,8 @@ namespace Game {
         }
         static Func<GameLoadableConfigEntity> [] polymorphConstructors = new Func<GameLoadableConfigEntity> [] {
             () => null, // 0
-            () => new Game.GameLoadableConfigEntity(), // 1
-            () => new Game.LoadableConfigStub(), // 2
+            () => new GameLoadableConfigEntity(), // 1
+            () => new LoadableConfigStub(), // 2
         };
         public static GameLoadableConfigEntity CreatePolymorphic(System.UInt16 typeId) {
             return polymorphConstructors[typeId]();
@@ -70,7 +70,7 @@ namespace Game {
         {
         return (System.UInt16)Types.GameLoadableConfigEntity;
         }
-        public virtual Game.GameLoadableConfigEntity NewInst() 
+        public virtual GameLoadableConfigEntity NewInst() 
         {
         return new GameLoadableConfigEntity();
         }

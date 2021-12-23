@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     [GenTask(GenTaskFlags.LifeSupport | GenTaskFlags.DefaultConstructor | GenTaskFlags.OwnershipHierarchy |
              GenTaskFlags.UpdateFrom | GenTaskFlags.CompareChech | GenTaskFlags.Hash), GenModelRootSetup, GenCommands]

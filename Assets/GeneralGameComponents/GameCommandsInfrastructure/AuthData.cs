@@ -1,7 +1,7 @@
 using System;
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     [GenSerialization]
     public partial struct ShortPlayerInfo

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Game
+namespace CGT
 {
     public enum GameServerMode
     {

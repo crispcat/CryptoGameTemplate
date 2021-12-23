@@ -4,7 +4,7 @@ using UnityEngine;
 using ZergRush.Alive;
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     public partial class CommandSupportModel : LivableRoot
     {

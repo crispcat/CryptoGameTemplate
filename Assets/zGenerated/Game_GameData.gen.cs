@@ -5,11 +5,11 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
-    public partial class GameData : IUpdatableFrom<Game.GameData>, IHashable, ICompareChechable<Game.GameData>, IJsonSerializable
+    public partial class GameData : IUpdatableFrom<GameData>, IHashable, ICompareChechable<GameData>, IJsonSerializable
     {
-        public virtual void UpdateFrom(Game.GameData other) 
+        public virtual void UpdateFrom(GameData other) 
         {
 
         }
@@ -32,7 +32,7 @@ namespace Game {
         {
 
         }
-        public virtual void CompareCheck(Game.GameData other, Stack<string> __path) 
+        public virtual void CompareCheck(GameData other, Stack<string> __path) 
         {
 
         }

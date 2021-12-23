@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace GameTemplate 
+namespace CGT 
 {
     // TODO restore build index automatization
     public class BuildIndexManager

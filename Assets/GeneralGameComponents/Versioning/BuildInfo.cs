@@ -1,5 +1,5 @@
 ﻿
-namespace GameTemplate 
+namespace CGT 
 {
     public class BuildInfo
     {

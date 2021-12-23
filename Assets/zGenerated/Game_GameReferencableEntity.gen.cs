@@ -5,19 +5,19 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
-    public partial class GameReferencableEntity : IUpdatableFrom<Game.GameReferencableEntity>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, IReferencableFromDataRoot, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable, IPolymorphable
+    public partial class GameReferencableEntity : IUpdatableFrom<GameReferencableEntity>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, IReferencableFromDataRoot, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable, IPolymorphable
     {
             public int Id { get { return id; } set { id = value; root?.ForceId(value, this); } }
         public override void UpdateFrom(ZergRush.Alive.DataNode other) 
         {
             base.UpdateFrom(other);
-            var otherConcrete = (Game.GameReferencableEntity)other;
+            var otherConcrete = (GameReferencableEntity)other;
             id = otherConcrete.id;
             Id = otherConcrete.Id;
         }
-        public void UpdateFrom(Game.GameReferencableEntity other) 
+        public void UpdateFrom(GameReferencableEntity other) 
         {
             this.UpdateFrom((ZergRush.Alive.DataNode)other);
         }
@@ -87,7 +87,7 @@ namespace Game {
         public override void CompareCheck(ZergRush.Alive.DataNode other, Stack<string> __path) 
         {
             base.CompareCheck(other,__path);
-            var otherConcrete = (Game.GameReferencableEntity)other;
+            var otherConcrete = (GameReferencableEntity)other;
             if (id != otherConcrete.id) SerializationTools.LogCompError(__path, "id", otherConcrete.id, id);
             if (Id != otherConcrete.Id) SerializationTools.LogCompError(__path, "Id", otherConcrete.Id, Id);
         }
@@ -116,7 +116,7 @@ namespace Game {
         {
         return (System.UInt16)Types.GameReferencableEntity;
         }
-        public override Game.GameEntity NewInst() 
+        public override GameEntity NewInst() 
         {
         return new GameReferencableEntity();
         }

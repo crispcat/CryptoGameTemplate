@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     public class DevGameControllerWithChecks : DevGameController
     {

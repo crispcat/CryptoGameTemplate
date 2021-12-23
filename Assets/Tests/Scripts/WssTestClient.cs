@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using ClientServerSharedLogic;
+using CGT.Shared;
 using UnityEngine;
 using Mirror.SimpleWeb;
 #if UNITY_EDITOR

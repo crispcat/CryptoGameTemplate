@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
     public static partial class DebugRemoteCommandResultPrinter
     {
@@ -17,15 +17,15 @@ namespace Game {
                 return "void";
                 case RemoteMetaRequestType.DebugAuthenticateMergedPlayer:
                 {
-                    Game.AuthResponse result = default;
-                    result = new Game.AuthResponse();
+                    AuthResponse result = default;
+                    result = new AuthResponse();
                     result.Deserialize(reader);
                     return result.SaveToJsonString();
                 }
                 case RemoteMetaRequestType.ConnectToServer:
                 {
-                    Game.AuthResponse result = default;
-                    result = new Game.AuthResponse();
+                    AuthResponse result = default;
+                    result = new AuthResponse();
                     result.Deserialize(reader);
                     return result.SaveToJsonString();
                 }
@@ -33,7 +33,7 @@ namespace Game {
                 return "void";
                 case RemoteMetaRequestType.GetShortPlayerInfo:
                 {
-                    Game.ShortPlayerInfo result = default;
+                    ShortPlayerInfo result = default;
                     result.Deserialize(reader);
                     return result.ToString();
                 }

@@ -1,6 +1,6 @@
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     [GenSerialization, GenTask(GenTaskFlags.JsonSerialization)]
     public partial struct LocalMetaCommandResult

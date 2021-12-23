@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game
+namespace CGT
 {
     public class MainGameScene : MonoBehaviour
     {

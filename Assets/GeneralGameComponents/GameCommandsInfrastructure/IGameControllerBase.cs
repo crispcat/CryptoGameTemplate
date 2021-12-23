@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using ZergRush;
 using ZergRush.ReactiveCore;
 
-namespace Game
+namespace CGT
 {
     public interface IGameControllerBase
     {

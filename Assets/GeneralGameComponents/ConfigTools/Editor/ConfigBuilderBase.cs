@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Game;
-using GameTools;
+using CGT;
 using UnityEngine;
 
-namespace Game
+namespace CGT
 {
 // Basic config loader and parser from public google tables
     public static partial class ConfigsBuilder

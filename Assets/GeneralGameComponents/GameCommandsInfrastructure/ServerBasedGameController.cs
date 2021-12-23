@@ -1,12 +1,12 @@
 using System;
 using System.Threading.Tasks;
-using GameTools;
+using CGT;
 using UnityEngine;
 using ZergRush;
 using ZergRush.CodeGen;
 using ZergRush.ReactiveCore;
 
-namespace Game
+namespace CGT
 {
     public class ServerBasedGameController : IGameControllerBase, IGameCommandSink
     {

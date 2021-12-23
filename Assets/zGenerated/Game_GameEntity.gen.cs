@@ -5,9 +5,9 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
-    public partial class GameEntity : IUpdatableFrom<Game.GameEntity>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable, IPolymorphable
+    public partial class GameEntity : IUpdatableFrom<GameEntity>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable, IPolymorphable
     {
         public enum Types : ushort
         {
@@ -16,8 +16,8 @@ namespace Game {
         }
         static Func<GameEntity> [] polymorphConstructors = new Func<GameEntity> [] {
             () => null, // 0
-            () => new Game.GameEntity(), // 1
-            () => new Game.GameReferencableEntity(), // 2
+            () => new GameEntity(), // 1
+            () => new GameReferencableEntity(), // 2
         };
         public static GameEntity CreatePolymorphic(System.UInt16 typeId) {
             return polymorphConstructors[typeId]();
@@ -25,9 +25,9 @@ namespace Game {
         public override void UpdateFrom(ZergRush.Alive.DataNode other) 
         {
             base.UpdateFrom(other);
-            var otherConcrete = (Game.GameEntity)other;
+            var otherConcrete = (GameEntity)other;
         }
-        public void UpdateFrom(Game.GameEntity other) 
+        public void UpdateFrom(GameEntity other) 
         {
             this.UpdateFrom((ZergRush.Alive.DataNode)other);
         }
@@ -104,7 +104,7 @@ namespace Game {
         {
         return (System.UInt16)Types.GameEntity;
         }
-        public virtual Game.GameEntity NewInst() 
+        public virtual GameEntity NewInst() 
         {
         return new GameEntity();
         }

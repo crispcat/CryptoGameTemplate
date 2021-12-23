@@ -5,13 +5,13 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
     public partial struct LocalMetaCommandResult
     {
         public void Deserialize(BinaryReader reader) 
         {
-            type = reader.ReadEnum<Game.LocalMetaCommandResultType>();
+            type = reader.ReadEnum<CGT.LocalMetaCommandResultType>();
         }
         public void Serialize(BinaryWriter writer) 
         {
@@ -28,7 +28,7 @@ namespace Game {
                     switch(__name)
                     {
                         case "type":
-                        type = ((string)reader.Value).ParseEnum<Game.LocalMetaCommandResultType>();
+                        type = ((string)reader.Value).ParseEnum<CGT.LocalMetaCommandResultType>();
                         break;
                     }
                 }

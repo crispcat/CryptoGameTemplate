@@ -1,7 +1,7 @@
 using ZergRush;
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     [GenSerialization, GenTask(GenTaskFlags.JsonSerialization)]
     public partial class LocalMetaCommand

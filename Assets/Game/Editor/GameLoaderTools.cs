@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace Game
+namespace CGT
 {
     public static class GameLoaderTools
     {

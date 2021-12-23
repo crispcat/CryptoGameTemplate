@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Game
+namespace CGT
 {
     public interface ILocalCommandExecuter
     {

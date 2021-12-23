@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Game;
+using CGT;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace GameTools
+namespace CGT
 {
     public partial class LocalSettings
     {

@@ -1,8 +1,8 @@
 using System.Linq;
-using GameTools;
+using CGT;
 using UnityEngine;
 
-namespace Game
+namespace CGT
 {
     public partial class ConfigsBuilder
     {

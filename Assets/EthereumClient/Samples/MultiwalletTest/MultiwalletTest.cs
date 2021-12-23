@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using EthereumClient;
+using CGT.EthereumClient;
 
 public class MultiwalletTest : MonoBehaviour
 {

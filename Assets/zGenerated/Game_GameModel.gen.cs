@@ -5,9 +5,9 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
-    public partial class GameModel : IUpdatableFrom<Game.GameModel>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable
+    public partial class GameModel : IUpdatableFrom<GameModel>, IUpdatableFrom<ZergRush.Alive.DataNode>, IHashable, ICompareChechable<ZergRush.Alive.DataNode>, IJsonSerializable
     {
         public void TestCommandCommand() 
         {
@@ -28,7 +28,7 @@ namespace Game {
                 root.ExecutionFailed(command);
             }
         }
-        public virtual Game.LocalMetaCommandResult ExecuteCommand(LocalMetaCommandType _type, BinaryReader reader) 
+        public virtual LocalMetaCommandResult ExecuteCommand(LocalMetaCommandType _type, BinaryReader reader) 
         {
             switch(_type)
             {
@@ -39,38 +39,38 @@ namespace Game {
                     break;
                 }
             }
-            return Game.LocalMetaCommandResult.NotFound;
+            return LocalMetaCommandResult.NotFound;
         }
-        public Game.GameReferencableEntity CreateGameReferencableEntity() 
+        public GameReferencableEntity CreateGameReferencableEntity() 
         {
-            var inst = new Game.GameReferencableEntity();
+            var inst = new GameReferencableEntity();
             inst.root = this;
             inst.__GenIds(this);
             inst.__PropagateHierarchyAndRememberIds();
             return inst;
         }
-        public Game.GameReferencableEntity CreateGameReferencableEntity(Game.GameReferencableEntity prototype) 
+        public GameReferencableEntity CreateGameReferencableEntity(GameReferencableEntity prototype) 
         {
-            Game.GameReferencableEntity inst = default;
-            inst = new Game.GameReferencableEntity();
+            GameReferencableEntity inst = default;
+            inst = new GameReferencableEntity();
             inst.UpdateFrom(prototype);
             inst.root = this;
             inst.__GenIds(this);
             inst.__PropagateHierarchyAndRememberIds();
             return inst;
         }
-        public Game.GameEntity CreateGameEntity() 
+        public GameEntity CreateGameEntity() 
         {
-            var inst = (Game.GameEntity)new Game.GameEntity();
+            var inst = (GameEntity)new GameEntity();
             inst.root = this;
             inst.__GenIds(this);
             inst.__PropagateHierarchyAndRememberIds();
             return inst;
         }
-        public Game.GameEntity CreateGameEntity(Game.GameEntity prototype) 
+        public GameEntity CreateGameEntity(GameEntity prototype) 
         {
-            Game.GameEntity inst = default;
-            inst = (Game.GameEntity)prototype.NewInst();
+            GameEntity inst = default;
+            inst = (GameEntity)prototype.NewInst();
             inst.UpdateFrom(prototype);
             inst.root = this;
             inst.__GenIds(this);
@@ -80,11 +80,11 @@ namespace Game {
         public override void UpdateFrom(ZergRush.Alive.DataNode other) 
         {
             base.UpdateFrom(other);
-            var otherConcrete = (Game.GameModel)other;
+            var otherConcrete = (GameModel)other;
             state = otherConcrete.state;
             displayName = otherConcrete.displayName;
         }
-        public void UpdateFrom(Game.GameModel other) 
+        public void UpdateFrom(GameModel other) 
         {
             this.UpdateFrom((ZergRush.Alive.DataNode)other);
         }
@@ -157,7 +157,7 @@ namespace Game {
         public override void CompareCheck(ZergRush.Alive.DataNode other, Stack<string> __path) 
         {
             base.CompareCheck(other,__path);
-            var otherConcrete = (Game.GameModel)other;
+            var otherConcrete = (GameModel)other;
             if (state != otherConcrete.state) SerializationTools.LogCompError(__path, "state", otherConcrete.state, state);
             if (displayName != otherConcrete.displayName) SerializationTools.LogCompError(__path, "displayName", otherConcrete.displayName, displayName);
         }

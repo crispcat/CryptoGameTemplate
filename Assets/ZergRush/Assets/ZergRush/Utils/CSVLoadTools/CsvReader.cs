@@ -6,7 +6,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace GameTools
+namespace CGT
 {
     public class Row
     {

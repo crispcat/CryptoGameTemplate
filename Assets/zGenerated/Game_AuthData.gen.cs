@@ -5,7 +5,7 @@ using ZergRush.Alive;
 using System.IO;
 using Newtonsoft.Json;
 #if !INCLUDE_ONLY_CODE_GENERATION
-namespace Game {
+namespace CGT {
 
     public partial class AuthData : IJsonSerializable
     {
@@ -47,7 +47,7 @@ namespace Game {
             else { 
                 googleId = reader.ReadString();
             }
-            type = reader.ReadEnum<Game.AuthType>();
+            type = reader.ReadEnum<CGT.AuthType>();
         }
         public virtual void Serialize(BinaryWriter writer) 
         {
@@ -136,7 +136,7 @@ namespace Game {
                 }
                 break;
                 case "type":
-                type = ((string)reader.Value).ParseEnum<Game.AuthType>();
+                type = ((string)reader.Value).ParseEnum<CGT.AuthType>();
                 break;
             }
         }

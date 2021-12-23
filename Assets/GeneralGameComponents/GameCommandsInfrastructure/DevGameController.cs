@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using ZergRush.ReactiveCore;
 
-namespace Game
+namespace CGT
 {
     public class DevGameController : IGameControllerBase, IGameCommandSink
     {

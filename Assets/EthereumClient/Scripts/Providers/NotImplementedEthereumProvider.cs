@@ -1,4 +1,4 @@
-namespace EthereumClient
+namespace CGT.EthereumClient
 {
   /// <summary>
   /// Provider for not implemented platforms

@@ -1,7 +1,7 @@
 using ZergRush.Alive;
 using ZergRush.CodeGen;
 
-namespace Game
+namespace CGT
 {
     [GenTask(GenTaskFlags.ConfigData), ConfigRootType(typeof(GameConfig))]
     public partial class GameConfigEntity

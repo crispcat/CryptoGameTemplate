@@ -1,7 +1,7 @@
 using System;
-using GameTemplate;
+using CGT;
 
-namespace Game
+namespace CGT
 {
     public class CmdParams
     {

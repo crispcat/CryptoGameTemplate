@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Game
+namespace CGT
 {
     // I live on merged client and send commands to its merged server.
     public class MergedClientMetaNetworkLayer : ClientMetaNetworkLayer

@@ -1,10 +1,10 @@
 ﻿#if UNITY_EDITOR
 using System.Threading.Tasks;
-using Game;
+using CGT;
 using UnityEditor;
 using UnityEngine;
 
-namespace GameTemplate
+namespace CGT
 {
     public class ConfigManagementWindow // : EditorContentTab
     {

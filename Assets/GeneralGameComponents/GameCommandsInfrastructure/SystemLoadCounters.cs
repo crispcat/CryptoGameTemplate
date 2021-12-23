@@ -1,7 +1,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Game
+namespace CGT
 {
     public static class SystemLoadCounters
     {

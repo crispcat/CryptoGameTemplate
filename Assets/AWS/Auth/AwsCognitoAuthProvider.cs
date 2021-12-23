@@ -1,6 +1,6 @@
 ﻿namespace AWS.Auth
 {
-    using Game;
+    using CGT;
     using System.Threading.Tasks;
 
     public static class AwsCognitoAuthProvider

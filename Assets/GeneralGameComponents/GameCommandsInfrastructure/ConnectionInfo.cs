@@ -1,6 +1,6 @@
 using System;
 
-namespace Game
+namespace CGT
 {
     [GenSerialization, GenHashing]
     public partial class ConnectionInfo : IEquatable<ConnectionInfo>, IHashable
