@@ -104,7 +104,7 @@ public static partial class CommandGen
                     eSink.content($"return {responseType.Name}.Complete({bufferName});");
                 }
             });
-        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), genPath, _context);
+        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), genPath + "/", _context);
     }
 
     static void GenerateCommandResultPrinter(List<MethodInfo> commandFunctions)

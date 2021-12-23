@@ -328,6 +328,6 @@ public static partial class CommandGen
         if (printerSink != null) 
             FinishArgPrinting(printerSink);
 
-        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), genPath, genContext);
+        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), genPath + "/", genContext);
     }
 }
