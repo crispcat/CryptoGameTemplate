@@ -329,5 +329,6 @@ public static partial class CommandGen
             FinishArgPrinting(printerSink);
 
         EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), genPath, genContext);
+        genContext.Commit();
     }
 }

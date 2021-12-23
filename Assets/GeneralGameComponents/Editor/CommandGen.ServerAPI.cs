@@ -105,6 +105,7 @@ public static partial class CommandGen
                 }
             });
         EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), genPath, _context);
+        _context.Commit();
     }
 
     static void GenerateCommandResultPrinter(List<MethodInfo> commandFunctions)
