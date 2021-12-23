@@ -22,7 +22,7 @@ public static partial class CommandGen
         string commandTypeName = typeof(RemoteMetaRequestType).Name; //"ServerRequestType";
         var responseType = typeof(RemoteMetaResponse);
         var thisTypeCommands = new List<MethodInfo>();
-        var senderSink = CodeGen.defaultContext.createSharpClass("GameServerAPI", "GameServerAPI", "CGT",
+        var senderSink = _context.createSharpClass("GameServerAPI", "GameServerAPI", "CGT",
             isStatic: false, isStruct: false, isSealed: false, isPartial: true);
         senderSink.usingSink("System.Threading.Tasks");
 
@@ -79,7 +79,7 @@ public static partial class CommandGen
         FinishArgPrinting(printerSink);
         GenerateCommandResultPrinter(thisTypeCommands);
 
-        var receiverSink = CodeGen.GenClassSink(type);
+        var receiverSink = CodeGen.GenClassSink(type, _context);
         receiverSink.defineSink("SERVER");
         receiverSink.usingSink("System.Threading.Tasks");
         receiverSink.usingSink(responseType.Namespace);

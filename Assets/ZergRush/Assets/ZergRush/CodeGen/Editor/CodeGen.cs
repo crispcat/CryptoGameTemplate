@@ -89,9 +89,9 @@ namespace ZergRush.CodeGen
             return defaultContext;
         }
 
-        public static SharpClassBuilder GenClassSink(Type t)
+        public static SharpClassBuilder GenClassSink(Type t, GeneratorContext ctx = null)
         {
-            var context = GetContext(t);
+            var context = ctx ?? GetContext(t);
             if (t.IsControllable() == false && t != typeof(ObjectPool))
             {
                 return context.extensionSink;
