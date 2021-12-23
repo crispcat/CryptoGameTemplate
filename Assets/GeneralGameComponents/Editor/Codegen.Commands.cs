@@ -246,7 +246,7 @@ public static partial class CommandGen
         var genLocal = (GenInLocalFolder) Attribute.GetCustomAttribute(type, typeof(GenInLocalFolder));
         return genLocal == null
             ? "Assets/zGenerated/"
-            : genLocal.folder;
+            : genLocal.folder + "/";
     }
 
     [CodeGenExtension]
@@ -328,6 +328,6 @@ public static partial class CommandGen
         if (printerSink != null) 
             FinishArgPrinting(printerSink);
 
-        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), genPath + "/", genContext);
+        EnumTable.MakeAndSaveEnum(commandTypeName, allCommands.ToList(), genPath, genContext);
     }
 }
