@@ -5,5 +5,5 @@ Set of useful Unity tools and server SDK to develop secure and scalable online g
 Open git bash in project root and run
 
 ``` git
-git submodule add "https://github.com/ArribleTeam/CryptoGameTemplate.git" "Assets/CryptoGameTemplate"
+git submodule add "https://github.com/crispcat/CryptoGameTemplate.git" "Assets/CryptoGameTemplate"
 ```
